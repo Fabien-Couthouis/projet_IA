@@ -1,0 +1,13 @@
+<?xml version="1.0"?>  
+<Questions>
+	<Question Id="1">
+		<QuestionText>Comment s'appelle M. Salotti ?</QuestionText>
+		<Answers>
+			<A>Michel</A>
+			<B>Jean-Marc</B>
+			<C>Denis</C>
+			<D>Jacques</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+	</Question>
+</Questions>
