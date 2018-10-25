@@ -34,7 +34,7 @@
             this.answer3_rbtn = new System.Windows.Forms.RadioButton();
             this.answer4_rbtn = new System.Windows.Forms.RadioButton();
             this.validate_btn = new System.Windows.Forms.Button();
-            this._lb = new System.Windows.Forms.Label();
+            this.questionNb_lb = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // question_tb
@@ -57,6 +57,7 @@
             this.answer1_rbtn.TabStop = true;
             this.answer1_rbtn.Text = "reponse1";
             this.answer1_rbtn.UseVisualStyleBackColor = true;
+            this.answer1_rbtn.CheckedChanged += new System.EventHandler(this.answer1_rbtn_CheckedChanged);
             // 
             // answer2_rbtn
             // 
@@ -101,21 +102,21 @@
             this.validate_btn.UseVisualStyleBackColor = true;
             this.validate_btn.Click += new System.EventHandler(this.validate_btn_Click);
             // 
-            // _lb
+            // questionNb_lb
             // 
-            this._lb.AutoSize = true;
-            this._lb.Location = new System.Drawing.Point(23, 13);
-            this._lb.Name = "_lb";
-            this._lb.Size = new System.Drawing.Size(29, 13);
-            this._lb.TabIndex = 6;
-            this._lb.Text = "x/20";
+            this.questionNb_lb.AutoSize = true;
+            this.questionNb_lb.Location = new System.Drawing.Point(23, 13);
+            this.questionNb_lb.Name = "questionNb_lb";
+            this.questionNb_lb.Size = new System.Drawing.Size(29, 13);
+            this.questionNb_lb.TabIndex = 6;
+            this.questionNb_lb.Text = "x/20";
             // 
             // questionNumber_lb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 639);
-            this.Controls.Add(this._lb);
+            this.Controls.Add(this.questionNb_lb);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.answer4_rbtn);
             this.Controls.Add(this.answer3_rbtn);
@@ -137,7 +138,7 @@
         private System.Windows.Forms.RadioButton answer3_rbtn;
         private System.Windows.Forms.RadioButton answer4_rbtn;
         private System.Windows.Forms.Button validate_btn;
-        private System.Windows.Forms.Label _lb;
+        private System.Windows.Forms.Label questionNb_lb;
     }
 }
 

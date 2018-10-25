@@ -16,7 +16,7 @@ namespace Ex1_Questionnaire
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new questionNumber_lb());
+            Application.Run(new Accueil());
         }
     }
 }

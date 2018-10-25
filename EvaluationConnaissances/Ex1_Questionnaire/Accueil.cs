@@ -7,28 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Ex1_Questionnaire
 {
-    public partial class questionNumber_lb : Form
+    public partial class Accueil : Form
     {
-        public questionNumber_lb()
+        public Accueil()
         {
             InitializeComponent();
         }
 
-        private void answer_tb_TextChanged(object sender, EventArgs e)
+        private void title_lb_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void validate_btn_Click(object sender, EventArgs e)
+        private void begin_btn_Click(object sender, EventArgs e)
         {
-            Question question = new Question(3);
-            question_tb.Text = question.GoodAnswer;
-
-
+            questionNumber_lb.Show();
+            this.Close();
         }
     }
 }
