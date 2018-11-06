@@ -2,6 +2,7 @@
 <Questions>
 	<Question Id="1">
 		<QuestionText>Comment s'appelle M. Salotti ?</QuestionText>
+		<ImageName>JMS.jpg</ImageName>
 		<Answers>
 			<A>Michel</A>
 			<B>Jean-Marc</B>
@@ -10,4 +11,15 @@
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
 	</Question>
+	<Question Id="2">
+		<QuestionText>Pourquoi ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Oui</A>
+			<B>C'est pas moi</B>
+			<C>.</C>
+			<D>Je</D>
+		</Answers>
+		<GoodAnswer>Coucou</GoodAnswer>
+	</Question>	
 </Questions>

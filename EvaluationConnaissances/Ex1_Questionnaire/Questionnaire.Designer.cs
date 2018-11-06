@@ -1,6 +1,6 @@
 ﻿namespace Ex1_Questionnaire
 {
-    partial class questionNumber_lb
+    partial class Questionnaire
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -35,6 +35,8 @@
             this.answer4_rbtn = new System.Windows.Forms.RadioButton();
             this.validate_btn = new System.Windows.Forms.Button();
             this.questionNb_lb = new System.Windows.Forms.Label();
+            this.pictureQuestion = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).BeginInit();
             this.SuspendLayout();
             // 
             // question_tb
@@ -111,11 +113,22 @@
             this.questionNb_lb.TabIndex = 6;
             this.questionNb_lb.Text = "x/20";
             // 
-            // questionNumber_lb
+            // pictureQuestion
+            // 
+            this.pictureQuestion.BackColor = System.Drawing.Color.Transparent;
+            this.pictureQuestion.Location = new System.Drawing.Point(316, 154);
+            this.pictureQuestion.Name = "pictureQuestion";
+            this.pictureQuestion.Size = new System.Drawing.Size(207, 129);
+            this.pictureQuestion.TabIndex = 8;
+            this.pictureQuestion.TabStop = false;
+            this.pictureQuestion.Visible = false;
+            // 
+            // Questionnaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 639);
+            this.Controls.Add(this.pictureQuestion);
             this.Controls.Add(this.questionNb_lb);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.answer4_rbtn);
@@ -123,8 +136,10 @@
             this.Controls.Add(this.answer2_rbtn);
             this.Controls.Add(this.answer1_rbtn);
             this.Controls.Add(this.question_tb);
-            this.Name = "questionNumber_lb";
-            this.Text = "Form1";
+            this.Name = "Questionnaire";
+            this.Text = "Questionnaire";
+            this.Load += new System.EventHandler(this.questionNumber_lb_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,6 +154,7 @@
         private System.Windows.Forms.RadioButton answer4_rbtn;
         private System.Windows.Forms.Button validate_btn;
         private System.Windows.Forms.Label questionNb_lb;
+        private System.Windows.Forms.PictureBox pictureQuestion;
     }
 }
 

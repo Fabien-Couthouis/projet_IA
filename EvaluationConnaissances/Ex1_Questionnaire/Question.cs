@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,22 +8,27 @@ using System.Xml.Linq;
 
 namespace Ex1_Questionnaire
 {
-    class Question
+    public class Question
     {
         public static XElement xdoc = XElement.Load("..\\..\\questions.xml");
         public int Id { get; set; }
         public string QuestionText { get; set; }
         public List<string> Answers { get; set; }
         public string GoodAnswer { get; set; }
+        public Image Image { get; set; }
+        public bool HasImage { get; set; }
 
-        public Question(int id, string questionText, List<string> answers, string goodAnswer)
-        {
-            Id = id;
-            QuestionText = questionText;
-            Answers = answers;
-            GoodAnswer = goodAnswer;
 
-        }
+        //public Question(int id, string questionText, List<string> answers, string goodAnswer)
+        //{
+        //    Id = id;
+        //    Image = image;
+        //    HasImage = false;
+        //    QuestionText = questionText;
+        //    Answers = answers;
+        //    GoodAnswer = goodAnswer;
+
+        //}
         public Question(int id)
         {
             Id = id;
@@ -37,6 +43,7 @@ namespace Ex1_Questionnaire
                         select new
                         {
                             QuestionText = item.Element("QuestionText").Value,
+                            ImageName = item.Element("ImageName").Value,
                             Answers = item.Descendants("Answers").Descendants().Select(x => x.Value).ToList(),
                             GoodAnswer = item.Element("GoodAnswer").Value
                         };
@@ -47,6 +54,13 @@ namespace Ex1_Questionnaire
                 this.QuestionText = item.QuestionText;
                 this.Answers = item.Answers;
                 this.GoodAnswer = item.GoodAnswer;
+                if (item.ImageName != "")
+                {
+                    HasImage = true;
+                    Image = Image.FromFile("..//..//images//" + item.ImageName);
+                }
+                else
+                    HasImage = false;
             }
 
             return;

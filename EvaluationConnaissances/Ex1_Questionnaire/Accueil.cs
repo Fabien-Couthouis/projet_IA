@@ -24,8 +24,9 @@ namespace Ex1_Questionnaire
 
         private void begin_btn_Click(object sender, EventArgs e)
         {
-            questionNumber_lb.Show();
-            this.Close();
+            Questionnaire question = new Questionnaire();
+            this.Hide();
+            question.Show();
         }
     }
 }
