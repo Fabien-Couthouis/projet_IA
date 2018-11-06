@@ -1,0 +1,14 @@
+nbNodes : 8
+first node : A
+last node : H
+
+Adjacency matrix :
+ ABCDEFGH
+A03600000
+B30000000
+C60009000
+D50000500
+E00903040
+F00003040
+G00004404
+H00000040
