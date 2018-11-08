@@ -8,102 +8,54 @@ namespace Ex2_Dijkstra
 {
     class MyNode:GenericNode
     {
-        public int number;
-        public int nbNodes;
-        public char firstNode;
-        public char lastNode;
-        public string graphName;
-        private int[,] matrix;
-
-        public void InitialiseGraph()
-        {
-            System.IO.StreamReader file = new System.IO.StreamReader("..//..//graph//" + graphName + ".txt");
-            int lineNb = 0;
-            string line;
-            matrix = new int[nbNodes,nbNodes];
-
-            //L1
-            line = file.ReadLine();
-            lineNb++;
-            nbNodes = line[10];
-
-            //L2
-            line = file.ReadLine();
-            lineNb++;
-            firstNode = line[13];
-
-            //L3
-            line = file.ReadLine();
-            lineNb++;
-            lastNode = line[12];
-
-            //L4
-            line = file.ReadLine();
-            lineNb++;
-            //L5
-            line = file.ReadLine();
-            lineNb++;
-            //L6
-            line = file.ReadLine();
-            lineNb++;
-
-            for (int i=0; i < nbNodes; i++)
-            {
-                line = file.ReadLine();
-                for (int j = 0; j < nbNodes; j++)
-                {
-                    matrix[i, j] = Convert.ToInt32(line[j + 1]);
-                }
-                lineNb++;
-            }
-
-        }
+        public Graph Graph { get; set; }
+        public int Number { get; set; }
 
         // Méthodes abstrates, donc à surcharger obligatoirement avec override dans une classe fille
         public override bool IsEqual(GenericNode N2)
         {
             MyNode N2bis = (MyNode)N2;
 
-            return number == N2bis.number;
+            return Number == N2bis.Number;
         }
 
         public override double GetArcCost(GenericNode N2)
         {
             MyNode N2bis = (MyNode)N2;
-            return matrix[number, N2bis.number];
+            return Graph.Matrix[Number, N2bis.Number];
         }
 
         public override bool EndState()
         {
-            return (number == nbNodes - 1);
+            return (Number == Graph.LastNode);
         }
 
         public override List<GenericNode> GetListSucc()
         {
             List<GenericNode> lsucc = new List<GenericNode>();
 
-            for (int i = 0; i < nbNodes; i++)
+            for (int i = 0; i < Graph.NbNodes; i++)
             {
-                if (matrix[number, i] != -1)
+                if (Graph.Matrix[Number, i] != -1)
                 {
                     MyNode newnode2 = new MyNode();
-                    newnode2.number = i;
+                    newnode2.Number = i;
                     lsucc.Add(newnode2);
                 }
             }
             return lsucc;
         }
 
-
-        //a modifier
         public override double CalculeHCost()
         {
             return (0);
         }
 
+        //Renvoie la lettre correspondant au numéro du noeud (A=0 ; B=1 ; ...)
         public override string ToString()
         {
-            return Convert.ToString(number);
+            //return Convert.ToString(Number);
+            return ((char)(Number + (int)'A')).ToString();
         }
     }
 }

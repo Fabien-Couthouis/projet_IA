@@ -1,14 +1,11 @@
-nbNodes : 8
-first node : A
-last node : H
-
-Adjacency matrix :
- ABCDEFGH
-A03600000
-B30000000
-C60009000
-D50000500
-E00903040
-F00003040
-G00004404
-H00000040
+nombre de noeuds : 8
+Premier noeud : 0
+Dernier noeud : 7
+arc1 : 0 1 3
+arc2 : 0 2 6
+arc3 : 0 3 5
+arc4 : 3 5 5
+arc5 : 2 5 9
+arc6 : 4 5 3
+arc7 : 4 6 4
+arc8 : 6 7 4

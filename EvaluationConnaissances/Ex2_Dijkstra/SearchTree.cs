@@ -11,6 +11,9 @@ namespace Ex2_Dijkstra
         public List<GenericNode> L_Ouverts;
         public List<GenericNode> L_Fermes;
 
+        public List<List<GenericNode>> L_Ouverts_Historic;
+        public List<List<GenericNode>> L_Fermes_Historic;
+
         public int CountInOpenList()
         {
             return L_Ouverts.Count;
@@ -50,6 +53,10 @@ namespace Ex2_Dijkstra
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
+
+            L_Ouverts_Historic = new List<List<GenericNode>>();
+            L_Fermes_Historic = new List<List<GenericNode>>();
+
             // Le noeud passé en paramètre est supposé être le noeud initial
             GenericNode N = N0;
             L_Ouverts.Add(N0);
@@ -57,6 +64,7 @@ namespace Ex2_Dijkstra
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (L_Ouverts.Count != 0 && N.EndState() == false)
             {
+                UpdateHistoricLists();
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
                 L_Ouverts.Remove(N);
@@ -198,6 +206,12 @@ namespace Ex2_Dijkstra
                 TN.Nodes.Add(TNfils);
                 if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils); 
             }
+        }
+
+        private void UpdateHistoricLists()
+        {
+            L_Ouverts_Historic.Add(new List<GenericNode>(L_Ouverts));
+            L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));
         }
   
     }
