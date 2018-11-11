@@ -8,11 +8,13 @@ namespace Ex2_Dijkstra
 {
     class SearchTree
     {
-        public List<GenericNode> L_Ouverts;
-        public List<GenericNode> L_Fermes;
+        private List<GenericNode> L_Ouverts;
+        private List<GenericNode> L_Fermes;
 
-        public List<List<GenericNode>> L_Ouverts_Historic;
-        public List<List<GenericNode>> L_Fermes_Historic;
+        public List<List<GenericNode>> L_Ouverts_Historic { get; private set; }
+        public List<List<GenericNode>> L_Fermes_Historic { get; private set; }
+
+        public List<GenericNode> SolutionNodes { get; private set; }
 
         public int CountInOpenList()
         {
@@ -61,10 +63,10 @@ namespace Ex2_Dijkstra
             GenericNode N = N0;
             L_Ouverts.Add(N0);
 
+            UpdateHistoricLists();
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (L_Ouverts.Count != 0 && N.EndState() == false)
             {
-                UpdateHistoricLists();
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
                 L_Ouverts.Remove(N);
@@ -84,24 +86,26 @@ namespace Ex2_Dijkstra
                 {
                     N = null;
                 }
+                UpdateHistoricLists();
             }
-
             // A* terminé
+            AddLastFermesInHistoric();
+
             // On retourne le chemin qui va du noeud initial au noeud final sous forme de liste
             // Le chemin est retrouvé en partant du noeud final et en accédant aux parents de manière
             // itérative jusqu'à ce qu'on tombe sur le noeud initial
-            List<GenericNode> _LN = new List<GenericNode>();
+            SolutionNodes = new List<GenericNode>();
             if (N != null)
             {
-                _LN.Add(N);
+                SolutionNodes.Add(N);
 
                 while (N != N0)
                 {
                     N = N.GetNoeud_Parent();
-                    _LN.Insert(0, N);  // On insère en position 1
+                    SolutionNodes.Insert(0, N);  // On insère en position 1
                 }
             }
-            return _LN;
+            return SolutionNodes;
         }
 
         private void MAJSuccesseurs(GenericNode N)
@@ -213,6 +217,35 @@ namespace Ex2_Dijkstra
             L_Ouverts_Historic.Add(new List<GenericNode>(L_Ouverts));
             L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));
         }
-  
+
+        private void AddLastFermesInHistoric()
+        {
+            L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));
+            int lastStep = L_Fermes_Historic.Count - 1;
+            L_Fermes_Historic[lastStep].Add(L_Ouverts_Historic[lastStep - 1][0]);
+        }
+
+        ///<summary>Renvoie le noeud present dans la liste des ouverts à l'étape et l'index indiqué, sous forme
+        ///d'une chaîne de caractères. Si aucun noeud n'est présent, renvoie un null.</summary>
+        public String GetOuvertNodeFromHistoric(int step, int index)
+        {
+            if (L_Ouverts_Historic.Count > step && L_Ouverts_Historic[step].Count > index)
+                return L_Ouverts_Historic[step][index].ToString();
+            else return null;
+        }
+
+        ///<summary>Renvoie le noeud present dans la liste des fermes à l'étape et l'index indiqué, sous forme
+        ///d'une chaîne de caractères. Si aucun noeud n'est présent, renvoie un null.</summary>
+        public String GetFermeNodeFromHistoric(int step, int index)
+        {
+            if (L_Fermes_Historic.Count > step && L_Fermes_Historic[step].Count > index)
+                return L_Fermes_Historic[step][index].ToString();
+            else return null;
+        }
+
+        
+
+
+
     }
 }

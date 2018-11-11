@@ -110,9 +110,9 @@
             this.step_lb.AutoSize = true;
             this.step_lb.Location = new System.Drawing.Point(190, 314);
             this.step_lb.Name = "step_lb";
-            this.step_lb.Size = new System.Drawing.Size(65, 17);
+            this.step_lb.Size = new System.Drawing.Size(57, 17);
             this.step_lb.TabIndex = 7;
-            this.step_lb.Text = "Étape 1  ";
+            this.step_lb.Text = "Étape 0";
             // 
             // fermes_lb
             // 

@@ -11,6 +11,16 @@ namespace Ex2_Dijkstra
         public Graph Graph { get; set; }
         public int Number { get; set; }
 
+        public MyNode() : base()
+        {
+        }
+
+        public MyNode(int number, Graph graph):base()
+        {
+            Number = number;
+            Graph = graph;
+        }
+
         // Méthodes abstrates, donc à surcharger obligatoirement avec override dans une classe fille
         public override bool IsEqual(GenericNode N2)
         {
@@ -27,7 +37,7 @@ namespace Ex2_Dijkstra
 
         public override bool EndState()
         {
-            return (Number == Graph.LastNode);
+            return (Number == Graph.LastNode );
         }
 
         public override List<GenericNode> GetListSucc()
@@ -38,8 +48,10 @@ namespace Ex2_Dijkstra
             {
                 if (Graph.Matrix[Number, i] != -1)
                 {
+                    //lsucc.Add(this.Copy());
                     MyNode newnode2 = new MyNode();
                     newnode2.Number = i;
+                    newnode2.Graph = Graph;
                     lsucc.Add(newnode2);
                 }
             }
@@ -49,6 +61,14 @@ namespace Ex2_Dijkstra
         public override double CalculeHCost()
         {
             return (0);
+        }
+
+        /// <summary>
+        /// Retourne une copie du noeud.
+        /// </summary>
+        public MyNode Copy()
+        {
+            return new MyNode(this.Number, this.Graph);
         }
 
         //Renvoie la lettre correspondant au numéro du noeud (A=0 ; B=1 ; ...)

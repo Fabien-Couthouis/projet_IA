@@ -10,20 +10,22 @@ namespace Ex2_Dijkstra
 {
     class Graph
     {
-        ///<summary>Emplacement du fichier texte et de l'image du graph</summary>
+
+        /// <summary>
+        /// Emplacement du fichier texte et de l'image du graph.
+        /// </summary>
         private static string filesLocation = "..//..//graph//";
         public int Id { get; set; }
         public string GraphFileLocation { get; set; }
         public string PictureFileLocation { get; set; }
-        //public List<GenericNode> nodeList;
-        //Matrice d'adjacence
-        static public double[,] Matrix { get; set; }
-        static public int NbNodes { get; set; }
-        static public int FirstNode { get; set; }
-        static public int LastNode { get; set; }
-
-
-
+        /// <summary>
+        /// Matrice d'adjacence des noeuds du graph.
+        /// </summary>
+        public double[,] Matrix { get; set; }
+        public int NbNodes { get; set; }
+        public int FirstNode { get; set; }
+        public int LastNode { get; set; }
+        public SearchTree SolutionTree { get; set; }
 
 
         public Graph(int id)
@@ -153,15 +155,13 @@ namespace Ex2_Dijkstra
             streamReader.Close();
         }
 
-        ///<summary>Renvoie le Treeview solution après application de A*</summary>
-        public TreeView getSolution()
+        ///<summary>Calcule la solution (application de A*). Renvoie la liste des noeuds solution.</summary>
+        public List<GenericNode> getSolution()
         {
-            SearchTree searchTree = new SearchTree();
-            TreeView treeView = new TreeView();
-            MyNode N0 = new MyNode();
-            N0.Graph = this;
-            N0.Number = FirstNode;
-            List<GenericNode> solution = searchTree.RechercheSolutionAEtoile(N0);
+            SolutionTree = new SearchTree();
+            //TreeView treeView = new TreeView();
+            MyNode N0 = new MyNode(FirstNode, this);
+            List<GenericNode> solution = SolutionTree.RechercheSolutionAEtoile(N0);
 
             MyNode N1 = N0;
             for (int i = 1; i < solution.Count; i++)
@@ -170,42 +170,10 @@ namespace Ex2_Dijkstra
                 N1 = N2;
             }
 
-            searchTree.GetSearchTree(treeView);
-
-            return treeView;
-        }
-
-        public List<GenericNode> getSolutionNodes()
-        {
-            SearchTree searchTree = new SearchTree();
-            TreeView treeView = new TreeView();
-            MyNode N0 = new MyNode();
-            N0.Graph = this;
-            N0.Number = FirstNode;
-            List<GenericNode> solution = searchTree.RechercheSolutionAEtoile(N0);
-
-            MyNode N1 = N0;
-            for (int i = 1; i < solution.Count; i++)
-            {
-                MyNode N2 = (MyNode)solution[i];
-                N1 = N2;
-            }
-
-            searchTree.GetSearchTree(treeView);
+            //searchTree.GetSearchTree(treeView);
 
             return solution;
         }
 
-        public List<List<GenericNode>> getOuvertsHistoric()
-        {
-            SearchTree searchTree = new SearchTree();
-            MyNode N0 = new MyNode();
-            N0.Number = FirstNode;
-            searchTree.RechercheSolutionAEtoile(N0);
-            List<List<GenericNode>> solution = searchTree.L_Ouverts_Historic;
-
-
-            return solution;
-        }
     }
 }

@@ -12,7 +12,7 @@ namespace Ex2_Dijkstra
 {
     public partial class Dijkstra : Form
     {
-        private int step = 1;
+        private int step = 0;
         private Graph graph;
         //Liste de tous les components propres à une étape
         //Chaque indice de la 1ere liste correspond à l'étape en cours
@@ -23,14 +23,25 @@ namespace Ex2_Dijkstra
         public Dijkstra()
         {
             InitializeComponent();
-            Graph graph = new Graph(1);
 
+            //Récupération du graph, de son image et recherche de solution
+            graph = new Graph(1);
             graph_pb.Image = Image.FromFile(graph.PictureFileLocation);
+            graph.getSolution();
 
-            ouverts_tb.Text = ((MyNode)graph.getOuvertsHistoric()[0][0]).ToString();
+            //Remplissage de l'interface
             componentList = new List<Dictionary<string, Component>>();
             componentList.Add(new Dictionary<string, Component>());
             FillDictionnaryForThisStep(step_lb,fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
+
+            //Remplissage de la textbox initiale des ouverts 
+            ouverts_tb.Text = graph.SolutionTree.GetOuvertNodeFromHistoric(0, 0);
+            GoToNextStep();
+
+            test_lb.Text = graph.SolutionTree.GetFermeNodeFromHistoric(6,6);
+
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,8 +56,28 @@ namespace Ex2_Dijkstra
 
         private void validate_btn_Click(object sender, EventArgs e)
         {
+
             if (IsStepCorrect())
-                GoToNextStep();
+            {
+                ChangeStepLbColor(Color.LightGreen);
+                if (IsFinished())
+                {
+                    MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    DisableTextBoxesForThisStep();
+                    GoToNextStep();
+                }
+                
+            }
+            else
+            {
+                ChangeStepLbColor(Color.Red);
+                MessageBox.Show("Vous vous êtes trompé(e) :( (-2 points :/)", "ZUT !", MessageBoxButtons.YesNo);
+            }
+            
+           
         }
 
         private void FillDictionnaryForThisStep(Label step_lb, Label fermes_lb, TextBox fermes_tb, Label ouverts_lb, TextBox ouverts_tb)
@@ -61,22 +92,60 @@ namespace Ex2_Dijkstra
 
         private bool IsStepCorrect()
         {
+            //Vérification de la textbox des fermés pour l'étape en cours
+            List <List<GenericNode>> L_Fermes_Historic = graph.SolutionTree.L_Fermes_Historic;
+            int nbFermes = 0;
+            foreach (char content in ((TextBox)componentList[step]["fermes_tb"]).Text)
+            {
+                //On saute les blancs et les séparateurs
+                if (content != ' ' && content != ',' && content != ';')
+                {
+                    if (!IsNodeInHistoricList(L_Fermes_Historic, CharToInt(content), step))
+                    {
+                        return false;
+                    }
+                    else nbFermes++;
+                }
+                    
+            }
+
+            //Verifier si l'élève a bien entré tous les fermés
+            if (step == L_Fermes_Historic.Count - 1 &&  nbFermes != L_Fermes_Historic[step].Count)
+                return false;
+
+
+            //Vérification de la textbox des ouverts pour l'étape en cours
+            List<List<GenericNode>> L_Ouverts_Historic = graph.SolutionTree.L_Ouverts_Historic;
+            int nbOuverts = 0;
+            foreach (char content in ((TextBox)componentList[step]["ouverts_tb"]).Text)
+            {
+                //On saute les blancs et les séparateurs
+                if (content != ' ' && content != ',' && content != ';')
+                {
+                    if (!IsNodeInHistoricList(L_Ouverts_Historic, CharToInt(content), step))
+                    {
+                        return false;
+                    }
+                    else nbOuverts++;
+                }
+            }
+
+            //Verifier si l'élève a bien entré tous les ouverts
+            if (step == L_Ouverts_Historic.Count - 1 && nbOuverts != L_Ouverts_Historic[step].Count)
+                return false;
+
             return true;
         }
 
         private void GoToNextStep()
         {
-            step++;
-
-            
-
-            FillDictionnaryForThisStep(step_lb,fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
-
+            this.step++;
+            CreateNewControls();
         }
 
         private void CreateNewControls()
         {
-            int yLocation = this.step_lb.Location.Y + (step - 1) * 30;
+            int yLocation = this.step_lb.Location.Y + step * 30;
             Size lbSize = this.ouverts_lb.Size;
             Size tbSize = this.ouverts_tb.Size;
 
@@ -117,17 +186,58 @@ namespace Ex2_Dijkstra
             ouverts_tb.Visible = true;
             ouverts_tb.Size = tbSize;
             Controls.Add(ouverts_tb);
+
+            //remplissage du dictionnaire de composants avec les composants crées
+            FillDictionnaryForThisStep(step_lb, fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
         }
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            char valeur = 'C';
-            test_lb.Text = ((int)valeur - (int)'A').ToString();
+            test_lb.Text = "step : " + step;
         }
 
         private void graph_pb_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private bool IsNodeInHistoricList(List<List<GenericNode>> HistoricList, int nodeNb, int step)
+        {
+            //Ne dépasse t on pas la taille de la liste ?
+            if (HistoricList.Count >= step)
+            {
+                foreach (MyNode node in HistoricList[step])
+                {
+                    if (nodeNb == node.Number)
+                        return true;
+                }
+            }
+            else test_lb.Text = "SI";
+            
+            return false;
+        }
+
+        private int CharToInt(char valeur)
+        {
+            return (int)valeur - (int)'A';
+        }
+
+        private void ChangeStepLbColor(Color color)
+        {
+            ((Label)componentList[step]["step_lb"]).BackColor = color;
+        }
+
+        private bool IsFinished()
+        {
+            if (graph.SolutionTree.GetOuvertNodeFromHistoric(step, 0) == null)
+                return true;
+            else return false;
+        }
+
+        private void DisableTextBoxesForThisStep()
+        {
+            ((TextBox)componentList[step]["ouverts_tb"]).Enabled = false;
+            ((TextBox)componentList[step]["fermes_tb"]).Enabled = false;
         }
     }
 }
