@@ -30,7 +30,7 @@ namespace Ex1_Questionnaire
         {
             if (count % 2 == 0)
             {
-                question_tb.Text = actualQuestion.GoodAnswer;
+                question_lb.Text = actualQuestion.GoodAnswer;
                 validate_btn.Text = "Suivant";
             }
             else
@@ -54,9 +54,9 @@ namespace Ex1_Questionnaire
         //Actualisation question
         private void actualize(int id_actual)
         {
-            Question question = new Question(id_actual + 1);
+            Question question = new Question(id_actual);
             questionNb_lb.Text = Convert.ToString(question.Id) + "/20";
-            question_tb.Text = question.QuestionText;
+            question_lb.Text = question.QuestionText;
             if (question.HasImage)
             {
                 pictureQuestion.Visible = true;
@@ -68,6 +68,22 @@ namespace Ex1_Questionnaire
             answer4_rbtn.Text = question.Answers[3];
 
             actualQuestion = question;
+            id_actual += 1;
+        }
+
+        private void graph_pb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void graph_pb_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void question_lb_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

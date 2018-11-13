@@ -10,7 +10,9 @@
 			<D>Jacques</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
 	</Question>
+	
 	<Question Id="2">
 		<QuestionText>Pourquoi ?</QuestionText>
 		<ImageName></ImageName>
@@ -21,5 +23,262 @@
 			<D>Je</D>
 		</Answers>
 		<GoodAnswer>Coucou</GoodAnswer>
+		<Explanation>.</Explanation>
 	</Question>	
+	
+	<Question Id="3">
+		<QuestionText>Quelle est la différence entre l’algorithme de Djikstra et l’algorithme A*?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>La vitesse de calcul</A>
+			<B>La stratégie de classement des noeuds</B>
+			<C>La complexité de l’algorithme</C>
+			<D>La prise en compte d’informations de haut niveau</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="4">
+		<QuestionText>De quelle façon l’algorithme de Djikstra explore-t-il l’ensemble des solutions?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Linéaire</A>
+			<B>Radiale</B>
+			<C>Cas par cas</C>
+			<D>Simulation</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="5">
+		<QuestionText>Qu’est-ce qu’une IA faible ne peut obtenir ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Une vitesse de calcul très rapide</A>
+			<B>Une conscience propre</B>
+			<C>La possibilité de se modifier</C>
+			<D>La réponse D</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="6">
+		<QuestionText>Le parcours en profondeur d'un arbre binaire correspond à un fonctionnement de :</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>File (First In First Out)</A>
+			<B>Pile (Last In Last Out)</B>
+			<C>Liste chaînée</C>
+			<D>Cela dépend</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>Dans le cas du parcours en profondeur, on va appeler récursivement la procédure avec les fils gauche et droit avant de passer à la suite. Le premier appel terminé de la procédure sera donc pour une feuille, et le dernier pour la racine : on a bien un comportement en First In (la racine) Last Out. C'est le parcours en largeur qui a un comportement de file.</Explanation>
+	</Question>		
+	
+	<Question Id="7">
+		<QuestionText>Dans quel contexte va-t-on utiliser un algorithme MinMax?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Pour déterminer la liste des coups possibles à partir d’un état donné</A>
+			<B>Pour exécuter le meilleur coup possible</B>
+			<C>Pour déterminer le chemin le plus court entre deux points</C>
+			<D>Pour déterminer les deux extrêmes d’une plage de données</D>
+		</Answers>
+		<GoodAnswer>A</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>		
+	
+	<Question Id="8">
+		<QuestionText>Parmi les 4 grandes fonctions des robots, on retrouve la locomotion , la manipulation et la perception. Quelle est la dernière?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Action</A>
+			<B>Réflexion</B>
+			<C>Décision</C>
+			<D>La réponse D</D>
+		</Answers>
+		<GoodAnswer>C</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+
+	<Question Id="9">
+		<QuestionText>Soit G un graphe orienté non valué (les arcs ne possèdent pas de poids), quasi complet, dont on cherche à parcourir les noeuds pour les énumérer. Quelle est la meilleure représentation possible des arcs de G ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Une matrice</A>
+			<B>Une table de listes de successeurs pour chaque noeud</B>
+			<C>Une liste chaînée</C>
+			<D>Un tas</D>
+		</Answers>
+		<GoodAnswer>A</GoodAnswer>
+		<Explanation>
+		Le graphe étant quasi complet et non-valué,  la place mémoire nécessaire avec une matrice est faible (n² bits). Avec une table de listes de successeurs, elle est environ 64 fois plus importante : on stocke, pour chacun des n noeuds, un entier + un pointeur pour chaque successeur (numéro du successeur + pointeur vers le suivant dans la liste), soit 8 octets, soit 64 bits. Avec une matrice ou une table de successeurs, on accède facilement à un noeud destination à partir d'un noeud source, et on peut donc facilement parcourir les noeuds. C'est plus coûteux avec les autres solutions proposées.
+		</Explanation>
+	</Question>	
+		
+	<Question Id="10">
+		<QuestionText>Quelle est la principale différence entre les méthodes MinMax et AlphaBeta ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>L’algo MinMax est beaucoup plus rapide</A>
+			<B>L’algo AlphaBeta évite le développement de branches inutiles</B>
+			<C>L’algo AlphaBeta ne prend pas en compte un jeu optimal de l’adversaire</C>
+			<D>L’algo MinMax ne permet pas d’obtenir un résultat aussi précis qu’avec AlphaBeta</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="11">
+		<QuestionText>L’algorithme de Dijkstra permet de calculer des plus courts chemins dans un graphe pondéré. Laquelle des conditions suivantes doit être vérifiée pour qu’il fonctionne ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Le graphe doit être sans cycles</A>
+			<B>Le graphe doit être orienté</B>
+			<C>Tous les poids doivent être positifs</C>
+			<D>Tous les poids doivent être différents</D>
+		</Answers>
+		<GoodAnswer>B et C</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="12">
+		<QuestionText>Quel type d’algorithme permet de calculer le chemin le plus court entre 2 points?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Djikstra</A>
+			<B>MinMax</B>
+			<C>AlphaBeta</C>
+			<D>Génétique</D>
+		</Answers>
+		<GoodAnswer>A</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="13">
+		<QuestionText>Un robot peut se déplacer horizontalement en avant, en arrière et est capable d’effectuer des rotations sur lui même. De combien de degrés de liberté dispose-t-il?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>1</A>
+			<B>2</B>
+			<C>3</C>
+			<D>4</D>
+		</Answers>
+		<GoodAnswer>B</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="14">
+		<QuestionText>Un servo-moteur est composé de 3 éléments indispensables. Lesquels ?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Un moteur électrique / une batterie / un servocontrôleur</A>
+			<B>Un servocontrôleur / un moteur électrique / un asservissement</B>
+			<C>Un capteur / un moteur électrique / un servocontrôleur</C>
+			<D>Un moteur électrique / un potentiomètre / un asservissement</D>
+		</Answers>
+		<GoodAnswer>D</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="15">
+		<QuestionText>A quelle fin peut-on utiliser un algorithme génétique?</QuestionText>
+		<ImageName></ImageName>
+		<Answers>
+			<A>Pour résoudre un problème d’optimisation relativement rapidement</A>
+			<B>Pour effectuer des calculs sur l’évolution des espèces</B>
+			<C>Pour mesurer l’efficacité d’une méthode</C>
+			<D>Pour déterminer les actions possibles à partir d’un état donné.</D>
+		</Answers>
+		<GoodAnswer>A</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="16">
+		<QuestionText>
+			Règles : Chacun son tour, un joueur pose un pion dans sa colonne
+			But du jeu : aligner 4 pions de sa couleur
+			C’est aux rouges de jouer. Il ne reste plus que des cases libres dans les colonnes 5, 6 et 7.
+			Proposez une méthode d’évaluation et appliquez à la main l’algorithme MinMax pour déterminer le meilleur coup en profondeur 3 pour les rouges (coup rouge, coup jaune, coup rouge).
+		</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="17">
+		<QuestionText>.</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="18">
+		<QuestionText>.</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="19">
+		<QuestionText>.</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
+	<Question Id="20">
+		<QuestionText>.</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+		
+	<Question Id="21">
+		<QuestionText>.</QuestionText>
+		<ImageName>.</ImageName>
+		<Answers>
+			<A>.</A>
+			<B>.</B>
+			<C>.</C>
+			<D>.</D>
+		</Answers>
+		<GoodAnswer>.</GoodAnswer>
+		<Explanation>.</Explanation>
+	</Question>	
+	
 </Questions>

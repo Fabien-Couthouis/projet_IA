@@ -28,31 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.question_tb = new System.Windows.Forms.TextBox();
             this.answer1_rbtn = new System.Windows.Forms.RadioButton();
             this.answer2_rbtn = new System.Windows.Forms.RadioButton();
             this.answer3_rbtn = new System.Windows.Forms.RadioButton();
             this.answer4_rbtn = new System.Windows.Forms.RadioButton();
             this.validate_btn = new System.Windows.Forms.Button();
             this.questionNb_lb = new System.Windows.Forms.Label();
+            this.question_lb = new System.Windows.Forms.Label();
             this.pictureQuestion = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).BeginInit();
             this.SuspendLayout();
             // 
-            // question_tb
-            // 
-            this.question_tb.Location = new System.Drawing.Point(193, 86);
-            this.question_tb.Multiline = true;
-            this.question_tb.Name = "question_tb";
-            this.question_tb.Size = new System.Drawing.Size(465, 197);
-            this.question_tb.TabIndex = 0;
-            this.question_tb.Text = "LA QUESTION";
-            this.question_tb.TextChanged += new System.EventHandler(this.answer_tb_TextChanged);
-            // 
             // answer1_rbtn
             // 
             this.answer1_rbtn.AutoSize = true;
-            this.answer1_rbtn.Location = new System.Drawing.Point(135, 361);
+            this.answer1_rbtn.Location = new System.Drawing.Point(205, 308);
             this.answer1_rbtn.Name = "answer1_rbtn";
             this.answer1_rbtn.Size = new System.Drawing.Size(69, 17);
             this.answer1_rbtn.TabIndex = 1;
@@ -64,7 +54,7 @@
             // answer2_rbtn
             // 
             this.answer2_rbtn.AutoSize = true;
-            this.answer2_rbtn.Location = new System.Drawing.Point(135, 416);
+            this.answer2_rbtn.Location = new System.Drawing.Point(205, 363);
             this.answer2_rbtn.Name = "answer2_rbtn";
             this.answer2_rbtn.Size = new System.Drawing.Size(69, 17);
             this.answer2_rbtn.TabIndex = 2;
@@ -75,7 +65,7 @@
             // answer3_rbtn
             // 
             this.answer3_rbtn.AutoSize = true;
-            this.answer3_rbtn.Location = new System.Drawing.Point(135, 467);
+            this.answer3_rbtn.Location = new System.Drawing.Point(205, 414);
             this.answer3_rbtn.Name = "answer3_rbtn";
             this.answer3_rbtn.Size = new System.Drawing.Size(69, 17);
             this.answer3_rbtn.TabIndex = 3;
@@ -86,7 +76,7 @@
             // answer4_rbtn
             // 
             this.answer4_rbtn.AutoSize = true;
-            this.answer4_rbtn.Location = new System.Drawing.Point(135, 523);
+            this.answer4_rbtn.Location = new System.Drawing.Point(205, 470);
             this.answer4_rbtn.Name = "answer4_rbtn";
             this.answer4_rbtn.Size = new System.Drawing.Size(69, 17);
             this.answer4_rbtn.TabIndex = 4;
@@ -113,29 +103,43 @@
             this.questionNb_lb.TabIndex = 6;
             this.questionNb_lb.Text = "x/20";
             // 
+            // question_lb
+            // 
+            this.question_lb.AutoSize = true;
+            this.question_lb.Location = new System.Drawing.Point(266, 41);
+            this.question_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.question_lb.Name = "question_lb";
+            this.question_lb.Size = new System.Drawing.Size(49, 13);
+            this.question_lb.TabIndex = 8;
+            this.question_lb.Text = "Question";
+            this.question_lb.Click += new System.EventHandler(this.question_lb_Click);
+            // 
             // pictureQuestion
             // 
-            this.pictureQuestion.BackColor = System.Drawing.Color.Transparent;
-            this.pictureQuestion.Location = new System.Drawing.Point(316, 154);
+            this.pictureQuestion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureQuestion.Location = new System.Drawing.Point(259, 90);
+            this.pictureQuestion.Margin = new System.Windows.Forms.Padding(2);
             this.pictureQuestion.Name = "pictureQuestion";
-            this.pictureQuestion.Size = new System.Drawing.Size(207, 129);
-            this.pictureQuestion.TabIndex = 8;
+            this.pictureQuestion.Size = new System.Drawing.Size(328, 147);
+            this.pictureQuestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureQuestion.TabIndex = 9;
             this.pictureQuestion.TabStop = false;
-            this.pictureQuestion.Visible = false;
+            this.pictureQuestion.Click += new System.EventHandler(this.graph_pb_Click_1);
             // 
             // Questionnaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(822, 639);
             this.Controls.Add(this.pictureQuestion);
+            this.Controls.Add(this.question_lb);
             this.Controls.Add(this.questionNb_lb);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.answer4_rbtn);
             this.Controls.Add(this.answer3_rbtn);
             this.Controls.Add(this.answer2_rbtn);
             this.Controls.Add(this.answer1_rbtn);
-            this.Controls.Add(this.question_tb);
             this.Name = "Questionnaire";
             this.Text = "Questionnaire";
             this.Load += new System.EventHandler(this.questionNumber_lb_Load);
@@ -146,14 +150,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox question_tb;
         private System.Windows.Forms.RadioButton answer1_rbtn;
         private System.Windows.Forms.RadioButton answer2_rbtn;
         private System.Windows.Forms.RadioButton answer3_rbtn;
         private System.Windows.Forms.RadioButton answer4_rbtn;
         private System.Windows.Forms.Button validate_btn;
         private System.Windows.Forms.Label questionNb_lb;
+        private System.Windows.Forms.Label question_lb;
         private System.Windows.Forms.PictureBox pictureQuestion;
     }
 }
