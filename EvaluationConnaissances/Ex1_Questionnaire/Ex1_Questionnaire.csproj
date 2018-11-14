@@ -53,6 +53,12 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Alerte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alerte.Designer.cs">
+      <DependentUpon>Alerte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Questionnaire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Question.cs" />
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alerte.resx">
+      <DependentUpon>Alerte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaire.resx">
       <DependentUpon>Questionnaire.cs</DependentUpon>

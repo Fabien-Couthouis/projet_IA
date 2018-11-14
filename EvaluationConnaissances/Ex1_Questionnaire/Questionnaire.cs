@@ -17,7 +17,8 @@ namespace Ex1_Questionnaire
         Question actualQuestion;
         Random r = new Random();
         int numberQuest;
-        int count = 0;
+        int count = 0; //compte les clics effectués
+        int score = 0;
 
         public Questionnaire()
         {
@@ -62,8 +63,21 @@ namespace Ex1_Questionnaire
                 //Analyse réponse donnée VS réponse attendue
                 if (answer != actualQuestion.GoodAnswer)
                 {
-
+                    question_tb.Text = "BRAVO !";
+                    question_tb.Size = new Size(24, 72);
+                    question_tb.TextAlign = HorizontalAlignment.Center;
+                    question_tb.ForeColor = Color.Green;
+                    score+=actualQuestion.Points;
                 }
+
+                if (answer != actualQuestion.GoodAnswer)
+                {
+                    question_tb.Text = "RATÉ !";
+                    question_tb.Size = new Size(24, 72);
+                    question_tb.TextAlign = HorizontalAlignment.Center;
+                    question_tb.ForeColor = Color.Red;
+                }
+
                 if (actualQuestion.Explanation != "")
                 {
                     explain_picture.Visible = false;
@@ -150,8 +164,8 @@ namespace Ex1_Questionnaire
                 numberQuest = numQuestions[random];
                 numQuestions.Remove(item: numberQuest);
             }
-            else
-                numberQuest = 0;
+            //else
+                //numberQuest = 0;
             return numberQuest;
 
         }
