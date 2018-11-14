@@ -69,6 +69,7 @@
             this.Controls.Add(this.title_lb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Accueil";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -47,7 +47,7 @@ namespace Ex1_Questionnaire
                             ImageName = item.Element("ImageName").Value,
                             Answers = item.Descendants("Answers").Descendants().Select(x => x.Value).ToList(),
                             GoodAnswer = item.Element("GoodAnswer").Value,
-                            Explanation = item.Element("Explications").Value,
+                            Explanation = item.Element("Explanation").Value,
                             Points = item.Element("Points").Value
                         };
 
