@@ -26,6 +26,8 @@ namespace Ex2_Dijkstra
         public int FirstNode { get; set; }
         public int LastNode { get; set; }
         public SearchTree SolutionTree { get; set; }
+        public List<GenericNode> Solution { get; set; }
+        public TreeView TreeView { get; set; }
 
 
         public Graph(int id)
@@ -156,23 +158,22 @@ namespace Ex2_Dijkstra
         }
 
         ///<summary>Calcule la solution (application de A*). Renvoie la liste des noeuds solution.</summary>
-        public List<GenericNode> getSolution()
+        public void getSolution()
         {
             SolutionTree = new SearchTree();
-            //TreeView treeView = new TreeView();
+            TreeView = new TreeView();
             MyNode N0 = new MyNode(FirstNode, this);
-            List<GenericNode> solution = SolutionTree.RechercheSolutionAEtoile(N0);
+            Solution = SolutionTree.RechercheSolutionAEtoile(N0);
 
             MyNode N1 = N0;
-            for (int i = 1; i < solution.Count; i++)
+            for (int i = 1; i < Solution.Count; i++)
             {
-                MyNode N2 = (MyNode)solution[i];
+                MyNode N2 = (MyNode)Solution[i];
                 N1 = N2;
             }
 
-            //searchTree.GetSearchTree(treeView);
+            SolutionTree.GetSearchTree(TreeView);
 
-            return solution;
         }
 
     }

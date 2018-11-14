@@ -18,7 +18,7 @@ namespace Ex1_Questionnaire
         public Questionnaire()
         {
             InitializeComponent();
-            actualize(0);
+            actualize(1);
         }
 
         private void answer_tb_TextChanged(object sender, EventArgs e)
