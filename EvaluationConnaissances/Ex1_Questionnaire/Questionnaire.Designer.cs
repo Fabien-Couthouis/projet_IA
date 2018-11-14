@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Questionnaire));
             this.answer1_rbtn = new System.Windows.Forms.RadioButton();
             this.answer2_rbtn = new System.Windows.Forms.RadioButton();
             this.answer3_rbtn = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,10 @@
             this.answerC_lb = new System.Windows.Forms.Label();
             this.answerD_kb = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.explain_tb = new System.Windows.Forms.TextBox();
+            this.explain_picture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.explain_picture)).BeginInit();
             this.SuspendLayout();
             // 
             // answer1_rbtn
@@ -95,7 +99,7 @@
             // 
             // validate_btn
             // 
-            this.validate_btn.Location = new System.Drawing.Point(712, 575);
+            this.validate_btn.Location = new System.Drawing.Point(681, 567);
             this.validate_btn.Name = "validate_btn";
             this.validate_btn.Size = new System.Drawing.Size(75, 23);
             this.validate_btn.TabIndex = 5;
@@ -130,10 +134,10 @@
             this.question_tb.BackColor = System.Drawing.SystemColors.ControlLight;
             this.question_tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.question_tb.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.question_tb.Location = new System.Drawing.Point(222, 61);
+            this.question_tb.Location = new System.Drawing.Point(173, 61);
             this.question_tb.Multiline = true;
             this.question_tb.Name = "question_tb";
-            this.question_tb.Size = new System.Drawing.Size(407, 63);
+            this.question_tb.Size = new System.Drawing.Size(511, 63);
             this.question_tb.TabIndex = 10;
             this.question_tb.Text = "Question";
             // 
@@ -190,6 +194,29 @@
             this.progressBar.TabIndex = 16;
             this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
+            // explain_tb
+            // 
+            this.explain_tb.BackColor = System.Drawing.Color.White;
+            this.explain_tb.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.explain_tb.Location = new System.Drawing.Point(157, 207);
+            this.explain_tb.Multiline = true;
+            this.explain_tb.Name = "explain_tb";
+            this.explain_tb.Size = new System.Drawing.Size(541, 85);
+            this.explain_tb.TabIndex = 17;
+            this.explain_tb.Text = "Explications";
+            this.explain_tb.Visible = false;
+            this.explain_tb.TextChanged += new System.EventHandler(this.answer_tb_TextChanged_1);
+            // 
+            // explain_picture
+            // 
+            this.explain_picture.Image = ((System.Drawing.Image)(resources.GetObject("explain_picture.Image")));
+            this.explain_picture.Location = new System.Drawing.Point(98, 228);
+            this.explain_picture.Name = "explain_picture";
+            this.explain_picture.Size = new System.Drawing.Size(53, 48);
+            this.explain_picture.TabIndex = 18;
+            this.explain_picture.TabStop = false;
+            this.explain_picture.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Questionnaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +224,8 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(822, 639);
+            this.Controls.Add(this.explain_picture);
+            this.Controls.Add(this.explain_tb);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.answerD_kb);
             this.Controls.Add(this.answerC_lb);
@@ -214,6 +243,7 @@
             this.Text = "Questionnaire";
             this.Load += new System.EventHandler(this.questionNumber_lb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.explain_picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +263,8 @@
         private System.Windows.Forms.Label answerC_lb;
         private System.Windows.Forms.Label answerD_kb;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TextBox explain_tb;
+        private System.Windows.Forms.PictureBox explain_picture;
     }
 }
 

@@ -42,6 +42,33 @@ namespace Ex1_Questionnaire
             {
                 question_tb.Text = actualQuestion.GoodAnswer;
                 validate_btn.Text = "Suivant";
+
+                //Récupération réponse donnée
+                string answer = "";
+                if (answer1_rbtn.Checked == true)
+                    answer = "A";
+                if (answer1_rbtn.Checked == true)
+                    answer = "B";
+                if (answer1_rbtn.Checked == true)
+                    answer = "C";
+                if (answer1_rbtn.Checked == true)
+                    answer = "D";
+                else
+                {
+                    Form alerte = new Form();
+                    alerte.Show();
+                }
+
+                //Analyse réponse donnée VS réponse attendue
+                if (answer != actualQuestion.GoodAnswer)
+                {
+
+                }
+                if (actualQuestion.Explanation != "")
+                {
+                    explain_picture.Visible = false;
+                    explain_tb.Text = actualQuestion.Explanation;
+                }
             }
             else
             {
@@ -68,33 +95,40 @@ namespace Ex1_Questionnaire
             bool next = false;
             while (count< 42 && next == false)
             {
-                Question question = new Question(numberQuest);
-                questionNb_lb.Text = Convert.ToString(count / 2) + "/20";
-                question_tb.Text = question.QuestionText;
-                if (question.HasImage)
+                if (numberQuest == 0)
                 {
-                    pictureQuestion.Visible = true;
-                    pictureQuestion.BackgroundImage = question.Image;
-                    question_tb.Location = new Point(222, 61);
-
+                    //Afficher score + message de fin
                 }
                 else
                 {
-                    pictureQuestion.Visible = false;
-                    question_tb.Location = new Point(228, 198);
-                }
-                answer1_rbtn.Text = question.Answers[0];
-                answer1_rbtn.Checked = false;
-                answer2_rbtn.Text = question.Answers[1];
-                answer2_rbtn.Checked = false;
-                answer3_rbtn.Text = question.Answers[2];
-                answer3_rbtn.Checked = false;
-                answer4_rbtn.Text = question.Answers[3];
-                answer4_rbtn.Checked = false;
+                    Question question = new Question(numberQuest);
+                    questionNb_lb.Text = Convert.ToString(count / 2) + "/20";
+                    question_tb.Text = question.QuestionText;
+                    if (question.HasImage)
+                    {
+                        pictureQuestion.Visible = true;
+                        pictureQuestion.BackgroundImage = question.Image;
+                        question_tb.Location = new Point(173, 61);
+                    }
 
-                actualQuestion = question;
-                progressBar.Value += 1;
-                next = true;
+                    else
+                    {
+                        pictureQuestion.Visible = false;
+                        question_tb.Location = new Point(173, 198);
+                    }
+                    answer1_rbtn.Text = question.Answers[0];
+                    answer1_rbtn.Checked = false;
+                    answer2_rbtn.Text = question.Answers[1];
+                    answer2_rbtn.Checked = false;
+                    answer3_rbtn.Text = question.Answers[2];
+                    answer3_rbtn.Checked = false;
+                    answer4_rbtn.Text = question.Answers[3];
+                    answer4_rbtn.Checked = false;
+
+                    actualQuestion = question;
+                    progressBar.Value += 1;
+                    next = true;
+                }
             }
         }
 
@@ -110,10 +144,16 @@ namespace Ex1_Questionnaire
         //Choix de questions aléatoire
         private int randomQuestion()
         {
-            int random = r.Next(0, numQuestions.Count());
-            numberQuest = numQuestions[random];
-            numQuestions.Remove(item: numberQuest);
-            return numberQuest;           
+            if (numQuestions.Count != 0)
+            {
+                int random = r.Next(0, numQuestions.Count());
+                numberQuest = numQuestions[random];
+                numQuestions.Remove(item: numberQuest);
+            }
+            else
+                numberQuest = 0;
+            return numberQuest;
+
         }
 
         private void graph_pb_Click(object sender, EventArgs e)
@@ -139,6 +179,16 @@ namespace Ex1_Questionnaire
         private void progressBar_Click(object sender, EventArgs e)
         {
             progressBar.ForeColor = Color.DodgerBlue;
+        }
+
+        private void answer_tb_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
