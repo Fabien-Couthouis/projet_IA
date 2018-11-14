@@ -10,7 +10,7 @@
 			<D>Jacques</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points></Points>
 	</Question>
 	
 	<Question Id="2">
@@ -22,8 +22,8 @@
 			<C>.</C>
 			<D>Je</D>
 		</Answers>
-		<GoodAnswer>Coucou</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>C</GoodAnswer>
+		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="3">
@@ -36,7 +36,7 @@
 			<D>La prise en compte d’informations de haut niveau</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="4">
@@ -49,7 +49,7 @@
 			<D>Simulation</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>1</Points>
 	</Question>	
 	
 	<Question Id="5">
@@ -62,7 +62,7 @@
 			<D>La réponse D</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>1</Points>
 	</Question>	
 		
 	<Question Id="6">
@@ -75,7 +75,7 @@
 			<D>Cela dépend</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>Dans le cas du parcours en profondeur, on va appeler récursivement la procédure avec les fils gauche et droit avant de passer à la suite. Le premier appel terminé de la procédure sera donc pour une feuille, et le dernier pour la racine : on a bien un comportement en First In (la racine) Last Out. C'est le parcours en largeur qui a un comportement de file.</Explanation>
+		<Points>2</Points>
 	</Question>		
 	
 	<Question Id="7">
@@ -88,7 +88,7 @@
 			<D>Pour déterminer les deux extrêmes d’une plage de données</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>		
 	
 	<Question Id="8">
@@ -98,10 +98,10 @@
 			<A>Action</A>
 			<B>Réflexion</B>
 			<C>Décision</C>
-			<D>La réponse D</D>
+			<D>L'autonomie</D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>1</Points>
 	</Question>	
 		
 
@@ -115,9 +115,7 @@
 			<D>Un tas</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
-		<Explanation>
-		Le graphe étant quasi complet et non-valué,  la place mémoire nécessaire avec une matrice est faible (n² bits). Avec une table de listes de successeurs, elle est environ 64 fois plus importante : on stocke, pour chacun des n noeuds, un entier + un pointeur pour chaque successeur (numéro du successeur + pointeur vers le suivant dans la liste), soit 8 octets, soit 64 bits. Avec une matrice ou une table de successeurs, on accède facilement à un noeud destination à partir d'un noeud source, et on peut donc facilement parcourir les noeuds. C'est plus coûteux avec les autres solutions proposées.
-		</Explanation>
+		<Points>3</Points>
 	</Question>	
 		
 	<Question Id="10">
@@ -130,7 +128,7 @@
 			<D>L’algo MinMax ne permet pas d’obtenir un résultat aussi précis qu’avec AlphaBeta</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>	
 		
 	<Question Id="11">
@@ -143,7 +141,7 @@
 			<D>Tous les poids doivent être différents</D>
 		</Answers>
 		<GoodAnswer>B et C</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="12">
@@ -156,7 +154,7 @@
 			<D>Génétique</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>1</Points>
 	</Question>	
 	
 	<Question Id="13">
@@ -169,7 +167,7 @@
 			<D>4</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>	
 		
 	<Question Id="14">
@@ -182,7 +180,7 @@
 			<D>Un moteur électrique / un potentiomètre / un asservissement</D>
 		</Answers>
 		<GoodAnswer>D</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>3</Points>
 	</Question>	
 	
 	<Question Id="15">
@@ -195,7 +193,7 @@
 			<D>Pour déterminer les actions possibles à partir d’un état donné.</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>2</Points>
 	</Question>	
 		
 	<Question Id="16">
@@ -213,72 +211,73 @@
 			<D>.</D>
 		</Answers>
 		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<Points>3</Points>
 	</Question>	
 	
 	<Question Id="17">
-		<QuestionText>.</QuestionText>
+		<QuestionText>Parmis les réponses proposées, laquelle va causer une grande difficulté 
+		dans l'analyse de texte pour répondre à une question?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>Le texte comprend de la ponctuation.</A>
+			<B>Le texte contient des noms propres peu communs voire inventés.</B>
+			<C>L'information n'est pas structurée dans une BDD.</C>
+			<D>La réponse ne se trouve pas directement dans la question.</D>
 		</Answers>
-		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>C</GoodAnswer>
+		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="18">
-		<QuestionText>.</QuestionText>
+		<QuestionText>Laquelle de ces propositions correspond à une des spécificités des problèmes CSP?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>Une seule variable est à affecter pour obtenir les successeurs d'état.</A>
+			<B>La stratégie de sélection de la variable à affecter est de prendre la moins contrainte d'abord.</B>
+			<C>La solution à profondeur fixe est différente du nombre de variables à affecter.</C>
+			<D>A l'état final, les variables sont stockées pour être réutilisées.</D>
 		</Answers>
-		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>A</GoodAnswer>
+		<Points>3</Points>
 	</Question>	
 		
 	<Question Id="19">
-		<QuestionText>.</QuestionText>
+		<QuestionText>Dans un problème de satisfaction de contraintes, qu'est ce qu'un problème dit "consistant"?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>Un problème vraiment difficile à résoudre</A>
+			<B>Une affectation des variables du problèmes vérifie toutes les contraintes.</B>
+			<C>Si l’ensemble des variables du problème est infini.</C>
+			<D>Il n’existe qu’une seule contrainte associée aux variables .</D>
 		</Answers>
-		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>B</GoodAnswer>
+		<Points>3</Points>
 	</Question>	
 	
 	<Question Id="20">
-		<QuestionText>.</QuestionText>
+		<QuestionText>Sous Wordnet, le mot chien est un ... du mot Carlin. (Compléter la phrase avec le mot qui convient)</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>hyponyme</A>
+			<B>hypernyme</B>
+			<C>meronyme</C>
+			<D>holonyme</D>
 		</Answers>
-		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>B</GoodAnswer>
+		<Points>1</Points>
 	</Question>	
 		
 	<Question Id="21">
-		<QuestionText>.</QuestionText>
+		<QuestionText>Qu’est-ce que Wordnet ?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>Une BDD lexicale pour l’anglais.</A>
+			<B>Une BDD lexicale pour l’anglais, contenant une liste de synonymes.</B>
+			<C>Une BDD lexicale pour l’anglais, contenant une liste de synonymes et une ontologie pour les relations entre les mots.</C>
+			<D>Une BDD lexicale pour l’anglais, contenant une liste de synonymes , une ontologie pour les relations entre les mots et une liste des différentes conjugaisons de verbes. </D>
 		</Answers>
-		<GoodAnswer>.</GoodAnswer>
-		<Explanation>.</Explanation>
+		<GoodAnswer>C</GoodAnswer>
+		<Points>2</Points>
 	</Question>	
 	
 </Questions>
