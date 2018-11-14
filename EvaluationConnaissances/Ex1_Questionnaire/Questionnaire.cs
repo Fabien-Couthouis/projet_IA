@@ -31,6 +31,10 @@ namespace Ex1_Questionnaire
             initializeQuestions();
             numberQuest = randomQuestion();
             actualize(numberQuest);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e288eaf7ca9d9adb33ffd9983484781c23df4aba
         }
 
         private void answer_tb_TextChanged(object sender, EventArgs e)

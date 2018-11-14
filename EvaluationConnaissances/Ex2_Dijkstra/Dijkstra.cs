@@ -20,6 +20,8 @@ namespace Ex2_Dijkstra
         //(fermes_lb, fermés_tb,ouverts_lb, ouverts_tb)
         //Ex : componentList[0][fermés_tb] renverra à la textbox des fermés de l'étape 1
         private List<Dictionary<string,Component>> componentList;
+        private List<TextBox> nodeInfoTbList;
+        private List<int> nodeInfoAnswerList;
         public Dijkstra()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace Ex2_Dijkstra
             //Remplissage de l'interface
             componentList = new List<Dictionary<string, Component>>();
             componentList.Add(new Dictionary<string, Component>());
-            FillDictionnaryForThisStep(step_lb,fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
+            FillDictionnaryForThisStep(step_lb, fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
 
             //Remplissage de la textbox initiale des ouverts 
             ouverts_tb.Text = graph.SolutionTree.GetOuvertNodeFromHistoric(0, 0);
@@ -54,6 +56,12 @@ namespace Ex2_Dijkstra
 
         }
 
+        private void ResetControls()
+        {
+            answersPanel.Controls.Clear();
+            componentList = new List<Dictionary<string, Component>>();
+        }
+
         private void validate_btn_Click(object sender, EventArgs e)
         {
 
@@ -63,6 +71,8 @@ namespace Ex2_Dijkstra
                 if (IsFinished())
                 {
                     MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                    ResetControls();
+                    ShowTree();
                 }
                 else
                 {
@@ -79,6 +89,7 @@ namespace Ex2_Dijkstra
             
            
         }
+
 
         private void FillDictionnaryForThisStep(Label step_lb, Label fermes_lb, TextBox fermes_tb, Label ouverts_lb, TextBox ouverts_tb)
         {
@@ -155,7 +166,7 @@ namespace Ex2_Dijkstra
             step_lb.Visible = true;
             step_lb.Text = "Étape " + step;
             step_lb.Size = this.step_lb.Size;
-            Controls.Add(step_lb);
+            this.answersPanel.Controls.Add(step_lb);
 
             //fermes_lb
             Label fermes_lb = new Label();
@@ -163,14 +174,16 @@ namespace Ex2_Dijkstra
             fermes_lb.Visible = true;
             fermes_lb.Text = "F = ";
             fermes_lb.Size = lbSize;
-            Controls.Add(fermes_lb);
+            //Controls.Add(fermes_lb);
+            this.answersPanel.Controls.Add(fermes_lb);
 
             //fermes_tb
             TextBox fermes_tb = new TextBox();
             fermes_tb.Location = new Point(this.fermes_tb.Location.X, yLocation);
             fermes_tb.Visible = true;
             fermes_tb.Size = tbSize;
-            Controls.Add(fermes_tb);
+            //Controls.Add(fermes_tb);
+            this.answersPanel.Controls.Add(fermes_tb);
 
             //ouverts_lb
             Label ouverts_lb = new Label();
@@ -178,14 +191,16 @@ namespace Ex2_Dijkstra
             ouverts_lb.Visible = true;
             ouverts_lb.Text = "O = ";
             ouverts_lb.Size = lbSize;
-            Controls.Add(ouverts_lb);
+            this.answersPanel.Controls.Add(ouverts_lb);
+            //Controls.Add(ouverts_lb);
 
             //ouverts_tb
             TextBox ouverts_tb = new TextBox();
             ouverts_tb.Location = new Point(this.ouverts_tb.Location.X, yLocation);
             ouverts_tb.Visible = true;
             ouverts_tb.Size = tbSize;
-            Controls.Add(ouverts_tb);
+            //Controls.Add(ouverts_tb);
+            this.answersPanel.Controls.Add(ouverts_tb);
 
             //remplissage du dictionnaire de composants avec les composants crées
             FillDictionnaryForThisStep(step_lb, fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
@@ -193,7 +208,10 @@ namespace Ex2_Dijkstra
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            test_lb.Text = "step : " + step;
+            ResetControls();
+            DisplayTreeControls();
+            ShowTree();
+            test_lb.Text = ((MyNode)graph.Solution[0]).ToString();
         }
 
         private void graph_pb_Click(object sender, EventArgs e)
@@ -217,9 +235,14 @@ namespace Ex2_Dijkstra
             return false;
         }
 
-        private int CharToInt(char valeur)
+        private int CharToInt(char value)
         {
-            return (int)valeur - (int)'A';
+            return (int)value - (int)'A';
+        }
+
+        private char IntToChar(int value)
+        {
+            return Convert.ToChar(value + (int)'A');
         }
 
         private void ChangeStepLbColor(Color color)
@@ -238,6 +261,86 @@ namespace Ex2_Dijkstra
         {
             ((TextBox)componentList[step]["ouverts_tb"]).Enabled = false;
             ((TextBox)componentList[step]["fermes_tb"]).Enabled = false;
+        }
+
+        private void ShowTree()
+        {
+            //ResetControls();
+            TreeView TV = graph.TreeView;
+            TV.Size = new Size(150,400);
+            this.answersPanel.Controls.Add(TV);
+        }
+
+        private void DisplayTreeControls()
+        {
+            int x = 300;
+            int y = 0;
+            nodeInfoTbList = new List<TextBox>();
+
+            for (int n = 0; n < graph.Solution.Count - 1; n++)
+            {
+                MyNode node = (MyNode)graph.Solution[n];
+
+                List<GenericNode> childs = node.GetEnfants();
+
+                foreach (MyNode child in childs)
+                {
+                    test_lb.Text += child.ToString();
+
+                    Label parentNode = new Label();
+                    parentNode.Size = new Size(20, 15);
+                    parentNode.Location = new Point(x,y);
+                    parentNode.Text = node.ToString();
+                    this.answersPanel.Controls.Add(parentNode);
+
+                    Label arrow = new Label();
+                    arrow.Size = new Size(20, 15);
+                    arrow.Location = new Point(x + 15, y);
+                    arrow.Text = "-->";
+                    this.answersPanel.Controls.Add(arrow);
+
+                    Label childNode = new Label();
+                    childNode.Size = new Size(20, 15);
+                    childNode.Location = new Point(x+35,y);
+                    childNode.Text = child.ToString() + " : ";
+                    this.answersPanel.Controls.Add(childNode);
+
+                    TextBox nodeInfo = new TextBox();
+                    nodeInfo.Size = new Size(20, 15);
+                    nodeInfo.Location = new Point(x + 55, y);
+                    this.answersPanel.Controls.Add(nodeInfo);
+                    nodeInfoTbList.Add(nodeInfo);
+
+
+                    y += 35;
+
+                }
+
+               
+            }
+        }
+
+        //private bool IsCorrect()
+        //{
+        //    foreach ()
+        //}
+
+        private void FillNodeInfoAnswerList()
+        {
+            for (int n = 1; n < graph.Solution.Count - 1; n++)
+            {
+                MyNode node = (MyNode)graph.Solution[n];
+                List<GenericNode> childs = node.GetEnfants();
+                foreach (MyNode child in childs)
+                {
+                    double cost = node.GetArcCost(child);
+                }
+            }
+
+        }
+        private void test_lb_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
