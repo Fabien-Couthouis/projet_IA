@@ -10,11 +10,15 @@ namespace Ex2_Dijkstra
     {
         private List<GenericNode> L_Ouverts;
         private List<GenericNode> L_Fermes;
-
+        /// <summary>
+        /// Liste de tous les noeuds ayant été placés dans les ouverts.
+        /// </summary>
         public List<List<GenericNode>> L_Ouverts_Historic { get; private set; }
+        /// <summary>
+        /// Liste de tous les noeuds ayant été placés dans les fermés.
+        /// </summary>
         public List<List<GenericNode>> L_Fermes_Historic { get; private set; }
 
-        public List<GenericNode> SolutionNodes { get; private set; }
 
         public int CountInOpenList()
         {
@@ -94,7 +98,7 @@ namespace Ex2_Dijkstra
             // On retourne le chemin qui va du noeud initial au noeud final sous forme de liste
             // Le chemin est retrouvé en partant du noeud final et en accédant aux parents de manière
             // itérative jusqu'à ce qu'on tombe sur le noeud initial
-            SolutionNodes = new List<GenericNode>();
+            List<GenericNode> SolutionNodes = new List<GenericNode>();
             if (N != null)
             {
                 SolutionNodes.Add(N);
@@ -187,37 +191,72 @@ namespace Ex2_Dijkstra
 
         // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
         // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
-        public void GetSearchTree( TreeView TV )
+        public TreeView GetSearchTree()
         {
-            if (L_Fermes == null) return;
-            if (L_Fermes.Count == 0) return;
-            
-            // On suppose le TreeView préexistant
-            TV.Nodes.Clear();
+            if (L_Fermes == null || L_Fermes.Count == 0) return null;
+
+            TreeView TV = new TreeView();
 
             TreeNode TN = new TreeNode ( L_Fermes[0].ToString() );
             TV.Nodes.Add(TN);
 
             AjouteBranche ( L_Fermes[0], TN );
+
+            return TV;
         }
 
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
-        private void AjouteBranche( GenericNode GN, TreeNode TN)
+        private void AjouteBranche(GenericNode GN, TreeNode TN)
         {
             foreach (GenericNode GNfils in GN.GetEnfants())
             {
                 TreeNode TNfils = new TreeNode(GNfils.ToString());
                 TN.Nodes.Add(TNfils);
-                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils); 
+                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils);
             }
         }
 
-        private void UpdateHistoricLists()
+        /// <summary>
+        /// Renvoie la liste des noeuds parcourus lors de l'application de A*.
+        /// </summary>
+        /// <returns></returns>
+        public List<GenericNode> GetSearchList()
         {
-            L_Ouverts_Historic.Add(new List<GenericNode>(L_Ouverts));
-            L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));
+            if (L_Fermes == null || L_Fermes.Count == 0) return null;
+
+            List<GenericNode> searchList = new List<GenericNode>();
+
+            //Ajoute tous les noeuds trouves dans les fermés
+            foreach (GenericNode node in L_Fermes)
+            {
+                searchList.Add(node);
+            }
+
+            //Ajoute tous les enfants du dernier noeud
+            foreach (GenericNode node in L_Fermes[L_Fermes.Count - 1].GetEnfants())
+            {
+                searchList.Add(node);
+            }
+
+            return searchList;
         }
 
+
+        /// <summary>
+        /// Ajoute les listes des fermés et des ouverts actuelles dans l'historique.
+        /// </summary>
+        private void UpdateHistoricLists()
+        {
+            if (!L_Ouverts_Historic.Contains(L_Ouverts))
+                L_Ouverts_Historic.Add(new List<GenericNode>(L_Ouverts));
+
+            if (!L_Fermes_Historic.Contains(L_Fermes))
+                L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));
+        }
+
+        /// <summary>
+        /// Ajoute la dernière étape dans l'historique des fermés.
+        /// </summary>
         private void AddLastFermesInHistoric()
         {
             L_Fermes_Historic.Add(new List<GenericNode>(L_Fermes));

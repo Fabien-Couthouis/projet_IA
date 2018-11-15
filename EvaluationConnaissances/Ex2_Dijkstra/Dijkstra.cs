@@ -12,6 +12,7 @@ namespace Ex2_Dijkstra
 {
     public partial class Dijkstra : Form
     {
+        private int ex = 1;
         private int step = 0;
         private Graph graph;
         //Liste de tous les components propres à une étape
@@ -19,9 +20,9 @@ namespace Ex2_Dijkstra
         //Ensuite, on retrouve les components dans le dictionnaire :
         //(fermes_lb, fermés_tb,ouverts_lb, ouverts_tb)
         //Ex : componentList[0][fermés_tb] renverra à la textbox des fermés de l'étape 1
-        private List<Dictionary<string,Component>> componentList;
-        private List<TextBox> nodeInfoTbList;
-        private List<int> nodeInfoAnswerList;
+        private List<Dictionary<string,Component>> ex1ComponentsList;
+        private List<TextBox> ex2TbList;
+
         public Dijkstra()
         {
             InitializeComponent();
@@ -29,11 +30,11 @@ namespace Ex2_Dijkstra
             //Récupération du graph, de son image et recherche de solution
             graph = new Graph(1);
             graph_pb.Image = Image.FromFile(graph.PictureFileLocation);
-            graph.getSolution();
+            graph.computeSolution();
 
             //Remplissage de l'interface
-            componentList = new List<Dictionary<string, Component>>();
-            componentList.Add(new Dictionary<string, Component>());
+            ex1ComponentsList = new List<Dictionary<string, Component>>();
+            ex1ComponentsList.Add(new Dictionary<string, Component>());
             FillDictionnaryForThisStep(step_lb, fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
 
             //Remplissage de la textbox initiale des ouverts 
@@ -41,51 +42,54 @@ namespace Ex2_Dijkstra
             GoToNextStep();
 
             test_lb.Text = graph.SolutionTree.GetFermeNodeFromHistoric(6,6);
-
-
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void ResetControls()
         {
             answersPanel.Controls.Clear();
-            componentList = new List<Dictionary<string, Component>>();
+            ex1ComponentsList = new List<Dictionary<string, Component>>();
         }
 
         private void validate_btn_Click(object sender, EventArgs e)
         {
-
-            if (IsStepCorrect())
+            //EX1
+            if (ex == 1)
             {
-                ChangeStepLbColor(Color.LightGreen);
-                if (IsFinished())
+                if (IsEx1StepCorrect())
                 {
-                    MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
-                    ResetControls();
-                    ShowTree();
+                    ChangeStepLbColor(Color.LightGreen);
+                    if (IsEx1Finished())
+                    {
+                        MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                        ResetControls();
+                        ShowTree();
+                        DisplayEx2Controls();
+                    }
+                    else
+                    {
+                        DisableTextBoxesForThisStep();
+                        GoToNextStep();
+                    }
+
                 }
                 else
                 {
-                    DisableTextBoxesForThisStep();
-                    GoToNextStep();
+                    ChangeStepLbColor(Color.Red);
+                    MessageBox.Show("Vous vous êtes trompé(e) !", "ZUT !", MessageBoxButtons.YesNo);
                 }
-                
             }
+            //EX2
             else
             {
-                ChangeStepLbColor(Color.Red);
-                MessageBox.Show("Vous vous êtes trompé(e) :( (-2 points :/)", "ZUT !", MessageBoxButtons.YesNo);
+                if (IsEx2Correct())
+                {
+                    MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                }
+                else MessageBox.Show("FAUX ! ", "OK !", MessageBoxButtons.YesNo);
+
             }
+           
             
            
         }
@@ -93,20 +97,20 @@ namespace Ex2_Dijkstra
 
         private void FillDictionnaryForThisStep(Label step_lb, Label fermes_lb, TextBox fermes_tb, Label ouverts_lb, TextBox ouverts_tb)
         {
-            componentList.Add(new Dictionary<string, Component>());
-            componentList[step]["step_lb"] = step_lb;
-            componentList[step]["fermes_lb"] = fermes_lb;
-            componentList[step]["fermes_tb"] = fermes_tb;
-            componentList[step]["ouverts_lb"] = ouverts_lb;
-            componentList[step]["ouverts_tb"] = ouverts_tb;
+            ex1ComponentsList.Add(new Dictionary<string, Component>());
+            ex1ComponentsList[step]["step_lb"] = step_lb;
+            ex1ComponentsList[step]["fermes_lb"] = fermes_lb;
+            ex1ComponentsList[step]["fermes_tb"] = fermes_tb;
+            ex1ComponentsList[step]["ouverts_lb"] = ouverts_lb;
+            ex1ComponentsList[step]["ouverts_tb"] = ouverts_tb;
         }
 
-        private bool IsStepCorrect()
+        private bool IsEx1StepCorrect()
         {
             //Vérification de la textbox des fermés pour l'étape en cours
             List <List<GenericNode>> L_Fermes_Historic = graph.SolutionTree.L_Fermes_Historic;
             int nbFermes = 0;
-            foreach (char content in ((TextBox)componentList[step]["fermes_tb"]).Text)
+            foreach (char content in ((TextBox)ex1ComponentsList[step]["fermes_tb"]).Text)
             {
                 //On saute les blancs et les séparateurs
                 if (content != ' ' && content != ',' && content != ';')
@@ -128,7 +132,7 @@ namespace Ex2_Dijkstra
             //Vérification de la textbox des ouverts pour l'étape en cours
             List<List<GenericNode>> L_Ouverts_Historic = graph.SolutionTree.L_Ouverts_Historic;
             int nbOuverts = 0;
-            foreach (char content in ((TextBox)componentList[step]["ouverts_tb"]).Text)
+            foreach (char content in ((TextBox)ex1ComponentsList[step]["ouverts_tb"]).Text)
             {
                 //On saute les blancs et les séparateurs
                 if (content != ' ' && content != ',' && content != ';')
@@ -209,13 +213,31 @@ namespace Ex2_Dijkstra
         private void test_btn_Click(object sender, EventArgs e)
         {
             ResetControls();
-            DisplayTreeControls();
+            DisplayEx2Controls();
             ShowTree();
-            test_lb.Text = ((MyNode)graph.Solution[0]).ToString();
-        }
 
-        private void graph_pb_Click(object sender, EventArgs e)
-        {
+            //int n = 1;
+            foreach (MyNode node in graph.SearchList)
+            {
+                test_lb.Text += " " + node.ToString();
+            }
+
+            for (int i = 0; i < ex2TbList.Count; i++)
+            {
+                ex2TbList[i].Text = graph.SearchList[i+1].GetGCost().ToString();
+            }
+
+
+
+            //TreeNode currentNode;
+            //foreach (TreeNode node in graph.TreeView.Nodes)
+            //{
+            //    currentNode = node;
+            //    while (currentNode.GetNodeCount() != 0)
+
+            //    test_lb.Text += " " + node.ToString();
+
+            //}
 
         }
 
@@ -247,10 +269,10 @@ namespace Ex2_Dijkstra
 
         private void ChangeStepLbColor(Color color)
         {
-            ((Label)componentList[step]["step_lb"]).BackColor = color;
+            ((Label)ex1ComponentsList[step]["step_lb"]).BackColor = color;
         }
 
-        private bool IsFinished()
+        private bool IsEx1Finished()
         {
             if (graph.SolutionTree.GetOuvertNodeFromHistoric(step, 0) == null)
                 return true;
@@ -259,8 +281,8 @@ namespace Ex2_Dijkstra
 
         private void DisableTextBoxesForThisStep()
         {
-            ((TextBox)componentList[step]["ouverts_tb"]).Enabled = false;
-            ((TextBox)componentList[step]["fermes_tb"]).Enabled = false;
+            ((TextBox)ex1ComponentsList[step]["ouverts_tb"]).Enabled = false;
+            ((TextBox)ex1ComponentsList[step]["fermes_tb"]).Enabled = false;
         }
 
         private void ShowTree()
@@ -271,76 +293,67 @@ namespace Ex2_Dijkstra
             this.answersPanel.Controls.Add(TV);
         }
 
-        private void DisplayTreeControls()
+
+        private void DisplayEx2Controls()
         {
+            ex=2;
+            validate_btn.Text = "Valider";
             int x = 300;
             int y = 0;
-            nodeInfoTbList = new List<TextBox>();
+            ex2TbList = new List<TextBox>();
 
-            for (int n = 0; n < graph.Solution.Count - 1; n++)
+            foreach (MyNode node in graph.SearchList)
             {
-                MyNode node = (MyNode)graph.Solution[n];
-
-                List<GenericNode> childs = node.GetEnfants();
-
-                foreach (MyNode child in childs)
+                //Ici, on préfère parcourir SearchList au lieu de la liste retournée par GetEnfants
+                //pour conserver l'odre des noeuds présents dans SearchList. Cela facilite ainsi la vérification.
+                foreach(MyNode child in graph.SearchList)
                 {
-                    test_lb.Text += child.ToString();
+                    if (node.GetEnfants().Contains(child))
+                    {
+                        Label parentNode = new Label();
+                        parentNode.Size = new Size(20, 15);
+                        parentNode.Location = new Point(x, y);
+                        parentNode.Text = node.ToString();
+                        this.answersPanel.Controls.Add(parentNode);
 
-                    Label parentNode = new Label();
-                    parentNode.Size = new Size(20, 15);
-                    parentNode.Location = new Point(x,y);
-                    parentNode.Text = node.ToString();
-                    this.answersPanel.Controls.Add(parentNode);
+                        Label arrow = new Label();
+                        arrow.Size = new Size(20, 15);
+                        arrow.Location = new Point(x + 15, y);
+                        arrow.Text = "-->";
+                        this.answersPanel.Controls.Add(arrow);
 
-                    Label arrow = new Label();
-                    arrow.Size = new Size(20, 15);
-                    arrow.Location = new Point(x + 15, y);
-                    arrow.Text = "-->";
-                    this.answersPanel.Controls.Add(arrow);
+                        Label childNode = new Label();
+                        childNode.Size = new Size(20, 15);
+                        childNode.Location = new Point(x + 35, y);
+                        childNode.Text = child.ToString() + " : ";
+                        this.answersPanel.Controls.Add(childNode);
 
-                    Label childNode = new Label();
-                    childNode.Size = new Size(20, 15);
-                    childNode.Location = new Point(x+35,y);
-                    childNode.Text = child.ToString() + " : ";
-                    this.answersPanel.Controls.Add(childNode);
+                        TextBox nodeInfo = new TextBox();
+                        nodeInfo.Size = new Size(20, 15);
+                        nodeInfo.Location = new Point(x + 55, y);
+                        this.answersPanel.Controls.Add(nodeInfo);
+                        ex2TbList.Add(nodeInfo);
 
-                    TextBox nodeInfo = new TextBox();
-                    nodeInfo.Size = new Size(20, 15);
-                    nodeInfo.Location = new Point(x + 55, y);
-                    this.answersPanel.Controls.Add(nodeInfo);
-                    nodeInfoTbList.Add(nodeInfo);
-
-
-                    y += 35;
-
-                }
-
-               
-            }
-        }
-
-        //private bool IsCorrect()
-        //{
-        //    foreach ()
-        //}
-
-        private void FillNodeInfoAnswerList()
-        {
-            for (int n = 1; n < graph.Solution.Count - 1; n++)
-            {
-                MyNode node = (MyNode)graph.Solution[n];
-                List<GenericNode> childs = node.GetEnfants();
-                foreach (MyNode child in childs)
-                {
-                    double cost = node.GetArcCost(child);
+                        y += 35;
+                    }
                 }
             }
-
         }
-        private void test_lb_Click(object sender, EventArgs e)
+
+        private bool IsEx2Correct()
         {
+            //On parcourt toutes les textboxes
+            for (int n = 0; n < ex2TbList.Count; n++)
+            {
+                string userAnswer = ex2TbList[n].Text;
+                string realAnswer = graph.SearchList[n + 1].GetGCost().ToString();
 
+                if (userAnswer != realAnswer)
+                    return false;
+            }
+
+            return true;
         }
+
     }
 }

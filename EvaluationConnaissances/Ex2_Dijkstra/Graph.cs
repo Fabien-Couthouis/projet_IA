@@ -15,19 +15,19 @@ namespace Ex2_Dijkstra
         /// Emplacement du fichier texte et de l'image du graph.
         /// </summary>
         private static string filesLocation = "..//..//graph//";
-        public int Id { get; set; }
-        public string GraphFileLocation { get; set; }
-        public string PictureFileLocation { get; set; }
+        public int Id { get; private set; }
+        public string GraphFileLocation { get; private set; }
+        public string PictureFileLocation { get; private set; }
         /// <summary>
         /// Matrice d'adjacence des noeuds du graph.
         /// </summary>
-        public double[,] Matrix { get; set; }
-        public int NbNodes { get; set; }
-        public int FirstNode { get; set; }
-        public int LastNode { get; set; }
-        public SearchTree SolutionTree { get; set; }
-        public List<GenericNode> Solution { get; set; }
-        public TreeView TreeView { get; set; }
+        public double[,] Matrix { get; private set; }
+        public int NbNodes { get; private set; }
+        public int FirstNode { get; private set; }
+        public int LastNode { get; private set; }
+        public SearchTree SolutionTree { get; private set; }
+        public TreeView TreeView { get; private set; }
+        public List<GenericNode> SearchList { get; private set; }
 
 
         public Graph(int id)
@@ -157,24 +157,18 @@ namespace Ex2_Dijkstra
             streamReader.Close();
         }
 
-        ///<summary>Calcule la solution (application de A*). Renvoie la liste des noeuds solution.</summary>
-        public void getSolution()
+        ///<summary>Calcule la solution (application de A*) et met à jour les variables SearchList et TreeView.</summary>
+        public void computeSolution()
         {
             SolutionTree = new SearchTree();
-            TreeView = new TreeView();
             MyNode N0 = new MyNode(FirstNode, this);
-            Solution = SolutionTree.RechercheSolutionAEtoile(N0);
+            List<GenericNode> Solution = SolutionTree.RechercheSolutionAEtoile(N0);
 
-            MyNode N1 = N0;
-            for (int i = 1; i < Solution.Count; i++)
-            {
-                MyNode N2 = (MyNode)Solution[i];
-                N1 = N2;
-            }
-
-            SolutionTree.GetSearchTree(TreeView);
-
+            SearchList = SolutionTree.GetSearchList();
+            TreeView  = SolutionTree.GetSearchTree();
         }
+
+
 
     }
 }
