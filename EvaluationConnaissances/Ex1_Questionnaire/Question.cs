@@ -18,7 +18,7 @@ namespace Ex1_Questionnaire
         public Image Image { get; set; }
         public bool HasImage { get; set; }
         public string Explanation { get; set; }
-
+        public int Points { get; set; }
 
         //public Question(int id, string questionText, List<string> answers, string goodAnswer)
         //{
@@ -47,7 +47,7 @@ namespace Ex1_Questionnaire
                             ImageName = item.Element("ImageName").Value,
                             Answers = item.Descendants("Answers").Descendants().Select(x => x.Value).ToList(),
                             GoodAnswer = item.Element("GoodAnswer").Value,
-                            Explanation = item.Element("Explications").Value,
+                            Explanation = item.Element("Explanation").Value,
                             Points = item.Element("Points").Value
                         };
 
@@ -58,7 +58,7 @@ namespace Ex1_Questionnaire
                 this.Answers = item.Answers;
                 this.GoodAnswer = item.GoodAnswer;
                 this.Explanation = item.Explanation;
-                this.Points = item.Points;
+                this.Points = Convert.ToInt32(item.Points);
                 if (item.ImageName != "")
                 {
                     HasImage = true;

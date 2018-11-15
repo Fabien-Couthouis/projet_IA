@@ -10,7 +10,8 @@
 			<D>Jacques</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
-		<Points></Points>
+		<Explanation></Explanation>
+		<Points>8000</Points>
 	</Question>
 	
 	<Question Id="2">
@@ -23,11 +24,12 @@
 			<D>Je</D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="3">
-		<QuestionText>Quelle est la différence entre l’algorithme de Djikstra et l’algorithme A*?</QuestionText>
+		<QuestionText>Quelle est la différence entre l’algorithme de Dijkstra et l’algorithme A*?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
 			<A>La vitesse de calcul</A>
@@ -36,11 +38,12 @@
 			<D>La prise en compte d’informations de haut niveau</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 	
 	<Question Id="4">
-		<QuestionText>De quelle façon l’algorithme de Djikstra explore-t-il l’ensemble des solutions?</QuestionText>
+		<QuestionText>De quelle façon l’algorithme de Dijkstra explore-t-il l’ensemble des solutions?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
 			<A>Linéaire</A>
@@ -49,6 +52,7 @@
 			<D>Simulation</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>1</Points>
 	</Question>	
 	
@@ -62,6 +66,7 @@
 			<D>La réponse D</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>1</Points>
 	</Question>	
 		
@@ -75,6 +80,7 @@
 			<D>Cela dépend</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation>Dans le cas du parcours en profondeur, on va appeler récursivement la procédure avec les fils gauche et droit avant de passer à la suite. Le premier appel terminé de la procédure sera donc pour une feuille, et le dernier pour la racine : on a bien un comportement en First In (la racine) Last Out. C'est le parcours en largeur qui a un comportement de file.</Explanation>
 		<Points>2</Points>
 	</Question>		
 	
@@ -88,6 +94,7 @@
 			<D>Pour déterminer les deux extrêmes d’une plage de données</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>		
 	
@@ -101,6 +108,7 @@
 			<D>L'autonomie</D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>1</Points>
 	</Question>	
 		
@@ -115,6 +123,7 @@
 			<D>Un tas</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>3</Points>
 	</Question>	
 		
@@ -128,11 +137,12 @@
 			<D>L’algo MinMax ne permet pas d’obtenir un résultat aussi précis qu’avec AlphaBeta</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 		
 	<Question Id="11">
-		<QuestionText>L’algorithme de Dijkstra permet de calculer des plus courts chemins dans un graphe pondéré. Laquelle des conditions suivantes doit être vérifiée pour qu’il fonctionne ?</QuestionText>
+		<QuestionText>L’algorithme de Dijkstra permet de calculer des plus courts chemins dans un graphe pondéré. \n Laquelle des conditions suivantes doit être vérifiée pour qu’il fonctionne ?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
 			<A>Le graphe doit être sans cycles</A>
@@ -141,6 +151,7 @@
 			<D>Tous les poids doivent être différents</D>
 		</Answers>
 		<GoodAnswer>B et C</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 	
@@ -148,12 +159,13 @@
 		<QuestionText>Quel type d’algorithme permet de calculer le chemin le plus court entre 2 points?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
-			<A>Djikstra</A>
+			<A>Dijkstra</A>
 			<B>MinMax</B>
 			<C>AlphaBeta</C>
 			<D>Génétique</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>1</Points>
 	</Question>	
 	
@@ -167,6 +179,7 @@
 			<D>4</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 		
@@ -180,6 +193,7 @@
 			<D>Un moteur électrique / un potentiomètre / un asservissement</D>
 		</Answers>
 		<GoodAnswer>D</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>3</Points>
 	</Question>	
 	
@@ -193,6 +207,7 @@
 			<D>Pour déterminer les actions possibles à partir d’un état donné.</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 		
@@ -211,6 +226,7 @@
 			<D>.</D>
 		</Answers>
 		<GoodAnswer>.</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>3</Points>
 	</Question>	
 	
@@ -225,6 +241,7 @@
 			<D>La réponse ne se trouve pas directement dans la question.</D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 	
@@ -238,6 +255,7 @@
 			<D>A l'état final, les variables sont stockées pour être réutilisées.</D>
 		</Answers>
 		<GoodAnswer>A</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>3</Points>
 	</Question>	
 		
@@ -251,6 +269,7 @@
 			<D>Il n’existe qu’une seule contrainte associée aux variables .</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>3</Points>
 	</Question>	
 	
@@ -264,6 +283,7 @@
 			<D>holonyme</D>
 		</Answers>
 		<GoodAnswer>B</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>1</Points>
 	</Question>	
 		
@@ -277,6 +297,7 @@
 			<D>Une BDD lexicale pour l’anglais, contenant une liste de synonymes , une ontologie pour les relations entre les mots et une liste des différentes conjugaisons de verbes. </D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
+		<Explanation></Explanation>
 		<Points>2</Points>
 	</Question>	
 	

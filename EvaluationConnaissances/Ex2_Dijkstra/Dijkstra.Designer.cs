@@ -140,6 +140,7 @@
             // 
             // answersPanel
             // 
+            this.answersPanel.AutoScroll = true;
             this.answersPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.answersPanel.Controls.Add(this.step_lb);
             this.answersPanel.Controls.Add(this.fermes_lb);
@@ -147,7 +148,7 @@
             this.answersPanel.Controls.Add(this.ouverts_tb);
             this.answersPanel.Controls.Add(this.ouverts_lb);
             this.answersPanel.Location = new System.Drawing.Point(141, 290);
-            this.answersPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answersPanel.Margin = new System.Windows.Forms.Padding(4);
             this.answersPanel.Name = "answersPanel";
             this.answersPanel.Size = new System.Drawing.Size(789, 407);
             this.answersPanel.TabIndex = 11;
@@ -172,7 +173,7 @@
             this.Controls.Add(this.question_lb);
             this.Controls.Add(this.graph_pb);
             this.Controls.Add(this.answersPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dijkstra";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.graph_pb)).EndInit();

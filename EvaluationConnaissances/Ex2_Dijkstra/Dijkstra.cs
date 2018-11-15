@@ -85,6 +85,7 @@ namespace Ex2_Dijkstra
                 if (IsEx2Correct())
                 {
                     MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                    this.Close();
                 }
                 else MessageBox.Show("FAUX ! ", "OK !", MessageBoxButtons.YesNo);
 

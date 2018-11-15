@@ -17,16 +17,20 @@ namespace Ex1_Questionnaire
         Question actualQuestion;
         Random r = new Random();
         int numberQuest;
-        int count = 0;
+        int count = 0; //compte les clics effectués
+        int score = 0;
 
         public Questionnaire()
         {
             InitializeComponent();
 
+            answer1_rbtn.Checked = false;
+            answer2_rbtn.Checked = false;
+            answer3_rbtn.Checked = false;
+            answer4_rbtn.Checked = false;
             initializeQuestions();
             numberQuest = randomQuestion();
             actualize(numberQuest);
-
         }
 
         private void answer_tb_TextChanged(object sender, EventArgs e)
@@ -52,23 +56,42 @@ namespace Ex1_Questionnaire
                     answer = "C";
                 if (answer1_rbtn.Checked == true)
                     answer = "D";
-                else
+                if (answer1_rbtn.Checked != true && answer1_rbtn.Checked != true && answer1_rbtn.Checked != true && answer1_rbtn.Checked != true)
                 {
-                    Form alerte = new Form();
-                    alerte.Show();
+                    //Alerte alerte = new Alerte();
+                    //alerte.Show();
                 }
 
                 //Analyse réponse donnée VS réponse attendue
                 if (answer != actualQuestion.GoodAnswer)
                 {
-
+                    verdict_tb.Text = "BRAVO !";
+                    verdict_tb.Size = new Size(24, 72);
+                    verdict_tb.TextAlign = HorizontalAlignment.Center;
+                    verdict_tb.ForeColor = Color.Green;
+                    score+=actualQuestion.Points;
                 }
+
+                if (answer != actualQuestion.GoodAnswer)
+                {
+                    verdict_tb.Text = "RATÉ !";
+                    verdict_tb.Size = new Size(24, 72);
+                    verdict_tb.TextAlign = HorizontalAlignment.Center;
+                    verdict_tb.ForeColor = Color.Red;
+                }
+
+                question_tb.Visible = false;
+                explain_tb.Visible = false;
+                pictureQuestion.Visible = false;
+                verdict_tb.Visible = true;
+
                 if (actualQuestion.Explanation != "")
                 {
                     explain_picture.Visible = false;
                     explain_tb.Text = actualQuestion.Explanation;
                 }
             }
+
             else
             {
                 validate_btn.Text = "Valider";
@@ -83,10 +106,6 @@ namespace Ex1_Questionnaire
 
         }
 
-        private void questionNumber_lb_Load(object sender, EventArgs e)
-        {
-
-        }
 
         //Actualisation question
         private void actualize(int numberQuest)
@@ -101,7 +120,6 @@ namespace Ex1_Questionnaire
                 else
                 {
                     Question question = new Question(numberQuest);
-                    questionNb_lb.Text = Convert.ToString(count / 2) + "/20";
                     question_tb.Text = question.QuestionText;
                     if (question.HasImage)
                     {
@@ -123,7 +141,9 @@ namespace Ex1_Questionnaire
                     answer3_rbtn.Checked = false;
                     answer4_rbtn.Text = question.Answers[3];
                     answer4_rbtn.Checked = false;
-
+                    verdict_tb.Visible = false;
+                    question_tb.Visible = true;
+                    explain_tb.Visible = true;
                     actualQuestion = question;
                     progressBar.Value += 1;
                     next = true;

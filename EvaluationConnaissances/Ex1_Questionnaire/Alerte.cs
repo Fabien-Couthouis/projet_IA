@@ -16,5 +16,20 @@ namespace Ex1_Questionnaire
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void alert2_lb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ok_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
