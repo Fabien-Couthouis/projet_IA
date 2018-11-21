@@ -41,6 +41,7 @@ namespace Ex1_Questionnaire
         private void validate_btn_Click(object sender, EventArgs e)
         {
             int nextQuest;
+            //Lorsque l'on valide la réponse
             if (count % 2 == 0)
             {
                 question_tb.Text = actualQuestion.GoodAnswer;
@@ -63,35 +64,38 @@ namespace Ex1_Questionnaire
                 }
 
                 //Analyse réponse donnée VS réponse attendue
-                if (answer != actualQuestion.GoodAnswer)
+                verdict_tb.Visible = true;
+                question_pic.Visible = false;
+                if (answer == Convert.ToString(actualQuestion.GoodAnswer))
                 {
                     verdict_tb.Text = "BRAVO !";
-                    verdict_tb.Size = new Size(24, 72);
+                    //verdict_tb.Location = new Location(24, 72);
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Green;
                     score+=actualQuestion.Points;
                 }
 
-                if (answer != actualQuestion.GoodAnswer)
+                if (answer != Convert.ToString(actualQuestion.GoodAnswer))
                 {
-                    verdict_tb.Text = "RATÉ !";
-                    verdict_tb.Size = new Size(24, 72);
+                    verdict_tb.Text = /*"RATÉ ! Rep "+*/ actualQuestion.GoodAnswer + "rep"+answer;
+                    //verdict_tb.Location = new Location(240, 72);
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Red;
                 }
 
                 question_tb.Visible = false;
-                explain_tb.Visible = false;
-                pictureQuestion.Visible = false;
+                question_pic.Visible = false;
                 verdict_tb.Visible = true;
 
                 if (actualQuestion.Explanation != "")
                 {
-                    explain_picture.Visible = false;
+                    explain_picture.Visible = true;
+                    explain_tb.Visible = true;
                     explain_tb.Text = actualQuestion.Explanation;
                 }
             }
 
+            //Lorsque l'on passe à la question suivante
             else
             {
                 validate_btn.Text = "Valider";
@@ -123,14 +127,14 @@ namespace Ex1_Questionnaire
                     question_tb.Text = question.QuestionText;
                     if (question.HasImage)
                     {
-                        pictureQuestion.Visible = true;
-                        pictureQuestion.BackgroundImage = question.Image;
+                        question_pic.Visible = true;
+                        question_pic.BackgroundImage = question.Image;
                         question_tb.Location = new Point(173, 61);
                     }
 
                     else
                     {
-                        pictureQuestion.Visible = false;
+                        question_pic.Visible = false;
                         question_tb.Location = new Point(173, 198);
                     }
                     answer1_rbtn.Text = question.Answers[0];
@@ -143,7 +147,7 @@ namespace Ex1_Questionnaire
                     answer4_rbtn.Checked = false;
                     verdict_tb.Visible = false;
                     question_tb.Visible = true;
-                    explain_tb.Visible = true;
+                    explain_tb.Visible = false;
                     actualQuestion = question;
                     progressBar.Value += 1;
                     next = true;
@@ -206,6 +210,11 @@ namespace Ex1_Questionnaire
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

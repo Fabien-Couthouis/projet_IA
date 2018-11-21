@@ -34,7 +34,7 @@
             this.answer3_rbtn = new System.Windows.Forms.RadioButton();
             this.answer4_rbtn = new System.Windows.Forms.RadioButton();
             this.validate_btn = new System.Windows.Forms.Button();
-            this.pictureQuestion = new System.Windows.Forms.PictureBox();
+            this.question_pic = new System.Windows.Forms.PictureBox();
             this.question_tb = new System.Windows.Forms.TextBox();
             this.answerA_lb = new System.Windows.Forms.Label();
             this.answerB_lb = new System.Windows.Forms.Label();
@@ -44,7 +44,8 @@
             this.explain_tb = new System.Windows.Forms.TextBox();
             this.explain_picture = new System.Windows.Forms.PictureBox();
             this.verdict_tb = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).BeginInit();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            ((System.ComponentModel.ISupportInitialize)(this.question_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.explain_picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,17 +108,18 @@
             this.validate_btn.UseVisualStyleBackColor = true;
             this.validate_btn.Click += new System.EventHandler(this.validate_btn_Click);
             // 
-            // pictureQuestion
+            // question_pic
             // 
-            this.pictureQuestion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureQuestion.Location = new System.Drawing.Point(259, 147);
-            this.pictureQuestion.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureQuestion.Name = "pictureQuestion";
-            this.pictureQuestion.Size = new System.Drawing.Size(328, 147);
-            this.pictureQuestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureQuestion.TabIndex = 9;
-            this.pictureQuestion.TabStop = false;
-            this.pictureQuestion.Click += new System.EventHandler(this.graph_pb_Click_1);
+            this.question_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.question_pic.Location = new System.Drawing.Point(259, 147);
+            this.question_pic.Margin = new System.Windows.Forms.Padding(2);
+            this.question_pic.Name = "question_pic";
+            this.question_pic.Size = new System.Drawing.Size(328, 147);
+            this.question_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.question_pic.TabIndex = 9;
+            this.question_pic.TabStop = false;
+            this.question_pic.Visible = false;
+            this.question_pic.Click += new System.EventHandler(this.graph_pb_Click_1);
             // 
             // question_tb
             // 
@@ -210,15 +212,15 @@
             // 
             // verdict_tb
             // 
-            this.verdict_tb.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verdict_tb.Location = new System.Drawing.Point(231, 116);
+            this.verdict_tb.Font = new System.Drawing.Font("Stencil", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verdict_tb.Location = new System.Drawing.Point(188, 161);
             this.verdict_tb.Multiline = true;
             this.verdict_tb.Name = "verdict_tb";
-            this.verdict_tb.Size = new System.Drawing.Size(422, 73);
+            this.verdict_tb.Size = new System.Drawing.Size(479, 110);
             this.verdict_tb.TabIndex = 19;
             this.verdict_tb.Text = "VERDICT";
             this.verdict_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.verdict_tb.Visible = false;
+            this.verdict_tb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Questionnaire
             // 
@@ -236,7 +238,7 @@
             this.Controls.Add(this.answerB_lb);
             this.Controls.Add(this.answerA_lb);
             this.Controls.Add(this.question_tb);
-            this.Controls.Add(this.pictureQuestion);
+            this.Controls.Add(this.question_pic);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.answer4_rbtn);
             this.Controls.Add(this.answer3_rbtn);
@@ -245,7 +247,7 @@
             this.Name = "Questionnaire";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questionnaire";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureQuestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.question_pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.explain_picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -258,7 +260,7 @@
         private System.Windows.Forms.RadioButton answer3_rbtn;
         private System.Windows.Forms.RadioButton answer4_rbtn;
         private System.Windows.Forms.Button validate_btn;
-        private System.Windows.Forms.PictureBox pictureQuestion;
+        private System.Windows.Forms.PictureBox question_pic;
         private System.Windows.Forms.TextBox question_tb;
         private System.Windows.Forms.Label answerA_lb;
         private System.Windows.Forms.Label answerB_lb;
@@ -268,6 +270,7 @@
         private System.Windows.Forms.TextBox explain_tb;
         private System.Windows.Forms.PictureBox explain_picture;
         private System.Windows.Forms.TextBox verdict_tb;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
