@@ -46,7 +46,6 @@
             this.title_lb.Size = new System.Drawing.Size(608, 57);
             this.title_lb.TabIndex = 0;
             this.title_lb.Text = "Examen Terminal d\'IA";
-            this.title_lb.Click += new System.EventHandler(this.title_lb_Click);
             // 
             // begin_btn
             // 

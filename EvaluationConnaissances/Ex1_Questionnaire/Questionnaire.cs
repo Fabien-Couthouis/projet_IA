@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace Ex1_Questionnaire
 {
@@ -179,44 +178,13 @@ namespace Ex1_Questionnaire
 
         }
 
-        private void graph_pb_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void graph_pb_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void question_lb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void answerA_lb_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void progressBar_Click(object sender, EventArgs e)
         {
             progressBar.ForeColor = Color.DodgerBlue;
         }
 
-        private void answer_tb_TextChanged_1(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

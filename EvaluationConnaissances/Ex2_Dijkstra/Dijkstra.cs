@@ -12,6 +12,9 @@ namespace Ex2_Dijkstra
 {
     public partial class Dijkstra : Form
     {
+        public static int totalScore = 0;
+        public static bool completed = false;
+
         private Form mainMenu;
         /// <summary>
         /// Exercice en cours (1 ou 2)
@@ -50,6 +53,17 @@ namespace Ex2_Dijkstra
             graph_pb.Image = Image.FromFile(graph.PictureFileLocation);
             graph.computeSolution();
 
+            GoToEx1();
+        }
+
+        /// <summary>
+        /// Initialiser l'ex1.
+        /// </summary>
+        private void GoToEx1()
+        {
+            //On complete la question avec les noeuds finaux et initiaux
+            question_lb.Text += IntToChar(graph.FirstNode) + " et " + IntToChar(graph.LastNode) + ".";
+
             //Remplissage de l'interface
             ex1ComponentsList = new List<Dictionary<string, Component>>();
             ex1ComponentsList.Add(new Dictionary<string, Component>());
@@ -58,8 +72,6 @@ namespace Ex2_Dijkstra
             //Remplissage de la textbox initiale des ouverts 
             ouverts_tb.Text = graph.SolutionTree.GetOuvertNodeFromHistoric(0, 0);
             GoToNextStep();
-
-            ShowTree();
         }
 
 
@@ -83,6 +95,7 @@ namespace Ex2_Dijkstra
                     if (IsEx1Finished())
                     {
                         MessageBox.Show("Juste ! ", "OK !");
+                        totalScore += 2;
                         GoToEx2();
                     }
                     else
@@ -105,11 +118,23 @@ namespace Ex2_Dijkstra
                 if (IsEx2Correct())
                 {
                     MessageBox.Show("Juste ! ", "OK !");
-                    this.Close();
-                    mainMenu.Show();
+                    totalScore += 1;
                 }
-                else MessageBox.Show("FAUX ! ", "ZUT !");
+                else
+                {
+                    MessageBox.Show("FAUX ! ", "ZUT !");
+                }
 
+                MessageBox.Show("Votre note sur cette partie 2 est de : " + totalScore + "/3", "Note");
+                completed = true;
+                if (mainMenu != null)
+                {
+                    mainMenu.Show()
+                    mainMenu.Show();
+                    
+                }
+
+                this.Close();
             }
            
             
@@ -122,6 +147,7 @@ namespace Ex2_Dijkstra
         private void GoToEx2()
         {
             ResetControls();
+            question_lb.Text = "Voici l'arbre final correctement structuré. Remplissez la distance au noeud initial de chaque noeud.";
             ShowTree();
             DisplayEx2Controls();
         }

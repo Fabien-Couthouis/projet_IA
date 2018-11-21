@@ -13,13 +13,10 @@ namespace Ex1_Questionnaire
 {
     public partial class Accueil : Form
     {
+
         public Accueil()
         {
             InitializeComponent();
-        }
-
-        private void title_lb_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -33,8 +30,9 @@ namespace Ex1_Questionnaire
         private void begin2_btn_Click(object sender, EventArgs e)
         {
             Dijkstra dijkstra = new Dijkstra(this);
-            this.Hide();
             dijkstra.Show();
+            this.Hide();
+            
         }
     }
 }

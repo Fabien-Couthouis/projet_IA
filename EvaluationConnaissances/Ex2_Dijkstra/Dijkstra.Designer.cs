@@ -65,14 +65,14 @@
             this.question_lb.AutoSize = true;
             this.question_lb.Location = new System.Drawing.Point(304, 32);
             this.question_lb.Name = "question_lb";
-            this.question_lb.Size = new System.Drawing.Size(416, 17);
+            this.question_lb.Size = new System.Drawing.Size(374, 17);
             this.question_lb.TabIndex = 1;
-            this.question_lb.Text = "Appliquez Dijkstra pour trouver le plus court chemin entre A et E.";
+            this.question_lb.Text = "Appliquez Dijkstra pour trouver le plus court chemin entre ";
             // 
             // fermes_tb
             // 
             this.fermes_tb.Enabled = false;
-            this.fermes_tb.Location = new System.Drawing.Point(360, 21);
+            this.fermes_tb.Location = new System.Drawing.Point(193, 21);
             this.fermes_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fermes_tb.Name = "fermes_tb";
             this.fermes_tb.Size = new System.Drawing.Size(100, 22);
@@ -81,7 +81,7 @@
             // ouverts_tb
             // 
             this.ouverts_tb.Enabled = false;
-            this.ouverts_tb.Location = new System.Drawing.Point(648, 25);
+            this.ouverts_tb.Location = new System.Drawing.Point(481, 25);
             this.ouverts_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ouverts_tb.Name = "ouverts_tb";
             this.ouverts_tb.Size = new System.Drawing.Size(100, 22);
@@ -90,7 +90,7 @@
             // ouverts_lb
             // 
             this.ouverts_lb.AutoSize = true;
-            this.ouverts_lb.Location = new System.Drawing.Point(611, 25);
+            this.ouverts_lb.Location = new System.Drawing.Point(444, 25);
             this.ouverts_lb.Name = "ouverts_lb";
             this.ouverts_lb.Size = new System.Drawing.Size(31, 17);
             this.ouverts_lb.TabIndex = 5;
@@ -110,7 +110,7 @@
             // step_lb
             // 
             this.step_lb.AutoSize = true;
-            this.step_lb.Location = new System.Drawing.Point(226, 25);
+            this.step_lb.Location = new System.Drawing.Point(59, 25);
             this.step_lb.Name = "step_lb";
             this.step_lb.Size = new System.Drawing.Size(57, 17);
             this.step_lb.TabIndex = 7;
@@ -119,7 +119,7 @@
             // fermes_lb
             // 
             this.fermes_lb.AutoSize = true;
-            this.fermes_lb.Location = new System.Drawing.Point(326, 25);
+            this.fermes_lb.Location = new System.Drawing.Point(159, 25);
             this.fermes_lb.Name = "fermes_lb";
             this.fermes_lb.Size = new System.Drawing.Size(28, 17);
             this.fermes_lb.TabIndex = 8;
