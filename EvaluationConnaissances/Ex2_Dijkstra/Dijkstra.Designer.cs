@@ -38,9 +38,7 @@
             this.validate_btn = new System.Windows.Forms.Button();
             this.step_lb = new System.Windows.Forms.Label();
             this.fermes_lb = new System.Windows.Forms.Label();
-            this.test_btn = new System.Windows.Forms.Button();
             this.answersPanel = new System.Windows.Forms.Panel();
-            this.test_lb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.graph_pb)).BeginInit();
             this.answersPanel.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +72,7 @@
             // fermes_tb
             // 
             this.fermes_tb.Enabled = false;
-            this.fermes_tb.Location = new System.Drawing.Point(181, 21);
+            this.fermes_tb.Location = new System.Drawing.Point(360, 21);
             this.fermes_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fermes_tb.Name = "fermes_tb";
             this.fermes_tb.Size = new System.Drawing.Size(100, 22);
@@ -83,7 +81,7 @@
             // ouverts_tb
             // 
             this.ouverts_tb.Enabled = false;
-            this.ouverts_tb.Location = new System.Drawing.Point(469, 25);
+            this.ouverts_tb.Location = new System.Drawing.Point(648, 25);
             this.ouverts_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ouverts_tb.Name = "ouverts_tb";
             this.ouverts_tb.Size = new System.Drawing.Size(100, 22);
@@ -92,7 +90,7 @@
             // ouverts_lb
             // 
             this.ouverts_lb.AutoSize = true;
-            this.ouverts_lb.Location = new System.Drawing.Point(432, 25);
+            this.ouverts_lb.Location = new System.Drawing.Point(611, 25);
             this.ouverts_lb.Name = "ouverts_lb";
             this.ouverts_lb.Size = new System.Drawing.Size(31, 17);
             this.ouverts_lb.TabIndex = 5;
@@ -112,7 +110,7 @@
             // step_lb
             // 
             this.step_lb.AutoSize = true;
-            this.step_lb.Location = new System.Drawing.Point(47, 25);
+            this.step_lb.Location = new System.Drawing.Point(226, 25);
             this.step_lb.Name = "step_lb";
             this.step_lb.Size = new System.Drawing.Size(57, 17);
             this.step_lb.TabIndex = 7;
@@ -121,22 +119,11 @@
             // fermes_lb
             // 
             this.fermes_lb.AutoSize = true;
-            this.fermes_lb.Location = new System.Drawing.Point(147, 25);
+            this.fermes_lb.Location = new System.Drawing.Point(326, 25);
             this.fermes_lb.Name = "fermes_lb";
             this.fermes_lb.Size = new System.Drawing.Size(28, 17);
             this.fermes_lb.TabIndex = 8;
             this.fermes_lb.Text = "F =";
-            // 
-            // test_btn
-            // 
-            this.test_btn.Location = new System.Drawing.Point(68, 69);
-            this.test_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.test_btn.Name = "test_btn";
-            this.test_btn.Size = new System.Drawing.Size(75, 23);
-            this.test_btn.TabIndex = 9;
-            this.test_btn.Text = "Test";
-            this.test_btn.UseVisualStyleBackColor = true;
-            this.test_btn.Click += new System.EventHandler(this.test_btn_Click);
             // 
             // answersPanel
             // 
@@ -153,22 +140,11 @@
             this.answersPanel.Size = new System.Drawing.Size(789, 407);
             this.answersPanel.TabIndex = 11;
             // 
-            // test_lb
-            // 
-            this.test_lb.AutoSize = true;
-            this.test_lb.Location = new System.Drawing.Point(68, 113);
-            this.test_lb.Name = "test_lb";
-            this.test_lb.Size = new System.Drawing.Size(36, 17);
-            this.test_lb.TabIndex = 10;
-            this.test_lb.Text = "Test";
-            // 
             // Dijkstra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 812);
-            this.Controls.Add(this.test_lb);
-            this.Controls.Add(this.test_btn);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.question_lb);
             this.Controls.Add(this.graph_pb);
@@ -195,9 +171,7 @@
         private System.Windows.Forms.Button validate_btn;
         private System.Windows.Forms.Label step_lb;
         private System.Windows.Forms.Label fermes_lb;
-        private System.Windows.Forms.Button test_btn;
         private System.Windows.Forms.Panel answersPanel;
-        private System.Windows.Forms.Label test_lb;
     }
 }
 

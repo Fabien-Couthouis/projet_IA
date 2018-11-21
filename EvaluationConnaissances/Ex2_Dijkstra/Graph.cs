@@ -14,7 +14,7 @@ namespace Ex2_Dijkstra
         /// <summary>
         /// Emplacement du fichier texte et de l'image du graph.
         /// </summary>
-        private static string filesLocation = "..//..//graph//";
+        private static string filesLocation = "..//..//..//graph//";
         public int Id { get; private set; }
         public string GraphFileLocation { get; private set; }
         public string PictureFileLocation { get; private set; }

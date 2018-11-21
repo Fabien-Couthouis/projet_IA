@@ -12,17 +12,35 @@ namespace Ex2_Dijkstra
 {
     public partial class Dijkstra : Form
     {
+        private Form mainMenu;
+        /// <summary>
+        /// Exercice en cours (1 ou 2)
+        /// </summary>
         private int ex = 1;
+        /// <summary>
+        /// Étape en cours (ex1)
+        /// </summary>
         private int step = 0;
         private Graph graph;
-        //Liste de tous les components propres à une étape
-        //Chaque indice de la 1ere liste correspond à l'étape en cours
+
+        /// <summary>
+        /// Liste de tous les components propres à une étape (ex1).
+        /// </summary>
+        /// //Chaque indice de la 1ere liste correspond à l'étape en cours
         //Ensuite, on retrouve les components dans le dictionnaire :
         //(fermes_lb, fermés_tb,ouverts_lb, ouverts_tb)
         //Ex : componentList[0][fermés_tb] renverra à la textbox des fermés de l'étape 1
         private List<Dictionary<string,Component>> ex1ComponentsList;
+        /// <summary>
+        /// Liste des textboxes de l'ex2.
+        /// </summary>
         private List<TextBox> ex2TbList;
 
+        //Constructeur avec menu principal (permet d'y revenir si il existe à la fin de l'exercice)
+        public Dijkstra(Form mainMenu):this()
+        {
+            this.mainMenu = mainMenu;
+        }
         public Dijkstra()
         {
             InitializeComponent();
@@ -41,10 +59,13 @@ namespace Ex2_Dijkstra
             ouverts_tb.Text = graph.SolutionTree.GetOuvertNodeFromHistoric(0, 0);
             GoToNextStep();
 
-            test_lb.Text = graph.SolutionTree.GetFermeNodeFromHistoric(6,6);
+            ShowTree();
         }
 
 
+        /// <summary>
+        /// Retire tous les controls présents dans le panel des réponses.
+        /// </summary>
         private void ResetControls()
         {
             answersPanel.Controls.Clear();
@@ -61,10 +82,8 @@ namespace Ex2_Dijkstra
                     ChangeStepLbColor(Color.LightGreen);
                     if (IsEx1Finished())
                     {
-                        MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
-                        ResetControls();
-                        ShowTree();
-                        DisplayEx2Controls();
+                        MessageBox.Show("Juste ! ", "OK !");
+                        GoToEx2();
                     }
                     else
                     {
@@ -76,7 +95,8 @@ namespace Ex2_Dijkstra
                 else
                 {
                     ChangeStepLbColor(Color.Red);
-                    MessageBox.Show("Vous vous êtes trompé(e) !", "ZUT !", MessageBoxButtons.YesNo);
+                    MessageBox.Show("Vous vous êtes trompé(e) !", "ZUT !");
+                    GoToEx2();
                 }
             }
             //EX2
@@ -84,10 +104,11 @@ namespace Ex2_Dijkstra
             {
                 if (IsEx2Correct())
                 {
-                    MessageBox.Show("Juste ! ", "OK !", MessageBoxButtons.YesNo);
+                    MessageBox.Show("Juste ! ", "OK !");
                     this.Close();
+                    mainMenu.Show();
                 }
-                else MessageBox.Show("FAUX ! ", "OK !", MessageBoxButtons.YesNo);
+                else MessageBox.Show("FAUX ! ", "ZUT !");
 
             }
            
@@ -95,7 +116,19 @@ namespace Ex2_Dijkstra
            
         }
 
+        /// <summary>
+        /// Afficher l'exercice 2;
+        /// </summary>
+        private void GoToEx2()
+        {
+            ResetControls();
+            ShowTree();
+            DisplayEx2Controls();
+        }
 
+        /// <summary>
+        /// Ajoute les controls dans le dictionnaire des controls pour l'étape en cours.
+        /// </summary>
         private void FillDictionnaryForThisStep(Label step_lb, Label fermes_lb, TextBox fermes_tb, Label ouverts_lb, TextBox ouverts_tb)
         {
             ex1ComponentsList.Add(new Dictionary<string, Component>());
@@ -106,6 +139,10 @@ namespace Ex2_Dijkstra
             ex1ComponentsList[step]["ouverts_tb"] = ouverts_tb;
         }
 
+        /// <summary>
+        /// Vérifier si la réponse donnée à l'étape en cours est correcte (ex1).
+        /// </summary>
+        /// <returns></returns>
         private bool IsEx1StepCorrect()
         {
             //Vérification de la textbox des fermés pour l'étape en cours
@@ -126,7 +163,7 @@ namespace Ex2_Dijkstra
             }
 
             //Verifier si l'élève a bien entré tous les fermés
-            if (step == L_Fermes_Historic.Count - 1 &&  nbFermes != L_Fermes_Historic[step].Count)
+            if (step <= L_Fermes_Historic.Count - 1 &&  nbFermes != L_Fermes_Historic[step].Count)
                 return false;
 
 
@@ -147,19 +184,25 @@ namespace Ex2_Dijkstra
             }
 
             //Verifier si l'élève a bien entré tous les ouverts
-            if (step == L_Ouverts_Historic.Count - 1 && nbOuverts != L_Ouverts_Historic[step].Count)
+            if (step <= L_Ouverts_Historic.Count - 1 && nbOuverts != L_Ouverts_Historic[step].Count)
                 return false;
 
             return true;
         }
 
+        /// <summary>
+        /// Passe à l'étape supérieur (ex1).
+        /// </summary>
         private void GoToNextStep()
         {
             this.step++;
-            CreateNewControls();
+            DisplayEx1Controls();
         }
 
-        private void CreateNewControls()
+        /// <summary>
+        /// Affiche tous les controls relatifs à l'exercice 1, pour l'étape en cours.
+        /// </summary>
+        private void DisplayEx1Controls()
         {
             int yLocation = this.step_lb.Location.Y + step * 30;
             Size lbSize = this.ouverts_lb.Size;
@@ -211,68 +254,63 @@ namespace Ex2_Dijkstra
             FillDictionnaryForThisStep(step_lb, fermes_lb, fermes_tb, ouverts_lb, ouverts_tb);
         }
 
-        private void test_btn_Click(object sender, EventArgs e)
-        {
-            ResetControls();
-            DisplayEx2Controls();
-            ShowTree();
 
-            //int n = 1;
-            foreach (MyNode node in graph.SearchList)
-            {
-                test_lb.Text += " " + node.ToString();
-            }
-
-            for (int i = 0; i < ex2TbList.Count; i++)
-            {
-                ex2TbList[i].Text = graph.SearchList[i+1].GetGCost().ToString();
-            }
-
-
-
-            //TreeNode currentNode;
-            //foreach (TreeNode node in graph.TreeView.Nodes)
-            //{
-            //    currentNode = node;
-            //    while (currentNode.GetNodeCount() != 0)
-
-            //    test_lb.Text += " " + node.ToString();
-
-            //}
-
-        }
-
+        /// <summary>
+        /// Regarder si un noeud est présent dans la liste passée en paramètre, à une étape donnée.
+        /// </summary>
+        /// <param name="HistoricList"></param>
+        /// <param name="nodeNb"></param>
+        /// <param name="step"></param>
+        /// <returns></returns>
         private bool IsNodeInHistoricList(List<List<GenericNode>> HistoricList, int nodeNb, int step)
         {
             //Ne dépasse t on pas la taille de la liste ?
             if (HistoricList.Count >= step)
             {
+                //Noeud dans la liste ?
                 foreach (MyNode node in HistoricList[step])
                 {
                     if (nodeNb == node.Number)
                         return true;
                 }
             }
-            else test_lb.Text = "SI";
-            
+
             return false;
         }
 
+        /// <summary>
+        /// Convertir un caractère alphanumérique en entier (A=0, etc)
+        /// </summary>
+        /// <param name="value">Lettre de l'alphabet de A à Z (majuscule).</param>
+        /// <returns></returns>
         private int CharToInt(char value)
         {
             return (int)value - (int)'A';
         }
 
+        /// <summary>
+        /// Convertir un entier en caractère alphanumérique (0=A, etc).
+        /// </summary>
+        /// <param name="value">Entier de 0 à 25.</param>
+        /// <returns></returns>
         private char IntToChar(int value)
         {
             return Convert.ToChar(value + (int)'A');
         }
 
+        /// <summary>
+        /// Changer la couleur du fond du label correspondant à l'étape en cours.
+        /// </summary>
+        /// <param name="color"></param>
         private void ChangeStepLbColor(Color color)
         {
             ((Label)ex1ComponentsList[step]["step_lb"]).BackColor = color;
         }
 
+        /// <summary>
+        /// Vérifier si l'ex1 est terminé.
+        /// </summary>
+        /// <returns></returns>
         private bool IsEx1Finished()
         {
             if (graph.SolutionTree.GetOuvertNodeFromHistoric(step, 0) == null)
@@ -280,12 +318,18 @@ namespace Ex2_Dijkstra
             else return false;
         }
 
+        /// <summary>
+        /// Désactive les textboxes de l'étape, pour que l'utilisateur ne puisse plus modifier son contenu.
+        /// </summary>
         private void DisableTextBoxesForThisStep()
         {
             ((TextBox)ex1ComponentsList[step]["ouverts_tb"]).Enabled = false;
             ((TextBox)ex1ComponentsList[step]["fermes_tb"]).Enabled = false;
         }
 
+        /// <summary>
+        /// Affiche l'arbre du graph étudié sur le côté gauche du panel.
+        /// </summary>
         private void ShowTree()
         {
             //ResetControls();
@@ -294,7 +338,9 @@ namespace Ex2_Dijkstra
             this.answersPanel.Controls.Add(TV);
         }
 
-
+        /// <summary>
+        /// Affiche les controls relatifs à l'exercice 2 (textboxes, labels...)
+        /// </summary>
         private void DisplayEx2Controls()
         {
             ex=2;
@@ -341,6 +387,10 @@ namespace Ex2_Dijkstra
             }
         }
 
+        /// <summary>
+        /// Vérifie si les réponses données à l'exercice 2 sont correctes.
+        /// </summary>
+        /// <returns></returns>
         private bool IsEx2Correct()
         {
             //On parcourt toutes les textboxes

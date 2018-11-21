@@ -100,6 +100,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex2_Dijkstra\Ex2_Dijkstra.csproj">
+      <Project>{1c856d6c-c45c-4516-8790-cdfac4d93d86}</Project>
+      <Name>Ex2_Dijkstra</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
