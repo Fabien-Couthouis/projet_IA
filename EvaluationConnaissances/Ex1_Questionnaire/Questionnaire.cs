@@ -43,47 +43,70 @@ namespace Ex1_Questionnaire
             //Lorsque l'on valide la réponse
             if (count % 2 == 0)
             {
-                question_tb.Text = actualQuestion.GoodAnswer;
                 validate_btn.Text = "Suivant";
 
                 //Récupération réponse donnée
                 string answer = "";
                 if (answer1_rbtn.Checked == true)
                     answer = "A";
-                if (answer1_rbtn.Checked == true)
+                if (answer2_rbtn.Checked == true)
                     answer = "B";
-                if (answer1_rbtn.Checked == true)
+                if (answer3_rbtn.Checked == true)
                     answer = "C";
-                if (answer1_rbtn.Checked == true)
+                if (answer4_rbtn.Checked == true)
                     answer = "D";
-                if (answer1_rbtn.Checked != true && answer1_rbtn.Checked != true && answer1_rbtn.Checked != true && answer1_rbtn.Checked != true)
+                while (answer1_rbtn.Checked != true && answer2_rbtn.Checked != true && answer3_rbtn.Checked != true && answer4_rbtn.Checked != true)
                 {
-                    //Alerte alerte = new Alerte();
-                    //alerte.Show();
+                    Alerte alerte = new Alerte();
+                    alerte.Show();
                 }
 
                 //Analyse réponse donnée VS réponse attendue
                 verdict_tb.Visible = true;
                 question_pic.Visible = false;
+                question_tb.Location = new Point(179, 73);
                 if (answer == Convert.ToString(actualQuestion.GoodAnswer))
                 {
                     verdict_tb.Text = "BRAVO !";
-                    //verdict_tb.Location = new Location(24, 72);
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Green;
                     score+=actualQuestion.Points;
+                    if (actualQuestion.GoodAnswer == "A")
+                        answer1_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "B")
+                        answer2_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "C")
+                        answer3_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "D")
+                        answer4_rbtn.BackColor = Color.Green;
                 }
 
                 if (answer != Convert.ToString(actualQuestion.GoodAnswer))
                 {
-                    verdict_tb.Text = /*"RATÉ ! Rep "+*/ actualQuestion.GoodAnswer + "rep"+answer;
+                    verdict_tb.Text = "RATÉ !";
                     //verdict_tb.Location = new Location(240, 72);
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Red;
+                    if (actualQuestion.GoodAnswer == "A")
+                        answer1_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "B")
+                        answer2_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "C")
+                        answer3_rbtn.BackColor = Color.Green;
+                    if (actualQuestion.GoodAnswer == "D")
+                        answer4_rbtn.BackColor = Color.Green;
+                    if (answer == "A")
+                        answer1_rbtn.BackColor = Color.Red;
+                    if (answer == "B")
+                        answer2_rbtn.BackColor = Color.Red;
+                    if (answer == "C")
+                        answer3_rbtn.BackColor = Color.Red;
+                    if (answer == "D")
+                        answer4_rbtn.BackColor = Color.Red;
                 }
 
-                question_tb.Visible = false;
-                question_pic.Visible = false;
+                //question_tb.Visible = false;
+                //question_pic.Visible = false;
                 verdict_tb.Visible = true;
 
                 if (actualQuestion.Explanation != "")
@@ -138,12 +161,16 @@ namespace Ex1_Questionnaire
                     }
                     answer1_rbtn.Text = question.Answers[0];
                     answer1_rbtn.Checked = false;
+                    answer1_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
                     answer2_rbtn.Text = question.Answers[1];
                     answer2_rbtn.Checked = false;
+                    answer2_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
                     answer3_rbtn.Text = question.Answers[2];
                     answer3_rbtn.Checked = false;
+                    answer3_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
                     answer4_rbtn.Text = question.Answers[3];
                     answer4_rbtn.Checked = false;
+                    answer4_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
                     verdict_tb.Visible = false;
                     question_tb.Visible = true;
                     explain_tb.Visible = false;
@@ -185,6 +212,9 @@ namespace Ex1_Questionnaire
             progressBar.ForeColor = Color.DodgerBlue;
         }
 
+        private void verdict_tb_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

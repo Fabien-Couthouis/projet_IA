@@ -129,7 +129,7 @@ namespace Ex2_Dijkstra
                 completed = true;
                 if (mainMenu != null)
                 {
-                    mainMenu.Show()
+                    mainMenu.Show();
                     mainMenu.Show();
                     
                 }
