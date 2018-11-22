@@ -129,7 +129,6 @@ namespace Ex2_Dijkstra
                 completed = true;
                 if (mainMenu != null)
                 {
-                    mainMenu.Show()
                     mainMenu.Show();
                     
                 }
@@ -359,9 +358,10 @@ namespace Ex2_Dijkstra
         private void ShowTree()
         {
             //ResetControls();
-            TreeView TV = graph.TreeView;
+            TreeView TV =  graph.TreeView;
             TV.Size = new Size(150,400);
             this.answersPanel.Controls.Add(TV);
+
         }
 
         /// <summary>
@@ -398,7 +398,7 @@ namespace Ex2_Dijkstra
                         Label childNode = new Label();
                         childNode.Size = new Size(20, 15);
                         childNode.Location = new Point(x + 35, y);
-                        childNode.Text = child.ToString() + " : ";
+                        childNode.Text = child.ToString();
                         this.answersPanel.Controls.Add(childNode);
 
                         TextBox nodeInfo = new TextBox();
