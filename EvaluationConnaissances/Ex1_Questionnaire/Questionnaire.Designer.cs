@@ -113,7 +113,7 @@
             // 
             this.question_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.question_pic.Location = new System.Drawing.Point(259, 147);
-            this.question_pic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.question_pic.Margin = new System.Windows.Forms.Padding(2);
             this.question_pic.Name = "question_pic";
             this.question_pic.Size = new System.Drawing.Size(328, 147);
             this.question_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,6 +129,7 @@
             this.question_tb.Location = new System.Drawing.Point(173, 79);
             this.question_tb.Multiline = true;
             this.question_tb.Name = "question_tb";
+            this.question_tb.ReadOnly = true;
             this.question_tb.Size = new System.Drawing.Size(511, 63);
             this.question_tb.TabIndex = 10;
             this.question_tb.Text = "Question";
@@ -192,6 +193,7 @@
             this.explain_tb.Location = new System.Drawing.Point(157, 225);
             this.explain_tb.Multiline = true;
             this.explain_tb.Name = "explain_tb";
+            this.explain_tb.ReadOnly = true;
             this.explain_tb.Size = new System.Drawing.Size(541, 85);
             this.explain_tb.TabIndex = 17;
             this.explain_tb.Text = "Explications";
@@ -215,6 +217,7 @@
             this.verdict_tb.Location = new System.Drawing.Point(188, 161);
             this.verdict_tb.Multiline = true;
             this.verdict_tb.Name = "verdict_tb";
+            this.verdict_tb.ReadOnly = true;
             this.verdict_tb.Size = new System.Drawing.Size(479, 110);
             this.verdict_tb.TabIndex = 19;
             this.verdict_tb.Text = "VERDICT";
@@ -260,7 +263,6 @@
         private System.Windows.Forms.RadioButton answer4_rbtn;
         private System.Windows.Forms.Button validate_btn;
         private System.Windows.Forms.PictureBox question_pic;
-        private System.Windows.Forms.TextBox question_tb;
         private System.Windows.Forms.Label answerA_lb;
         private System.Windows.Forms.Label answerB_lb;
         private System.Windows.Forms.Label answerC_lb;
@@ -270,6 +272,7 @@
         private System.Windows.Forms.PictureBox explain_picture;
         private System.Windows.Forms.TextBox verdict_tb;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox question_tb;
     }
 }
 

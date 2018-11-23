@@ -22,7 +22,6 @@ namespace Ex1_Questionnaire
         public Questionnaire()
         {
             InitializeComponent();
-
             answer1_rbtn.Checked = false;
             answer2_rbtn.Checked = false;
             answer3_rbtn.Checked = false;
@@ -55,7 +54,7 @@ namespace Ex1_Questionnaire
                     answer = "C";
                 if (answer4_rbtn.Checked == true)
                     answer = "D";
-                while (answer1_rbtn.Checked != true && answer2_rbtn.Checked != true && answer3_rbtn.Checked != true && answer4_rbtn.Checked != true)
+                if (answer1_rbtn.Checked != true && answer2_rbtn.Checked != true && answer3_rbtn.Checked != true && answer4_rbtn.Checked != true)
                 {
                     Alerte alerte = new Alerte();
                     alerte.Show();
@@ -79,6 +78,7 @@ namespace Ex1_Questionnaire
                         answer3_rbtn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "D")
                         answer4_rbtn.BackColor = Color.Green;
+                    score += Convert.ToInt32(actualQuestion.Points);
                 }
 
                 if (answer != Convert.ToString(actualQuestion.GoodAnswer))
@@ -105,8 +105,6 @@ namespace Ex1_Questionnaire
                         answer4_rbtn.BackColor = Color.Red;
                 }
 
-                //question_tb.Visible = false;
-                //question_pic.Visible = false;
                 verdict_tb.Visible = true;
 
                 if (actualQuestion.Explanation != "")
@@ -178,6 +176,13 @@ namespace Ex1_Questionnaire
                     progressBar.Value += 1;
                     next = true;
                 }
+            }
+
+            if (count == 42)
+            {
+                Resultat resultat = new Resultat();
+                this.Hide();
+                resultat.Show();
             }
         }
 
