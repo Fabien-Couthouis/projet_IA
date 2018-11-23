@@ -21,7 +21,7 @@ namespace Ex2_Dijkstra
             Graph = graph;
         }
 
-        // Méthodes abstrates, donc à surcharger obligatoirement avec override dans une classe fille
+        // Méthodes abstraites, donc à surcharger obligatoirement avec override dans une classe fille
         public override bool IsEqual(GenericNode N2)
         {
             MyNode N2bis = (MyNode)N2;

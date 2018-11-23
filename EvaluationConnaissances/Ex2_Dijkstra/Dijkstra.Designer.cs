@@ -39,6 +39,7 @@
             this.step_lb = new System.Windows.Forms.Label();
             this.fermes_lb = new System.Windows.Forms.Label();
             this.answersPanel = new System.Windows.Forms.Panel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.graph_pb)).BeginInit();
             this.answersPanel.SuspendLayout();
             this.SuspendLayout();
@@ -140,6 +141,10 @@
             this.answersPanel.Size = new System.Drawing.Size(789, 407);
             this.answersPanel.TabIndex = 11;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Dijkstra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -172,6 +177,7 @@
         private System.Windows.Forms.Label step_lb;
         private System.Windows.Forms.Label fermes_lb;
         private System.Windows.Forms.Panel answersPanel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
