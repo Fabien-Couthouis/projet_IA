@@ -12,9 +12,12 @@ namespace Ex1_Questionnaire
 {
     public partial class Resultat : Form
     {
-        public Resultat()
+        Questionnaire questionnaire;
+        public Resultat(Questionnaire questionnaire)
         {
             InitializeComponent();
+            this.questionnaire = questionnaire;
+            scoreReel_lb.Text = questionnaire.score + " / 20";
         }
 
         private void label1_Click(object sender, EventArgs e)

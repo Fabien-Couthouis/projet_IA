@@ -22,9 +22,9 @@ namespace Ex1_Questionnaire
 
         private void begin_btn_Click(object sender, EventArgs e)
         {
-            Questionnaire question = new Questionnaire();
+            Questionnaire questionnaire = new Questionnaire();
             this.Hide();
-            question.Show();
+            questionnaire.Show();
         }
 
         private void begin2_btn_Click(object sender, EventArgs e)

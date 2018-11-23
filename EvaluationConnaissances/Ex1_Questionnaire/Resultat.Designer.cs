@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Resultat));
             this.score_lb = new System.Windows.Forms.Label();
             this.scoreReel_lb = new System.Windows.Forms.Label();
             this.restart_btn = new System.Windows.Forms.Button();
@@ -37,19 +38,23 @@
             // score_lb
             // 
             this.score_lb.AutoSize = true;
+            this.score_lb.BackColor = System.Drawing.Color.Transparent;
             this.score_lb.Font = new System.Drawing.Font("Showcard Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score_lb.Location = new System.Drawing.Point(32, 90);
+            this.score_lb.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.score_lb.Location = new System.Drawing.Point(16, 70);
             this.score_lb.Name = "score_lb";
-            this.score_lb.Size = new System.Drawing.Size(738, 60);
+            this.score_lb.Size = new System.Drawing.Size(667, 60);
             this.score_lb.TabIndex = 0;
-            this.score_lb.Text = "Vous avez obtenu la note de";
+            this.score_lb.Text = "Vous avez obtenu la note";
             this.score_lb.Click += new System.EventHandler(this.label1_Click);
             // 
             // scoreReel_lb
             // 
             this.scoreReel_lb.AutoSize = true;
+            this.scoreReel_lb.BackColor = System.Drawing.Color.Transparent;
             this.scoreReel_lb.Font = new System.Drawing.Font("Showcard Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreReel_lb.Location = new System.Drawing.Point(270, 170);
+            this.scoreReel_lb.ForeColor = System.Drawing.Color.Red;
+            this.scoreReel_lb.Location = new System.Drawing.Point(237, 205);
             this.scoreReel_lb.Name = "scoreReel_lb";
             this.scoreReel_lb.Size = new System.Drawing.Size(248, 79);
             this.scoreReel_lb.TabIndex = 2;
@@ -59,7 +64,7 @@
             // 
             // restart_btn
             // 
-            this.restart_btn.Location = new System.Drawing.Point(228, 376);
+            this.restart_btn.Location = new System.Drawing.Point(158, 317);
             this.restart_btn.Name = "restart_btn";
             this.restart_btn.Size = new System.Drawing.Size(103, 32);
             this.restart_btn.TabIndex = 3;
@@ -68,7 +73,7 @@
             // 
             // accueil_btn
             // 
-            this.accueil_btn.Location = new System.Drawing.Point(453, 376);
+            this.accueil_btn.Location = new System.Drawing.Point(454, 317);
             this.accueil_btn.Name = "accueil_btn";
             this.accueil_btn.Size = new System.Drawing.Size(103, 32);
             this.accueil_btn.TabIndex = 4;
@@ -79,7 +84,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 443);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(695, 367);
             this.Controls.Add(this.accueil_btn);
             this.Controls.Add(this.restart_btn);
             this.Controls.Add(this.scoreReel_lb);

@@ -17,7 +17,7 @@ namespace Ex1_Questionnaire
         Random r = new Random();
         int numberQuest;
         int count = 0; //compte les clics effectués
-        int score = 0;
+        public int score = 0;
 
         public Questionnaire()
         {
@@ -135,7 +135,7 @@ namespace Ex1_Questionnaire
         private void actualize(int numberQuest)
         {
             bool next = false;
-            while (count< 42 && next == false)
+            while (count< 40 && next == false)
             {
                 if (numberQuest == 0)
                 {
@@ -178,9 +178,9 @@ namespace Ex1_Questionnaire
                 }
             }
 
-            if (count == 42)
+            if (count == 40)
             {
-                Resultat resultat = new Resultat();
+                Resultat resultat = new Resultat(this);
                 this.Hide();
                 resultat.Show();
             }
@@ -189,7 +189,7 @@ namespace Ex1_Questionnaire
         //Générer liste contenant toutes les questions
         public void initializeQuestions()
         {
-            for (int i=1; i<22; i+=1)
+            for (int i=1; i<21; i+=1)
             {
                 numQuestions.Add(i);
             }
