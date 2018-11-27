@@ -17,7 +17,7 @@ namespace Ex1_Questionnaire
         {
             InitializeComponent();
             this.questionnaire = questionnaire;
-            scoreReel_lb.Text = questionnaire.score + " / 20";
+            scoreReel_lb.Text = questionnaire.score*20/questionnaire.scoreMaxPossible + " / 20";
         }
 
         private void label1_Click(object sender, EventArgs e)

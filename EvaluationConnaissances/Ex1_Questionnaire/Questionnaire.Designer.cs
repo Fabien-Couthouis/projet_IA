@@ -39,7 +39,13 @@
             this.answer2_btn = new System.Windows.Forms.Button();
             this.answer3_btn = new System.Windows.Forms.Button();
             this.answer4_btn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.answer1_picture = new System.Windows.Forms.Button();
+            this.answer2_picture = new System.Windows.Forms.Button();
+            this.answer3_picture = new System.Windows.Forms.Button();
+            this.answer4_picture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.question_pic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // next_btn
@@ -48,7 +54,7 @@
             this.next_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("next_btn.BackgroundImage")));
             this.next_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.next_btn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.next_btn.Location = new System.Drawing.Point(763, 561);
+            this.next_btn.Location = new System.Drawing.Point(763, 726);
             this.next_btn.Name = "next_btn";
             this.next_btn.Size = new System.Drawing.Size(47, 45);
             this.next_btn.TabIndex = 5;
@@ -58,11 +64,11 @@
             // 
             // question_pic
             // 
-            this.question_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.question_pic.Location = new System.Drawing.Point(259, 147);
+            this.question_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.question_pic.Location = new System.Drawing.Point(259, 136);
             this.question_pic.Margin = new System.Windows.Forms.Padding(2);
             this.question_pic.Name = "question_pic";
-            this.question_pic.Size = new System.Drawing.Size(328, 147);
+            this.question_pic.Size = new System.Drawing.Size(328, 158);
             this.question_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.question_pic.TabIndex = 9;
             this.question_pic.TabStop = false;
@@ -148,13 +154,67 @@
             this.answer4_btn.UseVisualStyleBackColor = true;
             this.answer4_btn.Click += new System.EventHandler(this.answer4_btn_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
+            // answer1_picture
+            // 
+            this.answer1_picture.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("answer1_picture.BackgroundImage")));
+            this.answer1_picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.answer1_picture.Location = new System.Drawing.Point(132, 317);
+            this.answer1_picture.Name = "answer1_picture";
+            this.answer1_picture.Size = new System.Drawing.Size(570, 99);
+            this.answer1_picture.TabIndex = 29;
+            this.answer1_picture.UseVisualStyleBackColor = true;
+            this.answer1_picture.Click += new System.EventHandler(this.answer1_picture_Click);
+            // 
+            // answer2_picture
+            // 
+            this.answer2_picture.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("answer2_picture.BackgroundImage")));
+            this.answer2_picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.answer2_picture.Location = new System.Drawing.Point(132, 435);
+            this.answer2_picture.Name = "answer2_picture";
+            this.answer2_picture.Size = new System.Drawing.Size(570, 99);
+            this.answer2_picture.TabIndex = 30;
+            this.answer2_picture.UseVisualStyleBackColor = true;
+            // 
+            // answer3_picture
+            // 
+            this.answer3_picture.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("answer3_picture.BackgroundImage")));
+            this.answer3_picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.answer3_picture.Location = new System.Drawing.Point(132, 553);
+            this.answer3_picture.Name = "answer3_picture";
+            this.answer3_picture.Size = new System.Drawing.Size(570, 99);
+            this.answer3_picture.TabIndex = 31;
+            this.answer3_picture.UseVisualStyleBackColor = true;
+            // 
+            // answer4_picture
+            // 
+            this.answer4_picture.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("answer4_picture.BackgroundImage")));
+            this.answer4_picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.answer4_picture.Location = new System.Drawing.Point(132, 672);
+            this.answer4_picture.Name = "answer4_picture";
+            this.answer4_picture.Size = new System.Drawing.Size(570, 99);
+            this.answer4_picture.TabIndex = 32;
+            this.answer4_picture.UseVisualStyleBackColor = true;
+            // 
             // Questionnaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(822, 618);
+            this.ClientSize = new System.Drawing.Size(822, 787);
+            this.Controls.Add(this.answer4_picture);
+            this.Controls.Add(this.answer3_picture);
+            this.Controls.Add(this.answer2_picture);
+            this.Controls.Add(this.answer1_picture);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.answer4_btn);
             this.Controls.Add(this.answer3_btn);
             this.Controls.Add(this.answer2_btn);
@@ -168,6 +228,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questionnaire";
             ((System.ComponentModel.ISupportInitialize)(this.question_pic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +245,11 @@
         private System.Windows.Forms.Button answer2_btn;
         private System.Windows.Forms.Button answer3_btn;
         private System.Windows.Forms.Button answer4_btn;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button answer1_picture;
+        private System.Windows.Forms.Button answer2_picture;
+        private System.Windows.Forms.Button answer3_picture;
+        private System.Windows.Forms.Button answer4_picture;
     }
 }
 
