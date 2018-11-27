@@ -212,13 +212,9 @@
 	</Question>	
 		
 	<Question Id="16">
-		<QuestionText>
-			Règles : Chacun son tour, un joueur pose un pion dans sa colonne
-			But du jeu : aligner 4 pions de sa couleur
-			C’est aux rouges de jouer. Il ne reste plus que des cases libres dans les colonnes 5, 6 et 7.
-			Proposez une méthode d’évaluation et appliquez à la main l’algorithme MinMax pour déterminer le meilleur coup en profondeur 3 pour les rouges (coup rouge, coup jaune, coup rouge).
+		<QuestionText>Règles : Chacun son tour, un joueur pose un pion dans sa colonne But du jeu : aligner 4 pions de sa couleur. C’est aux rouges de jouer. Il ne reste plus que des cases libres dans les colonnes 5, 6 et 7. Proposez une méthode d’évaluation et appliquez à la main l’algorithme MinMax pour déterminer le meilleur coup en profondeur 3 pour les rouges (coup rouge, coup jaune, coup rouge).
 		</QuestionText>
-		<ImageName></ImageName>
+		<ImageName>Puissance4.jpg</ImageName>
 		<Answers>
 			<A>.</A>
 			<B>.</B>
@@ -231,7 +227,7 @@
 	</Question>	
 	
 	<Question Id="17">
-		<QuestionText>Parmis les réponses proposées, laquelle va causer une grande difficulté 
+		<QuestionText>Parmi les réponses proposées, laquelle va causer une grande difficulté 
 		dans l'analyse de texte pour répondre à une question?</QuestionText>
 		<ImageName></ImageName>
 		<Answers>
