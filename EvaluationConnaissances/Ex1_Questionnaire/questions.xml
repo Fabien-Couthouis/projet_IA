@@ -18,10 +18,10 @@
 		<QuestionText>En considérant le graphe représenté ci-dessous, déterminer la bonne matrice d’adjacence. </QuestionText>
 		<ImageName>graphe.jpg</ImageName>
 		<Answers>
-			<A>Oui</A>
-			<B>C'est pas moi</B>
-			<C>.</C>
-			<D>Je</D>
+			<A>Q2R1.jpg</A>
+			<B>Q2R2.jpg</B>
+			<C>Q2R3.jpg</C>
+			<D>Q2R4.jpg</D>
 		</Answers>
 		<GoodAnswer>C</GoodAnswer>
 		<Explanation></Explanation>
@@ -216,10 +216,10 @@
 		</QuestionText>
 		<ImageName>Puissance4.jpg</ImageName>
 		<Answers>
-			<A>.</A>
-			<B>.</B>
-			<C>.</C>
-			<D>.</D>
+			<A>Q16R1.jpg</A>
+			<B>Q16R2.jpg</B>
+			<C>Q16R3.jpg</C>
+			<D>Q16R4.jpg</D>
 		</Answers>
 		<GoodAnswer>.</GoodAnswer>
 		<Explanation></Explanation>

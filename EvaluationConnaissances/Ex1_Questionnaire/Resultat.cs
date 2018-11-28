@@ -39,5 +39,19 @@ namespace Ex1_Questionnaire
         {
 
         }
+
+        private void restart_btn_Click(object sender, EventArgs e)
+        {
+            Questionnaire questionnaire = new Questionnaire();
+            this.Hide();
+            questionnaire.Show();
+        }
+
+        private void accueil_btn_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            this.Hide();
+            accueil.Show();
+        }
     }
 }

@@ -64,21 +64,25 @@
             // 
             // restart_btn
             // 
+            this.restart_btn.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.restart_btn.Location = new System.Drawing.Point(158, 317);
             this.restart_btn.Name = "restart_btn";
-            this.restart_btn.Size = new System.Drawing.Size(103, 32);
+            this.restart_btn.Size = new System.Drawing.Size(142, 32);
             this.restart_btn.TabIndex = 3;
             this.restart_btn.Text = "Recommencer";
             this.restart_btn.UseVisualStyleBackColor = true;
+            this.restart_btn.Click += new System.EventHandler(this.restart_btn_Click);
             // 
             // accueil_btn
             // 
+            this.accueil_btn.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accueil_btn.Location = new System.Drawing.Point(454, 317);
             this.accueil_btn.Name = "accueil_btn";
             this.accueil_btn.Size = new System.Drawing.Size(103, 32);
             this.accueil_btn.TabIndex = 4;
             this.accueil_btn.Text = "Accueil";
             this.accueil_btn.UseVisualStyleBackColor = true;
+            this.accueil_btn.Click += new System.EventHandler(this.accueil_btn_Click);
             // 
             // Resultat
             // 

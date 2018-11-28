@@ -20,6 +20,10 @@ namespace Ex1_Questionnaire
         public int score = 0;
         public int scoreMaxPossible = 0;
         string answer;
+        Image image_answer1;
+        Image image_answer2;
+        Image image_answer3;
+        Image image_answer4;
 
         public Questionnaire()
         {
@@ -49,44 +53,112 @@ namespace Ex1_Questionnaire
                 question_pic.Visible = false;
                 scoreMaxPossible += actualQuestion.Points;
                 question_tb.Location = new Point(179, 73);
-                if (answer == Convert.ToString(actualQuestion.GoodAnswer))
+                if (actualQuestion.Id != 2)
                 {
-                    verdict_tb.Text = "BRAVO !";
-                    verdict_tb.TextAlign = HorizontalAlignment.Center;
-                    verdict_tb.ForeColor = Color.Green;
-                    score+=actualQuestion.Points;
-                    if (actualQuestion.GoodAnswer == "A")
-                        answer1_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "B")
-                        answer2_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "C")
-                        answer3_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "D")
-                        answer4_btn.BackColor = Color.Green;
+                    if (answer == Convert.ToString(actualQuestion.GoodAnswer))
+                    {
+                        verdict_tb.Text = "BRAVO !";
+                        verdict_tb.TextAlign = HorizontalAlignment.Center;
+                        verdict_tb.ForeColor = Color.Green;
+                        score+=actualQuestion.Points;
+                        if (actualQuestion.GoodAnswer == "A")
+                        {
+                            answer1_btn.BackColor = Color.Green;
+                            answer1_btn.Enabled = false;
+                            answer2_btn.Visible = false;
+                            answer3_btn.Visible = false;
+                            answer4_btn.Visible = false;
+
+                        }
+                        if (actualQuestion.GoodAnswer == "B")
+                        {
+                            answer2_btn.BackColor = Color.Green;
+                            answer2_btn.Enabled = false;
+                            answer1_btn.Visible = false;
+                            answer3_btn.Visible = false;
+                            answer4_btn.Visible = false;
+                        }
+                        if (actualQuestion.GoodAnswer == "C")
+                        {
+                            answer3_btn.BackColor = Color.Green;
+                            answer3_btn.Enabled = false;
+                            answer1_btn.Visible = false;
+                            answer2_btn.Visible = false;
+                            answer4_btn.Visible = false;
+                        }
+                        if (actualQuestion.GoodAnswer == "D")
+                        {
+                            answer4_btn.BackColor = Color.Green;
+                            answer4_btn.Enabled = false;
+                            answer1_btn.Visible = false;
+                            answer2_btn.Visible = false;
+                            answer3_btn.Visible = false;
+                        }
+                    }
+
+                    if (answer != Convert.ToString(actualQuestion.GoodAnswer))
+                    {
+                        verdict_tb.Text = "RATÉ !";
+                        question_tb.Location = new Point(179, 73);
+                        verdict_tb.TextAlign = HorizontalAlignment.Center;
+                        verdict_tb.ForeColor = Color.Red;
+
+                        answer1_btn.Visible = false;
+                        answer2_btn.Visible = false;
+                        answer3_btn.Visible = false;
+                        answer4_btn.Visible = false;
+
+                        if (actualQuestion.GoodAnswer == "A")
+                        {
+                            answer1_btn.BackColor = Color.Green;
+                            answer1_btn.Visible = true;
+                        }
+                        if (actualQuestion.GoodAnswer == "B")
+                        {
+                            answer2_btn.BackColor = Color.Green;
+                            answer2_btn.Visible = true;
+                        }
+                        if (actualQuestion.GoodAnswer == "C")
+                        {
+                            answer3_btn.BackColor = Color.Green;
+                            answer3_btn.Visible = true;
+                        }
+                        if (actualQuestion.GoodAnswer == "D")
+                        {
+                            answer4_btn.BackColor = Color.Green;
+                            answer4_btn.Visible = true;
+                        }
+
+                        if (answer == "A")
+                        {
+                            answer1_btn.BackColor = Color.Red;
+                            answer1_btn.Enabled = false;
+                            answer1_btn.Visible = true;
+                        }
+                        if (answer == "B")
+                        {
+                            answer2_btn.BackColor = Color.Red;
+                            answer2_btn.Enabled = false;
+                            answer2_btn.Visible = true;
+                        }
+                        if (answer == "C")
+                        {
+                            answer3_btn.BackColor = Color.Red;
+                            answer3_btn.Enabled = false;
+                            answer3_btn.Visible = true;
+                        }
+                        if (answer == "D")
+                        {
+                            answer4_btn.BackColor = Color.Red;
+                            answer4_btn.Enabled = false;
+                            answer4_btn.Visible = true;
+                        }
+                    }
                 }
 
-                if (answer != Convert.ToString(actualQuestion.GoodAnswer))
+                else
                 {
-                    verdict_tb.Text = "RATÉ !";
-                    question_tb.Location = new Point(179, 73);
-                    verdict_tb.TextAlign = HorizontalAlignment.Center;
-                    verdict_tb.ForeColor = Color.Red;
-                    if (actualQuestion.GoodAnswer == "A")
-                        answer1_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "B")
-                        answer2_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "C")
-                        answer3_btn.BackColor = Color.Green;
-                    if (actualQuestion.GoodAnswer == "D")
-                        answer4_btn.BackColor = Color.Green;
-                    if (answer == "A")
-                        answer1_btn.BackColor = Color.Red;
-                    if (answer == "B")
-                        answer2_btn.BackColor = Color.Red;
-                    if (answer == "C")
-                        answer3_btn.BackColor = Color.Red;
-                    if (answer == "D")
-                        answer4_btn.BackColor = Color.Red;
+
                 }
                 verdict_tb.Visible = true;
             }
@@ -125,6 +197,7 @@ namespace Ex1_Questionnaire
                 {
                     Question question = new Question(numberQuest);
                     question_tb.Text = question.QuestionText;
+
                     if (question.HasImage)
                     {
                         question_pic.Visible = true;
@@ -144,36 +217,81 @@ namespace Ex1_Questionnaire
                         progressBar.Value += 1;
                         next = true;
 
-                    if (Convert.ToInt32(actualQuestion.Id) != 2)
+                    if (Convert.ToInt32(actualQuestion.Id) != 2 /*&& Convert.ToInt32(actualQuestion.Id) != 16*/)
                     {
+                        answer1_btn.Visible = true;
+                        answer1_btn.Enabled = true;
+                        answer1_btn.Location = new Point(153, 317);
+                        answer1_btn.Size = new Size(527,47);
                         answer1_btn.Text = question.Answers[0];
+                        answer1_btn.BackgroundImage = null;
                         answer1_btn.BackColor = Color.FromArgb(224, 224, 224);
+
+                        answer2_btn.Visible = true;
+                        answer2_btn.Enabled = true;
+                        answer2_btn.Location = new Point(153, 382);
+                        answer2_btn.Size = new Size(527, 47);
                         answer2_btn.Text = question.Answers[1];
+                        answer2_btn.BackgroundImage = null;
                         answer2_btn.BackColor = Color.FromArgb(224, 224, 224);
+
+                        answer3_btn.Visible = true;
+                        answer3_btn.Enabled = true;
+                        answer3_btn.Location = new Point(153, 450);
+                        answer3_btn.Size = new Size(527, 47);
                         answer3_btn.Text = question.Answers[2];
+                        answer3_btn.BackgroundImage = null;
                         answer3_btn.BackColor = Color.FromArgb(224, 224, 224);
+
+                        answer4_btn.Visible = true;
+                        answer4_btn.Enabled = true;
+                        answer4_btn.Location = new Point(153, 513);
+                        answer4_btn.Size = new Size(527, 47);
                         answer4_btn.Text = question.Answers[3];
+                        answer4_btn.BackgroundImage = null;
                         answer4_btn.BackColor = Color.FromArgb(224, 224, 224);
-                        answer1_picture.Visible = false;
-                        answer2_picture.Visible = false;
-                        answer3_picture.Visible = false;
-                        answer4_picture.Visible = false;
+
                         next_btn.Location = new Point(763, 515);
                         this.Size = new Size(838, 656);
                     }
                     else
                     {
-                        answer1_btn.Visible = false;
-                        answer2_btn.Visible = false;
-                        answer3_btn.Visible = false;
-                        answer4_btn.Visible = false;
+                        answer1_btn.Text = "";
+                        answer2_btn.Text = "";
+                        answer3_btn.Text = "";
+                        answer4_btn.Text = "";
+
+                        answer1_btn.Visible = true;
+                        answer1_btn.Enabled = true;
+                        answer2_btn.Visible = true;
+                        answer2_btn.Enabled = true;
+                        answer3_btn.Visible = true;
+                        answer3_btn.Enabled = true;
+                        answer4_btn.Visible = true;
+                        answer4_btn.Enabled = true;
+
+                        image_answer1 = Image.FromFile("..//..//images//" + actualQuestion.Answers[0]);
+                        image_answer2 = Image.FromFile("..//..//images//" + actualQuestion.Answers[1]);
+                        image_answer3 = Image.FromFile("..//..//images//" + actualQuestion.Answers[2]);
+                        image_answer4 = Image.FromFile("..//..//images//" + actualQuestion.Answers[3]);
+
+                        answer1_btn.BackgroundImage = image_answer1;
+                        answer2_btn.BackgroundImage = image_answer2;
+                        answer3_btn.BackgroundImage = image_answer3;
+                        answer4_btn.BackgroundImage = image_answer4;
+
+                        answer1_btn.Size = new Size(570, 99);
+                        answer2_btn.Size = new Size(570, 99);
+                        answer3_btn.Size = new Size(570, 99);
+                        answer4_btn.Size = new Size(570, 99);
+
+                        answer1_btn.Location = new Point(132, 317);
+                        answer2_btn.Location = new Point(132, 435);
+                        answer3_btn.Location = new Point(132, 553);
+                        answer4_btn.Location = new Point(132, 672);
+
 
                         this.Size = new Size(838, 825);
-
-                        answer1_picture.Visible = true;
-                        answer2_picture.Visible = true;
-                        answer3_picture.Visible = true;
-                        answer4_picture.Visible = true;
 
                         next_btn.Location = new Point(763, 726);
                     }
@@ -258,16 +376,19 @@ namespace Ex1_Questionnaire
             answer = "A";
             next_btn_Click(sender, e);
         }
-        private void answer2_picture_Click(object sender, EventArgs e)
+
+        private void answer2_picture_Click_1(object sender, EventArgs e)
         {
             answer = "B";
             next_btn_Click(sender, e);
         }
+
         private void answer3_picture_Click(object sender, EventArgs e)
         {
             answer = "C";
             next_btn_Click(sender, e);
         }
+
         private void answer4_picture_Click(object sender, EventArgs e)
         {
             answer = "D";
