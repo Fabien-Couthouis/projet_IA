@@ -18,14 +18,12 @@ namespace Ex1_Questionnaire
         int numberQuest;
         int count = 0; //compte les clics effectués
         public int score = 0;
+        public int scoreMaxPossible = 0;
+        string answer;
 
         public Questionnaire()
         {
             InitializeComponent();
-            answer1_rbtn.Checked = false;
-            answer2_rbtn.Checked = false;
-            answer3_rbtn.Checked = false;
-            answer4_rbtn.Checked = false;
             initializeQuestions();
             numberQuest = randomQuestion();
             actualize(numberQuest);
@@ -36,33 +34,20 @@ namespace Ex1_Questionnaire
             
         }
 
-        private void validate_btn_Click(object sender, EventArgs e)
+        private void next_btn_Click(object sender, EventArgs e)
         {
+
             int nextQuest;
+            Console.WriteLine("Pts Questions = "+actualQuestion.Points+"\nScore total : "+ score);
+
             //Lorsque l'on valide la réponse
             if (count % 2 == 0)
             {
-                validate_btn.Text = "Suivant";
-
-                //Récupération réponse donnée
-                string answer = "";
-                if (answer1_rbtn.Checked == true)
-                    answer = "A";
-                if (answer2_rbtn.Checked == true)
-                    answer = "B";
-                if (answer3_rbtn.Checked == true)
-                    answer = "C";
-                if (answer4_rbtn.Checked == true)
-                    answer = "D";
-                if (answer1_rbtn.Checked != true && answer2_rbtn.Checked != true && answer3_rbtn.Checked != true && answer4_rbtn.Checked != true)
-                {
-                    Alerte alerte = new Alerte();
-                    alerte.Show();
-                }
-
+                next_btn.Visible = true;
                 //Analyse réponse donnée VS réponse attendue
                 verdict_tb.Visible = true;
                 question_pic.Visible = false;
+                scoreMaxPossible += actualQuestion.Points;
                 question_tb.Location = new Point(179, 73);
                 if (answer == Convert.ToString(actualQuestion.GoodAnswer))
                 {
@@ -71,54 +56,45 @@ namespace Ex1_Questionnaire
                     verdict_tb.ForeColor = Color.Green;
                     score+=actualQuestion.Points;
                     if (actualQuestion.GoodAnswer == "A")
-                        answer1_rbtn.BackColor = Color.Green;
+                        answer1_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "B")
-                        answer2_rbtn.BackColor = Color.Green;
+                        answer2_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "C")
-                        answer3_rbtn.BackColor = Color.Green;
+                        answer3_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "D")
-                        answer4_rbtn.BackColor = Color.Green;
-                    score += Convert.ToInt32(actualQuestion.Points);
+                        answer4_btn.BackColor = Color.Green;
                 }
 
                 if (answer != Convert.ToString(actualQuestion.GoodAnswer))
                 {
                     verdict_tb.Text = "RATÉ !";
-                    //verdict_tb.Location = new Location(240, 72);
+                    question_tb.Location = new Point(179, 73);
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Red;
                     if (actualQuestion.GoodAnswer == "A")
-                        answer1_rbtn.BackColor = Color.Green;
+                        answer1_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "B")
-                        answer2_rbtn.BackColor = Color.Green;
+                        answer2_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "C")
-                        answer3_rbtn.BackColor = Color.Green;
+                        answer3_btn.BackColor = Color.Green;
                     if (actualQuestion.GoodAnswer == "D")
-                        answer4_rbtn.BackColor = Color.Green;
+                        answer4_btn.BackColor = Color.Green;
                     if (answer == "A")
-                        answer1_rbtn.BackColor = Color.Red;
+                        answer1_btn.BackColor = Color.Red;
                     if (answer == "B")
-                        answer2_rbtn.BackColor = Color.Red;
+                        answer2_btn.BackColor = Color.Red;
                     if (answer == "C")
-                        answer3_rbtn.BackColor = Color.Red;
+                        answer3_btn.BackColor = Color.Red;
                     if (answer == "D")
-                        answer4_rbtn.BackColor = Color.Red;
+                        answer4_btn.BackColor = Color.Red;
                 }
-
                 verdict_tb.Visible = true;
-
-                if (actualQuestion.Explanation != "")
-                {
-                    explain_picture.Visible = true;
-                    explain_tb.Visible = true;
-                    explain_tb.Text = actualQuestion.Explanation;
-                }
             }
 
             //Lorsque l'on passe à la question suivante
             else
             {
-                validate_btn.Text = "Valider";
+                next_btn.Visible = false;
                 nextQuest = randomQuestion();
                 actualize(nextQuest);
             }
@@ -135,13 +111,17 @@ namespace Ex1_Questionnaire
         private void actualize(int numberQuest)
         {
             bool next = false;
-            while (count< 40 && next == false)
+            while (next == false)
             {
-                if (numberQuest == 0)
+                if (count == 39)
                 {
-                    //Afficher score + message de fin
+                    Resultat resultat = new Resultat(this);
+                    this.Hide();
+                    resultat.Show();
+                    next = true;
                 }
-                else
+
+                else 
                 {
                     Question question = new Question(numberQuest);
                     question_tb.Text = question.QuestionText;
@@ -157,33 +137,50 @@ namespace Ex1_Questionnaire
                         question_pic.Visible = false;
                         question_tb.Location = new Point(173, 198);
                     }
-                    answer1_rbtn.Text = question.Answers[0];
-                    answer1_rbtn.Checked = false;
-                    answer1_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
-                    answer2_rbtn.Text = question.Answers[1];
-                    answer2_rbtn.Checked = false;
-                    answer2_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
-                    answer3_rbtn.Text = question.Answers[2];
-                    answer3_rbtn.Checked = false;
-                    answer3_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
-                    answer4_rbtn.Text = question.Answers[3];
-                    answer4_rbtn.Checked = false;
-                    answer4_rbtn.BackColor = Color.FromArgb(224, 224, 224); ;
-                    verdict_tb.Visible = false;
-                    question_tb.Visible = true;
-                    explain_tb.Visible = false;
-                    actualQuestion = question;
-                    progressBar.Value += 1;
-                    next = true;
+
+                        verdict_tb.Visible = false;
+                        question_tb.Visible = true;
+                        actualQuestion = question;
+                        progressBar.Value += 1;
+                        next = true;
+
+                    if (Convert.ToInt32(actualQuestion.Id) != 2)
+                    {
+                        answer1_btn.Text = question.Answers[0];
+                        answer1_btn.BackColor = Color.FromArgb(224, 224, 224);
+                        answer2_btn.Text = question.Answers[1];
+                        answer2_btn.BackColor = Color.FromArgb(224, 224, 224);
+                        answer3_btn.Text = question.Answers[2];
+                        answer3_btn.BackColor = Color.FromArgb(224, 224, 224);
+                        answer4_btn.Text = question.Answers[3];
+                        answer4_btn.BackColor = Color.FromArgb(224, 224, 224);
+                        answer1_picture.Visible = false;
+                        answer2_picture.Visible = false;
+                        answer3_picture.Visible = false;
+                        answer4_picture.Visible = false;
+                        next_btn.Location = new Point(763, 515);
+                        this.Size = new Size(838, 656);
+                    }
+                    else
+                    {
+                        answer1_btn.Visible = false;
+                        answer2_btn.Visible = false;
+                        answer3_btn.Visible = false;
+                        answer4_btn.Visible = false;
+
+                        this.Size = new Size(838, 825);
+
+                        answer1_picture.Visible = true;
+                        answer2_picture.Visible = true;
+                        answer3_picture.Visible = true;
+                        answer4_picture.Visible = true;
+
+                        next_btn.Location = new Point(763, 726);
+                    }
+
                 }
             }
 
-            if (count == 40)
-            {
-                Resultat resultat = new Resultat(this);
-                this.Hide();
-                resultat.Show();
-            }
         }
 
         //Générer liste contenant toutes les questions
@@ -220,6 +217,61 @@ namespace Ex1_Questionnaire
         private void verdict_tb_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void answer1_btn_Click(object sender, EventArgs e)
+        {
+            answer = "A";
+            next_btn_Click(sender, e);
+        }
+
+        private void answer2_btn_Click(object sender, EventArgs e)
+        {
+            answer = "B";
+            next_btn_Click(sender, e);
+        }
+
+        private void answer3_btn_Click(object sender, EventArgs e)
+        {
+            answer = "C";
+            next_btn_Click(sender, e);
+        }
+
+        private void answer4_btn_Click(object sender, EventArgs e)
+        {
+            answer = "D";
+            next_btn_Click(sender, e);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void answer1_picture_Click(object sender, EventArgs e)
+        {
+            answer = "A";
+            next_btn_Click(sender, e);
+        }
+        private void answer2_picture_Click(object sender, EventArgs e)
+        {
+            answer = "B";
+            next_btn_Click(sender, e);
+        }
+        private void answer3_picture_Click(object sender, EventArgs e)
+        {
+            answer = "C";
+            next_btn_Click(sender, e);
+        }
+        private void answer4_picture_Click(object sender, EventArgs e)
+        {
+            answer = "D";
+            next_btn_Click(sender, e);
         }
     }
 }
