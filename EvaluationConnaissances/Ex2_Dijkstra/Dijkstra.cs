@@ -14,6 +14,7 @@ namespace Ex2_Dijkstra
     {
         public static int totalScore = 0;
         public static bool completed = false;
+        private TreeNode selectedNode;
 
         private Form mainMenu;
         /// <summary>
@@ -34,10 +35,6 @@ namespace Ex2_Dijkstra
         //(fermes_lb, fermés_tb,ouverts_lb, ouverts_tb)
         //Ex : componentList[0][fermés_tb] renverra à la textbox des fermés de l'étape 1
         private List<Dictionary<string,Component>> ex1ComponentsList;
-        /// <summary>
-        /// Liste des textboxes de l'ex2.
-        /// </summary>
-        private List<TextBox> ex2TbList;
 
         //Constructeur avec menu principal (permet d'y revenir si il existe à la fin de l'exercice)
         public Dijkstra(Form mainMenu):this()
@@ -80,7 +77,8 @@ namespace Ex2_Dijkstra
         /// </summary>
         private void ResetControls()
         {
-            answersPanel.Controls.Clear();
+            answersPanel.Dispose();
+            validate_btn.Text = "Valider";
             ex1ComponentsList = new List<Dictionary<string, Component>>();
         }
 
@@ -135,8 +133,6 @@ namespace Ex2_Dijkstra
                 this.Close();
             }
            
-            
-           
         }
 
         /// <summary>
@@ -145,9 +141,11 @@ namespace Ex2_Dijkstra
         private void GoToEx2()
         {
             ResetControls();
-            question_lb.Text = "Voici l'arbre final correctement structuré. Remplissez la distance au noeud initial de chaque noeud.";
+            ex = 2;
+            question_lb.Text = "Appliquez toujours Dijkstra entre " + IntToChar(graph.FirstNode) + " et " + IntToChar(graph.LastNode) + ".";
+            question_lb.Text += " Cette fois-ci, remplissez l'arbre final correctement structuré. Vous renseignerez chaque noeud ainsi que sa distance au noeud initial. (ex B:3).";
+            
             ShowTree();
-            DisplayEx2Controls();
         }
 
         /// <summary>
@@ -356,80 +354,85 @@ namespace Ex2_Dijkstra
         /// </summary>
         private void ShowTree()
         {
-            //ResetControls();
-            TreeView TV =  graph.TreeView;
-            TV.Size = new Size(150,400);
-            this.answersPanel.Controls.Add(TV);
-
+            graph.SolutionTree.GetSearchTrees(new TreeView(), treeView);      
+            treeView.Visible = true;
         }
 
-        /// <summary>
-        /// Affiche les controls relatifs à l'exercice 2 (textboxes, labels...)
-        /// </summary>
-        private void DisplayEx2Controls()
-        {
-            ex=2;
-            validate_btn.Text = "Valider";
-            int x = 300;
-            int y = 0;
-            ex2TbList = new List<TextBox>();
-
-            foreach (MyNode node in graph.SearchList)
-            {
-                //Ici, on préfère parcourir SearchList au lieu de la liste retournée par GetEnfants
-                //pour conserver l'odre des noeuds présents dans SearchList. Cela facilite ainsi la vérification.
-                foreach(MyNode child in graph.SearchList)
-                {
-                    if (node.GetEnfants().Contains(child))
-                    {
-                        Label parentNode = new Label();
-                        parentNode.Size = new Size(20, 15);
-                        parentNode.Location = new Point(x, y);
-                        parentNode.Text = node.ToString();
-                        this.answersPanel.Controls.Add(parentNode);
-
-                        Label arrow = new Label();
-                        arrow.Size = new Size(20, 15);
-                        arrow.Location = new Point(x + 15, y);
-                        arrow.Text = "-->";
-                        this.answersPanel.Controls.Add(arrow);
-
-                        Label childNode = new Label();
-                        childNode.Size = new Size(20, 15);
-                        childNode.Location = new Point(x + 35, y);
-                        childNode.Text = child.ToString();
-                        this.answersPanel.Controls.Add(childNode);
-
-                        TextBox nodeInfo = new TextBox();
-                        nodeInfo.Size = new Size(20, 15);
-                        nodeInfo.Location = new Point(x + 55, y);
-                        this.answersPanel.Controls.Add(nodeInfo);
-                        ex2TbList.Add(nodeInfo);
-
-                        y += 35;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Vérifie si les réponses données à l'exercice 2 sont correctes.
-        /// </summary>
-        /// <returns></returns>
         private bool IsEx2Correct()
         {
-            //On parcourt toutes les textboxes
-            for (int n = 0; n < ex2TbList.Count; n++)
-            {
-                string userAnswer = ex2TbList[n].Text;
-                string realAnswer = graph.SearchList[n + 1].GetGCost().ToString();
-
-                if (userAnswer != realAnswer)
-                    return false;
-            }
-
+            TreeNode initialTN = treeView.Nodes[0];
+            GenericNode initialGN = graph.SearchList[0];
+            if (!VerifyChildren(initialTN, initialGN))
+                return false;
             return true;
         }
+
+        //Vérification des noeuds par récurence
+        private bool VerifyChildren(TreeNode tn, GenericNode gn)
+        {
+            foreach (TreeNode childTN in tn.Nodes)
+            {
+                bool isCorrect = false;
+                GenericNode childGN = null;
+                foreach (GenericNode potentialChildGN in gn.GetEnfants())
+                {
+                    //Regarde si le nombre de caracteres entrés est bien de 3
+                    if (potentialChildGN.ToString().Count() != 3) return false;
+
+                    //Les (nombreux) ToString sont là pour convertir correctement les valeurs ...
+                    char givenNode = childTN.ToString()[10];
+                    char expectedNode = potentialChildGN.ToString()[0];
+                    string givenCost = childTN.ToString()[12].ToString();
+                    string expectedCost = potentialChildGN.GetGCost().ToString();
+
+                    if (givenNode == expectedNode && givenCost == expectedCost)
+                    {
+                        isCorrect = true;
+                        childGN = potentialChildGN;
+                    }
+                }
+
+                if (!isCorrect)
+                {
+                    return false;
+                }
+                    
+                return VerifyChildren(childTN, childGN);
+            }
+            return true;
+        }
+        
+
+        //Edition du treeview : source = https://docs.microsoft.com/fr-fr/dotnet/api/system.windows.forms.treeview.labeledit?view=netframework-4.7.2 
+        #region
+
+        /* Get the tree node under the mouse pointer and 
+   save it in the mySelectedNode variable. */
+        private void treeView_MouseDown(object sender,
+          System.Windows.Forms.MouseEventArgs e)
+        {
+            selectedNode = treeView.GetNodeAt(e.X, e.Y);
+        }
+
+        private void menuItem1_Click(object sender, System.EventArgs e)
+        {
+            if (selectedNode != null && selectedNode.Parent != null)
+            {
+                treeView.SelectedNode = selectedNode;
+                treeView.LabelEdit = true;
+                if (!selectedNode.IsEditing)
+                {
+                    selectedNode.BeginEdit();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No tree node selected or selected node is a root node.\n" +
+                   "Editing of root nodes is not allowed.", "Invalid selection");
+            }
+        }
+        #endregion
+
 
     }
 }

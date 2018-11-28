@@ -26,7 +26,6 @@ namespace Ex2_Dijkstra
         public int FirstNode { get; private set; }
         public int LastNode { get; private set; }
         public SearchTree SolutionTree { get; private set; }
-        public TreeView TreeView { get; private set; }
         public List<GenericNode> SearchList { get; private set; }
 
 
@@ -165,8 +164,12 @@ namespace Ex2_Dijkstra
             List<GenericNode> Solution = SolutionTree.RechercheSolutionAEtoile(N0);
 
             SearchList = SolutionTree.GetSearchList();
-            TreeView  = SolutionTree.GetSearchTree();
         }
+
+
+
+
+
 
 
 

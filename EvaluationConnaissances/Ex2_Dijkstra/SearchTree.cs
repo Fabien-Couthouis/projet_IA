@@ -189,30 +189,38 @@ namespace Ex2_Dijkstra
             }
         }
 
-        // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
-        // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
-        public TreeView GetSearchTree()
+        // Si on veut obtenir les 2 arbres de recherche (entier et vide) , il suffit de passer 2 treeviews en paramètres
+        // Ceux est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
+        public TreeView GetSearchTrees(TreeView fullTV, TreeView emptyTv)
         {
             if (L_Fermes == null || L_Fermes.Count == 0) return null;
 
-            TreeView TV = new TreeView();
+            // On suppose les TreeViews préexistants
+            fullTV.Nodes.Clear();
+            emptyTv.Nodes.Clear();
 
-            TreeNode TN = new TreeNode ( L_Fermes[0].ToString() );
-            TV.Nodes.Add(TN);
+            TreeNode TNfull = new TreeNode ( L_Fermes[0].ToString() );
+            TreeNode TNempty = new TreeNode(L_Fermes[0].ToString() + ":" + 0);
+            fullTV.Nodes.Add(TNfull);
+            emptyTv.Nodes.Add(TNempty);
 
-            AjouteBranche ( L_Fermes[0], TN );
 
-            return TV;
+            AjouteBranche ( L_Fermes[0], TNfull, TNempty);
+
+            return fullTV;
         }
 
+
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
-        private void AjouteBranche(GenericNode GN, TreeNode TN)
+        private void AjouteBranche(GenericNode GN, TreeNode TNfull, TreeNode TNempty)
         {
             foreach (GenericNode GNfils in GN.GetEnfants())
             {
-                TreeNode TNfils = new TreeNode(GNfils.ToString());
-                TN.Nodes.Add(TNfils);
-                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils);
+                TreeNode TNfilsFull = new TreeNode(GNfils.ToString());
+                TreeNode TNfilsEmpty = new TreeNode("noeud:distance");
+                TNfull.Nodes.Add(TNfilsFull);
+                TNempty.Nodes.Add(TNfilsEmpty);
+                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfilsFull, TNfilsEmpty);
             }
         }
 

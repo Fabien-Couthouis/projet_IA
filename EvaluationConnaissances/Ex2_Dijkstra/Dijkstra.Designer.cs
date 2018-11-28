@@ -29,6 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Nœud0");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Nœud6");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Nœud7");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Nœud1", new System.Windows.Forms.TreeNode[] {
+            treeNode26,
+            treeNode27});
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Nœud3");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Nœud4");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Nœud2", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Nœud5");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Nœud9");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Nœud11");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Nœud10", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Nœud8", new System.Windows.Forms.TreeNode[] {
+            treeNode33,
+            treeNode35});
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.graph_pb = new System.Windows.Forms.PictureBox();
             this.question_lb = new System.Windows.Forms.Label();
@@ -39,6 +58,7 @@
             this.step_lb = new System.Windows.Forms.Label();
             this.fermes_lb = new System.Windows.Forms.Label();
             this.answersPanel = new System.Windows.Forms.Panel();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.graph_pb)).BeginInit();
             this.answersPanel.SuspendLayout();
@@ -63,10 +83,9 @@
             // 
             // question_lb
             // 
-            this.question_lb.AutoSize = true;
-            this.question_lb.Location = new System.Drawing.Point(304, 32);
+            this.question_lb.Location = new System.Drawing.Point(304, 14);
             this.question_lb.Name = "question_lb";
-            this.question_lb.Size = new System.Drawing.Size(374, 17);
+            this.question_lb.Size = new System.Drawing.Size(440, 52);
             this.question_lb.TabIndex = 1;
             this.question_lb.Text = "Appliquez Dijkstra pour trouver le plus court chemin entre ";
             // 
@@ -135,11 +154,50 @@
             this.answersPanel.Controls.Add(this.fermes_tb);
             this.answersPanel.Controls.Add(this.ouverts_tb);
             this.answersPanel.Controls.Add(this.ouverts_lb);
-            this.answersPanel.Location = new System.Drawing.Point(141, 290);
+            this.answersPanel.Location = new System.Drawing.Point(141, 296);
             this.answersPanel.Margin = new System.Windows.Forms.Padding(4);
             this.answersPanel.Name = "answersPanel";
             this.answersPanel.Size = new System.Drawing.Size(789, 407);
             this.answersPanel.TabIndex = 11;
+            // 
+            // treeView
+            // 
+            this.treeView.LabelEdit = true;
+            this.treeView.Location = new System.Drawing.Point(207, 296);
+            this.treeView.Name = "treeView";
+            treeNode25.Name = "Nœud0";
+            treeNode25.Text = "Nœud0";
+            treeNode26.Name = "Nœud6";
+            treeNode26.Text = "Nœud6";
+            treeNode27.Name = "Nœud7";
+            treeNode27.Text = "Nœud7";
+            treeNode28.Name = "Nœud1";
+            treeNode28.Text = "Nœud1";
+            treeNode29.Name = "Nœud3";
+            treeNode29.Text = "Nœud3";
+            treeNode30.Name = "Nœud4";
+            treeNode30.Text = "Nœud4";
+            treeNode31.Name = "Nœud2";
+            treeNode31.Text = "Nœud2";
+            treeNode32.Name = "Nœud5";
+            treeNode32.Text = "Nœud5";
+            treeNode33.Name = "Nœud9";
+            treeNode33.Text = "Nœud9";
+            treeNode34.Name = "Nœud11";
+            treeNode34.Text = "Nœud11";
+            treeNode35.Name = "Nœud10";
+            treeNode35.Text = "Nœud10";
+            treeNode36.Name = "Nœud8";
+            treeNode36.Text = "Nœud8";
+            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode25,
+            treeNode28,
+            treeNode31,
+            treeNode32,
+            treeNode36});
+            this.treeView.Size = new System.Drawing.Size(724, 364);
+            this.treeView.TabIndex = 14;
+            this.treeView.Visible = false;
             // 
             // openFileDialog1
             // 
@@ -150,6 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 812);
+            this.Controls.Add(this.treeView);
             this.Controls.Add(this.validate_btn);
             this.Controls.Add(this.question_lb);
             this.Controls.Add(this.graph_pb);
@@ -161,7 +220,6 @@
             this.answersPanel.ResumeLayout(false);
             this.answersPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -178,6 +236,7 @@
         private System.Windows.Forms.Label fermes_lb;
         private System.Windows.Forms.Panel answersPanel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TreeView treeView;
     }
 }
 
