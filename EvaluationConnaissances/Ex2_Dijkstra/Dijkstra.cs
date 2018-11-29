@@ -101,7 +101,6 @@ namespace Ex2_Dijkstra
                         DisableTextBoxesForThisStep();
                         GoToNextStep();
                     }
-
                 }
                 else
                 {
@@ -350,7 +349,7 @@ namespace Ex2_Dijkstra
         }
 
         /// <summary>
-        /// Affiche l'arbre du graph étudié sur le côté gauche du panel.
+        /// Affiche l'arbre du graphe étudié.
         /// </summary>
         private void ShowTree()
         {
@@ -358,6 +357,10 @@ namespace Ex2_Dijkstra
             treeView.Visible = true;
         }
 
+        /// <summary>
+        /// Vérifier si l'ex2 est terminé.
+        /// </summary>
+        /// <returns></returns>
         private bool IsEx2Correct()
         {
             TreeNode initialTN = treeView.Nodes[0];
@@ -376,13 +379,17 @@ namespace Ex2_Dijkstra
                 GenericNode childGN = null;
                 foreach (GenericNode potentialChildGN in gn.GetEnfants())
                 {
-                    //Regarde si le nombre de caracteres entrés est bien de 3
-                    if (potentialChildGN.ToString().Count() != 3) return false;
+                    
+                    //Regarde si le nombre de caracteres entrés est bien d'au moins 3 (+10 faisant référence aux caractères précédant le nom du noeud dans le ToString des TreeNode)
+                    if (childTN.ToString().Length < 12)
+                    {
+                        return false;
+                    }
 
                     //Les (nombreux) ToString sont là pour convertir correctement les valeurs ...
                     char givenNode = childTN.ToString()[10];
                     char expectedNode = potentialChildGN.ToString()[0];
-                    string givenCost = childTN.ToString()[12].ToString();
+                    string givenCost = childTN.ToString().Substring(12).ToString();
                     string expectedCost = potentialChildGN.GetGCost().ToString();
 
                     if (givenNode == expectedNode && givenCost == expectedCost)
@@ -396,17 +403,22 @@ namespace Ex2_Dijkstra
                 {
                     return false;
                 }
-                    
-                return VerifyChildren(childTN, childGN);
+
+                if (childTN.Nodes.Count > 0)
+                {
+                    return VerifyChildren(childTN, childGN);
+                }
+
             }
             return true;
         }
-        
 
-        //Edition du treeview : source = https://docs.microsoft.com/fr-fr/dotnet/api/system.windows.forms.treeview.labeledit?view=netframework-4.7.2 
+
+
         #region
+        //Edition du treeview : source = https://docs.microsoft.com/fr-fr/dotnet/api/system.windows.forms.treeview.labeledit?view=netframework-4.7.2 
 
-        /* Get the tree node under the mouse pointer and 
+            /* Get the tree node under the mouse pointer and 
    save it in the mySelectedNode variable. */
         private void treeView_MouseDown(object sender,
           System.Windows.Forms.MouseEventArgs e)
