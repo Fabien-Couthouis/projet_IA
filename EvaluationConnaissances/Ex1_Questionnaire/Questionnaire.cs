@@ -40,13 +40,13 @@ namespace Ex1_Questionnaire
 
         private void next_btn_Click(object sender, EventArgs e)
         {
-
             int nextQuest;
             Console.WriteLine("Pts Questions = "+actualQuestion.Points+"\nScore total : "+ score);
 
             //Lorsque l'on valide la réponse
             if (count % 2 == 0)
             {
+                Console.WriteLine("Boucle 1 ok");
                 next_btn.Visible = true;
                 //Analyse réponse donnée VS réponse attendue
                 verdict_tb.Visible = true;
@@ -55,10 +55,11 @@ namespace Ex1_Questionnaire
                 question_tb.Location = new Point(179, 73);
                 if (answer == Convert.ToString(actualQuestion.GoodAnswer))
                 {
+                    Console.WriteLine("Bravo");
                     verdict_tb.Text = "BRAVO !";
                     verdict_tb.TextAlign = HorizontalAlignment.Center;
                     verdict_tb.ForeColor = Color.Green;
-                    score+=actualQuestion.Points;
+                    score += actualQuestion.Points;
                     if (actualQuestion.GoodAnswer == "A")
                     {
                         answer1_btn.BackColor = Color.Green;
@@ -92,72 +93,75 @@ namespace Ex1_Questionnaire
                         answer2_btn.Visible = false;
                         answer3_btn.Visible = false;
                     }
+                }
 
-                    if (answer != Convert.ToString(actualQuestion.GoodAnswer))
+                if (answer != Convert.ToString(actualQuestion.GoodAnswer))
+                {
+                    Console.WriteLine("Raté");
+                    verdict_tb.Text = "RATÉ !";
+                    question_tb.Location = new Point(179, 73);
+                    verdict_tb.TextAlign = HorizontalAlignment.Center;
+                    verdict_tb.ForeColor = Color.Red;
+
+                    answer1_btn.Visible = false;
+                    answer2_btn.Visible = false;
+                    answer3_btn.Visible = false;
+                    answer4_btn.Visible = false;
+
+                    if (actualQuestion.GoodAnswer == "A")
                     {
-                        verdict_tb.Text = "RATÉ !";
-                        question_tb.Location = new Point(179, 73);
-                        verdict_tb.TextAlign = HorizontalAlignment.Center;
-                        verdict_tb.ForeColor = Color.Red;
+                        answer1_btn.BackColor = Color.Green;
+                        answer1_btn.Visible = true;
+                    }
+                    if (actualQuestion.GoodAnswer == "B")
+                    {
+                        answer2_btn.BackColor = Color.Green;
+                        answer2_btn.Visible = true;
+                    }
+                    if (actualQuestion.GoodAnswer == "C")
+                    {
+                        answer3_btn.BackColor = Color.Green;
+                        answer3_btn.Visible = true;
+                    }
+                    if (actualQuestion.GoodAnswer == "D")
+                    {
+                        answer4_btn.BackColor = Color.Green;
+                        answer4_btn.Visible = true;
+                    }
 
-                        answer1_btn.Visible = false;
-                        answer2_btn.Visible = false;
-                        answer3_btn.Visible = false;
-                        answer4_btn.Visible = false;
-
-                        if (actualQuestion.GoodAnswer == "A")
-                        {
-                            answer1_btn.BackColor = Color.Green;
-                            answer1_btn.Visible = true;
-                        }
-                        if (actualQuestion.GoodAnswer == "B")
-                        {
-                            answer2_btn.BackColor = Color.Green;
-                            answer2_btn.Visible = true;
-                        }
-                        if (actualQuestion.GoodAnswer == "C")
-                        {
-                            answer3_btn.BackColor = Color.Green;
-                            answer3_btn.Visible = true;
-                        }
-                        if (actualQuestion.GoodAnswer == "D")
-                        {
-                            answer4_btn.BackColor = Color.Green;
-                            answer4_btn.Visible = true;
-                        }
-
-                        if (answer == "A")
-                        {
-                            answer1_btn.BackColor = Color.Red;
-                            answer1_btn.Enabled = false;
-                            answer1_btn.Visible = true;
-                        }
-                        if (answer == "B")
-                        {
-                            answer2_btn.BackColor = Color.Red;
-                            answer2_btn.Enabled = false;
-                            answer2_btn.Visible = true;
-                        }
-                        if (answer == "C")
-                        {
-                            answer3_btn.BackColor = Color.Red;
-                            answer3_btn.Enabled = false;
-                            answer3_btn.Visible = true;
-                        }
-                        if (answer == "D")
-                        {
-                            answer4_btn.BackColor = Color.Red;
-                            answer4_btn.Enabled = false;
-                            answer4_btn.Visible = true;
-                        }
+                    if (answer == "A")
+                    {
+                        answer1_btn.BackColor = Color.Red;
+                        answer1_btn.Enabled = false;
+                        answer1_btn.Visible = true;
+                    }
+                    if (answer == "B")
+                    {
+                        answer2_btn.BackColor = Color.Red;
+                        answer2_btn.Enabled = false;
+                        answer2_btn.Visible = true;
+                    }
+                    if (answer == "C")
+                    {
+                        answer3_btn.BackColor = Color.Red;
+                        answer3_btn.Enabled = false;
+                        answer3_btn.Visible = true;
+                    }
+                    if (answer == "D")
+                    {
+                        answer4_btn.BackColor = Color.Red;
+                        answer4_btn.Enabled = false;
+                        answer4_btn.Visible = true;
                     }
                 }
                 verdict_tb.Visible = true;
+                next_btn.Visible = true;
             }
 
             //Lorsque l'on passe à la question suivante
             else
             {
+                Console.WriteLine("Boucle 2 ok");
                 next_btn.Visible = false;
                 nextQuest = randomQuestion();
                 actualize(nextQuest);
