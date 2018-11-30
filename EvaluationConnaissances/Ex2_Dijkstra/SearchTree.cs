@@ -190,7 +190,7 @@ namespace Ex2_Dijkstra
         }
 
         // Si on veut obtenir les 2 arbres de recherche (entier et vide) , il suffit de passer 2 treeviews en paramètres
-        // Ceux est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
+        // Ils sont mis à jour avec les noeuds de la liste des fermés (on ne tient pas compte des ouverts)
         public TreeView GetSearchTrees(TreeView fullTV, TreeView emptyTv)
         {
             if (L_Fermes == null || L_Fermes.Count == 0) return null;
