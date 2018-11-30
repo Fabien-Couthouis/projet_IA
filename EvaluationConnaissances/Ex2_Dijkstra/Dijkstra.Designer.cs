@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Nœud0");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Nœud6");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Nœud7");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Nœud1", new System.Windows.Forms.TreeNode[] {
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Nœud3");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Nœud4");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Nœud2", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nœud5");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Nœud9");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Nœud11");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Nœud10", new System.Windows.Forms.TreeNode[] {
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Nœud8", new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode23});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Nœud0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Nœud6");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Nœud7");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nœud1", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Nœud3");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Nœud4");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Nœud2", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Nœud5");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Nœud9");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Nœud11");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nœud10", new System.Windows.Forms.TreeNode[] {
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Nœud8", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode11});
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.graph_pb = new System.Windows.Forms.PictureBox();
             this.question_lb = new System.Windows.Forms.Label();
@@ -165,36 +165,36 @@
             this.treeView.LabelEdit = true;
             this.treeView.Location = new System.Drawing.Point(207, 296);
             this.treeView.Name = "treeView";
-            treeNode13.Name = "Nœud0";
-            treeNode13.Text = "Nœud0";
-            treeNode14.Name = "Nœud6";
-            treeNode14.Text = "Nœud6";
-            treeNode15.Name = "Nœud7";
-            treeNode15.Text = "Nœud7";
-            treeNode16.Name = "Nœud1";
-            treeNode16.Text = "Nœud1";
-            treeNode17.Name = "Nœud3";
-            treeNode17.Text = "Nœud3";
-            treeNode18.Name = "Nœud4";
-            treeNode18.Text = "Nœud4";
-            treeNode19.Name = "Nœud2";
-            treeNode19.Text = "Nœud2";
-            treeNode20.Name = "Nœud5";
-            treeNode20.Text = "Nœud5";
-            treeNode21.Name = "Nœud9";
-            treeNode21.Text = "Nœud9";
-            treeNode22.Name = "Nœud11";
-            treeNode22.Text = "Nœud11";
-            treeNode23.Name = "Nœud10";
-            treeNode23.Text = "Nœud10";
-            treeNode24.Name = "Nœud8";
-            treeNode24.Text = "Nœud8";
+            treeNode1.Name = "Nœud0";
+            treeNode1.Text = "Nœud0";
+            treeNode2.Name = "Nœud6";
+            treeNode2.Text = "Nœud6";
+            treeNode3.Name = "Nœud7";
+            treeNode3.Text = "Nœud7";
+            treeNode4.Name = "Nœud1";
+            treeNode4.Text = "Nœud1";
+            treeNode5.Name = "Nœud3";
+            treeNode5.Text = "Nœud3";
+            treeNode6.Name = "Nœud4";
+            treeNode6.Text = "Nœud4";
+            treeNode7.Name = "Nœud2";
+            treeNode7.Text = "Nœud2";
+            treeNode8.Name = "Nœud5";
+            treeNode8.Text = "Nœud5";
+            treeNode9.Name = "Nœud9";
+            treeNode9.Text = "Nœud9";
+            treeNode10.Name = "Nœud11";
+            treeNode10.Text = "Nœud11";
+            treeNode11.Name = "Nœud10";
+            treeNode11.Text = "Nœud10";
+            treeNode12.Name = "Nœud8";
+            treeNode12.Text = "Nœud8";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode16,
-            treeNode19,
-            treeNode20,
-            treeNode24});
+            treeNode1,
+            treeNode4,
+            treeNode7,
+            treeNode8,
+            treeNode12});
             this.treeView.Size = new System.Drawing.Size(724, 364);
             this.treeView.TabIndex = 14;
             this.treeView.Visible = false;
@@ -215,7 +215,7 @@
             this.Controls.Add(this.answersPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dijkstra";
-            this.Text = "Form1";
+            this.Text = "Exercice 2 : Dijkstra";
             ((System.ComponentModel.ISupportInitialize)(this.graph_pb)).EndInit();
             this.answersPanel.ResumeLayout(false);
             this.answersPanel.PerformLayout();

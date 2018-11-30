@@ -17,13 +17,9 @@ namespace Ex2_Dijkstra
         private TreeNode selectedNode;
 
         private Form mainMenu;
-        /// <summary>
-        /// Exercice en cours (1 ou 2)
-        /// </summary>
+        // Exercice en cours (1 ou 2)
         private int ex = 1;
-        /// <summary>
-        /// Étape en cours (ex1)
-        /// </summary>
+        // Étape en cours (ex1)
         private int step = 0;
         private Graph graph;
 
@@ -36,7 +32,7 @@ namespace Ex2_Dijkstra
         //Ex : componentList[0][fermés_tb] renverra à la textbox des fermés de l'étape 1
         private List<Dictionary<string,Component>> ex1ComponentsList;
 
-        //Constructeur avec menu principal (permet d'y revenir si il existe à la fin de l'exercice)
+        //Constructeur avec menu principal passé en paramètre (permet d'y revenir, si il existe, à la fin de l'exercice)
         public Dijkstra(Form mainMenu):this()
         {
             this.mainMenu = mainMenu;
@@ -59,7 +55,7 @@ namespace Ex2_Dijkstra
         private void GoToEx1()
         {
             //On complete la question avec les noeuds finaux et initiaux
-            question_lb.Text += IntToChar(graph.FirstNode) + " et " + IntToChar(graph.LastNode) + ".";
+            question_lb.Text += IntToChar(graph.FirstNodeId) + " et " + IntToChar(graph.LastNodeId) + ".";
 
             //Remplissage de l'interface
             ex1ComponentsList = new List<Dictionary<string, Component>>();
@@ -141,7 +137,7 @@ namespace Ex2_Dijkstra
         {
             ResetControls();
             ex = 2;
-            question_lb.Text = "Appliquez toujours Dijkstra entre " + IntToChar(graph.FirstNode) + " et " + IntToChar(graph.LastNode) + ".";
+            question_lb.Text = "Appliquez toujours Dijkstra entre " + IntToChar(graph.FirstNodeId) + " et " + IntToChar(graph.LastNodeId) + ".";
             question_lb.Text += " Cette fois-ci, remplissez l'arbre final correctement structuré. Vous renseignerez chaque noeud ainsi que sa distance au noeud initial. (ex B:3).";
             
             ShowTree();
@@ -364,7 +360,7 @@ namespace Ex2_Dijkstra
         private bool IsEx2Correct()
         {
             TreeNode initialTN = treeView.Nodes[0];
-            GenericNode initialGN = graph.SearchList[0];
+            GenericNode initialGN = graph.FirstNode;
             if (!VerifyChildren(initialTN, initialGN))
                 return false;
             return true;

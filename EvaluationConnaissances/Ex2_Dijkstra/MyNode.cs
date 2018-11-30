@@ -37,7 +37,7 @@ namespace Ex2_Dijkstra
 
         public override bool EndState()
         {
-            return (Number == Graph.LastNode );
+            return (Number == Graph.LastNodeId );
         }
 
         public override List<GenericNode> GetListSucc()
@@ -74,7 +74,6 @@ namespace Ex2_Dijkstra
         //Renvoie la lettre correspondant au numéro du noeud (A=0 ; B=1 ; ...)
         public override string ToString()
         {
-            //return Convert.ToString(Number);
             return ((char)(Number + (int)'A')).ToString();
         }
     }

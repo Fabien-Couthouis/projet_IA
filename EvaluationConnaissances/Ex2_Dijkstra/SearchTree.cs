@@ -217,36 +217,14 @@ namespace Ex2_Dijkstra
             foreach (GenericNode GNfils in GN.GetEnfants())
             {
                 TreeNode TNfilsFull = new TreeNode(GNfils.ToString());
-                TreeNode TNfilsEmpty = new TreeNode("noeud:distance");
+                TreeNode TNfilsEmpty = new TreeNode("noeud:distance"); //Texte du TreeNode permettant à l'utilisateur de savoir dans quel format rentrer la solution
+
                 TNfull.Nodes.Add(TNfilsFull);
                 TNempty.Nodes.Add(TNfilsEmpty);
+
+                //Appel récursif de la méthode si le noeud étudié GNfils a des enfants
                 if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfilsFull, TNfilsEmpty);
             }
-        }
-
-        /// <summary>
-        /// Renvoie la liste des noeuds parcourus lors de l'application de A*.
-        /// </summary>
-        /// <returns></returns>
-        public List<GenericNode> GetSearchList()
-        {
-            if (L_Fermes == null || L_Fermes.Count == 0) return null;
-
-            List<GenericNode> searchList = new List<GenericNode>();
-
-            //Ajoute tous les noeuds trouves dans les fermés
-            foreach (GenericNode node in L_Fermes)
-            {
-                searchList.Add(node);
-            }
-
-            //Ajoute tous les enfants du dernier noeud
-            foreach (GenericNode node in L_Fermes[L_Fermes.Count - 1].GetEnfants())
-            {
-                searchList.Add(node);
-            }
-
-            return searchList;
         }
 
 

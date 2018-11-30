@@ -23,10 +23,10 @@ namespace Ex2_Dijkstra
         /// </summary>
         public double[,] Matrix { get; private set; }
         public int NbNodes { get; private set; }
-        public int FirstNode { get; private set; }
-        public int LastNode { get; private set; }
+        public int FirstNodeId { get; private set; }
+        public int LastNodeId { get; private set; }
         public SearchTree SolutionTree { get; private set; }
-        public List<GenericNode> SearchList { get; private set; }
+        public MyNode FirstNode { get; private set; }
 
 
         public Graph(int id)
@@ -78,7 +78,7 @@ namespace Ex2_Dijkstra
                 firstNode_str += line[i];
                 i++;
             }
-            FirstNode = Convert.ToInt32(firstNode_str);
+            FirstNodeId = Convert.ToInt32(firstNode_str);
 
             // 3eme ligne : noeud d'arrivée
             line = streamReader.ReadLine();
@@ -96,7 +96,7 @@ namespace Ex2_Dijkstra
                 lastNode_str += line[i];
                 i++;
             }
-            LastNode = Convert.ToInt32(lastNode_str);
+            LastNodeId = Convert.ToInt32(lastNode_str);
 
 
             //Initialisation de la matrice
@@ -156,14 +156,12 @@ namespace Ex2_Dijkstra
             streamReader.Close();
         }
 
-        ///<summary>Calcule la solution (application de A*) et met à jour les variables SearchList et TreeView.</summary>
+        ///<summary>Calcule la solution (application de A*) et met à jour les variables FirstNode et SolutionTree</summary>
         public void computeSolution()
         {
             SolutionTree = new SearchTree();
-            MyNode N0 = new MyNode(FirstNode, this);
-            List<GenericNode> Solution = SolutionTree.RechercheSolutionAEtoile(N0);
-
-            SearchList = SolutionTree.GetSearchList();
+            FirstNode = new MyNode(FirstNodeId, this);
+            SolutionTree.RechercheSolutionAEtoile(FirstNode);
         }
 
 
