@@ -53,47 +53,44 @@ namespace Ex1_Questionnaire
                 question_pic.Visible = false;
                 scoreMaxPossible += actualQuestion.Points;
                 question_tb.Location = new Point(179, 73);
-                if (actualQuestion.Id != 2)
+                if (answer == Convert.ToString(actualQuestion.GoodAnswer))
                 {
-                    if (answer == Convert.ToString(actualQuestion.GoodAnswer))
+                    verdict_tb.Text = "BRAVO !";
+                    verdict_tb.TextAlign = HorizontalAlignment.Center;
+                    verdict_tb.ForeColor = Color.Green;
+                    score+=actualQuestion.Points;
+                    if (actualQuestion.GoodAnswer == "A")
                     {
-                        verdict_tb.Text = "BRAVO !";
-                        verdict_tb.TextAlign = HorizontalAlignment.Center;
-                        verdict_tb.ForeColor = Color.Green;
-                        score+=actualQuestion.Points;
-                        if (actualQuestion.GoodAnswer == "A")
-                        {
-                            answer1_btn.BackColor = Color.Green;
-                            answer1_btn.Enabled = false;
-                            answer2_btn.Visible = false;
-                            answer3_btn.Visible = false;
-                            answer4_btn.Visible = false;
+                        answer1_btn.BackColor = Color.Green;
+                        answer1_btn.Enabled = false;
+                        answer2_btn.Visible = false;
+                        answer3_btn.Visible = false;
+                        answer4_btn.Visible = false;
 
-                        }
-                        if (actualQuestion.GoodAnswer == "B")
-                        {
-                            answer2_btn.BackColor = Color.Green;
-                            answer2_btn.Enabled = false;
-                            answer1_btn.Visible = false;
-                            answer3_btn.Visible = false;
-                            answer4_btn.Visible = false;
-                        }
-                        if (actualQuestion.GoodAnswer == "C")
-                        {
-                            answer3_btn.BackColor = Color.Green;
-                            answer3_btn.Enabled = false;
-                            answer1_btn.Visible = false;
-                            answer2_btn.Visible = false;
-                            answer4_btn.Visible = false;
-                        }
-                        if (actualQuestion.GoodAnswer == "D")
-                        {
-                            answer4_btn.BackColor = Color.Green;
-                            answer4_btn.Enabled = false;
-                            answer1_btn.Visible = false;
-                            answer2_btn.Visible = false;
-                            answer3_btn.Visible = false;
-                        }
+                    }
+                    if (actualQuestion.GoodAnswer == "B")
+                    {
+                        answer2_btn.BackColor = Color.Green;
+                        answer2_btn.Enabled = false;
+                        answer1_btn.Visible = false;
+                        answer3_btn.Visible = false;
+                        answer4_btn.Visible = false;
+                    }
+                    if (actualQuestion.GoodAnswer == "C")
+                    {
+                        answer3_btn.BackColor = Color.Green;
+                        answer3_btn.Enabled = false;
+                        answer1_btn.Visible = false;
+                        answer2_btn.Visible = false;
+                        answer4_btn.Visible = false;
+                    }
+                    if (actualQuestion.GoodAnswer == "D")
+                    {
+                        answer4_btn.BackColor = Color.Green;
+                        answer4_btn.Enabled = false;
+                        answer1_btn.Visible = false;
+                        answer2_btn.Visible = false;
+                        answer3_btn.Visible = false;
                     }
 
                     if (answer != Convert.ToString(actualQuestion.GoodAnswer))
@@ -155,11 +152,6 @@ namespace Ex1_Questionnaire
                         }
                     }
                 }
-
-                else
-                {
-
-                }
                 verdict_tb.Visible = true;
             }
 
@@ -217,7 +209,7 @@ namespace Ex1_Questionnaire
                         progressBar.Value += 1;
                         next = true;
 
-                    if (Convert.ToInt32(actualQuestion.Id) != 2 /*&& Convert.ToInt32(actualQuestion.Id) != 16*/)
+                    if (Convert.ToInt32(actualQuestion.Id) != 2 && Convert.ToInt32(actualQuestion.Id) != 16)
                     {
                         answer1_btn.Visible = true;
                         answer1_btn.Enabled = true;
